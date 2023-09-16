@@ -124,11 +124,22 @@ body {
   margin: 20px 35px 20px 35px;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: auto;
   max-width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+
   border: 0.5px solid black;
+}
+
+.evidence-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.evidence-item h3 {
+  margin: 0;
 }
 
 /* Footer */

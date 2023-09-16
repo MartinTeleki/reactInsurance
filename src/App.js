@@ -66,35 +66,39 @@ function Register() {
     <div className="register-container">
       <div className="form-group">
         <label htmlFor="name">Jméno</label>
-        <input type="text" id="name" />
+        <input type="text" id="name" placeholder="Jan" />
       </div>
       <div className="form-group">
         <label htmlFor="surname">Příjmení</label>
-        <input type="text" id="surname" />
+        <input type="text" id="surname" placeholder="Novák" />
       </div>
       <div className="form-group">
         <label htmlFor="password-register">Heslo</label>
-        <input type="password" id="password-register" />
+        <input type="password" id="password-register" placeholder="******" />
       </div>
       <div className="form-group">
         <label htmlFor="password-control-register">Heslo kontrola</label>
-        <input type="password" id="password-control-register" />
+        <input
+          type="password"
+          id="password-control-register"
+          placeholder="*******"
+        />
       </div>
       <div className="form-group">
         <label htmlFor="age">Věk</label>
-        <input type="number" id="age" />
+        <input type="number" id="age" placeholder="26" />
       </div>
       <div className="form-group">
         <label htmlFor="telephon-number">Telefonní číslo</label>
-        <input type="tel" id="telephon-number" />
+        <input type="tel" id="telephon-number" placeholder="555 774 777" />
       </div>
       <div className="form-group">
         <label htmlFor="insurance-number">Číslo pojištěnce</label>
-        <input type="text" id="Insurance-number" />
+        <input type="text" id="Insurance-number" placeholder="55151518" />
       </div>
       <div className="form-group">
         <label htmlFor="kod-contract">Kód smlouvy</label>
-        <input type="text" id="kod-contract" />
+        <input type="text" id="kod-contract" placeholder="jnfjnkdfk" />
       </div>
     </div>
   );
@@ -103,22 +107,34 @@ function Register() {
 function Evidence() {
   return (
     <div className="evidence-container">
-      <h2>Jméno</h2>
-      <p>Jan</p>
-      <h2>Příjmení</h2>
-      <p>Novák</p>
-
-      <h2>Věk</h2>
-      <p>26</p>
-      <h2>Telefonní číslo</h2>
-      <p>555 555 555</p>
-      <h2>Číslo pojištěnce</h2>
-      <p>5484484884</p>
-      <h2>kód smlouvy</h2>
-      <p>nfnfe49</p>
+      <div className="evidence-item">
+        <h3>Jméno</h3>
+        <p>Jan</p>
+      </div>
+      <div className="evidence-item">
+        <h3>Příjmení</h3>
+        <p>Novák</p>
+      </div>
+      <div className="evidence-item">
+        <h3>Věk</h3>
+        <p>26</p>
+      </div>
+      <div className="evidence-item">
+        <h3>Telefonní číslo</h3>
+        <p>555 555 555</p>
+      </div>
+      <div className="evidence-item">
+        <h3>Číslo pojištěnce</h3>
+        <p>5484484884</p>
+      </div>
+      <div className="evidence-item">
+        <h3>kód smlouvy</h3>
+        <p>nfnfe49</p>
+      </div>
     </div>
   );
 }
+
 
 function Footer() {
   return (
