@@ -4,18 +4,18 @@ export default function App() {
   return (
     <div className="App">
       <NavBar />
+
       <Main />
+
       <Footer />
     </div>
   );
 }
 
-
 function toggleMenu() {
-  const navLinks = document.getElementById('nav-links');
-  navLinks.classList.toggle('show-menu');
+  const navLinks = document.getElementById("nav-links");
+  navLinks.classList.toggle("show-menu");
 }
-
 
 function NavBar() {
   return (
@@ -24,7 +24,7 @@ function NavBar() {
         <div className="logo">
           <p>Pojišťovna React</p>
         </div>
-        <div className="menu-toggle" onClick={toggleMenu}>
+        <div className="bar-container" onClick={toggleMenu}>
           <div className="bar"></div>
           <div className="bar"></div>
           <div className="bar"></div>
@@ -48,12 +48,15 @@ function NavBar() {
   );
 }
 
-
-
 function Main() {
   return (
     <div className="main">
-      <Register />
+      <div>
+        <Register />
+      </div>
+      <div>
+        <Evidence />
+      </div>
     </div>
   );
 }
@@ -70,29 +73,49 @@ function Register() {
         <input type="text" id="surname" />
       </div>
       <div className="form-group">
+        <label htmlFor="password-register">Heslo</label>
+        <input type="password" id="password-register" />
+      </div>
+      <div className="form-group">
+        <label htmlFor="password-control-register">Heslo kontrola</label>
+        <input type="password" id="password-control-register" />
+      </div>
+      <div className="form-group">
         <label htmlFor="age">Věk</label>
         <input type="number" id="age" />
       </div>
       <div className="form-group">
-        <label htmlFor="telephonNumber">Telefonní číslo</label>
-        <input type="tel" id="telephonNumber" />
+        <label htmlFor="telephon-number">Telefonní číslo</label>
+        <input type="tel" id="telephon-number" />
       </div>
       <div className="form-group">
-        <label htmlFor="insuranceNumber">Číslo pojištěnce</label>
-        <input type="text" id="InsuranceNumber" />
+        <label htmlFor="insurance-number">Číslo pojištěnce</label>
+        <input type="text" id="Insurance-number" />
       </div>
       <div className="form-group">
-        <label htmlFor="kodContract">Kód smlouvy</label>
-        <input type="text" id="kodContract" />
+        <label htmlFor="kod-contract">Kód smlouvy</label>
+        <input type="text" id="kod-contract" />
       </div>
-      <div className="form-group">
-        <label htmlFor="anotherField1">Další pole 1</label>
-        <input type="text" id="anotherField1" />
-      </div>
-      <div className="form-group">
-        <label htmlFor="anotherField2">Další pole 2</label>
-        <input type="text" id="anotherField2" />
-      </div>
+    </div>
+  );
+}
+
+function Evidence() {
+  return (
+    <div className="evidence-container">
+      <h2>Jméno</h2>
+      <p>Jan</p>
+      <h2>Příjmení</h2>
+      <p>Novák</p>
+
+      <h2>Věk</h2>
+      <p>26</p>
+      <h2>Telefonní číslo</h2>
+      <p>555 555 555</p>
+      <h2>Číslo pojištěnce</h2>
+      <p>5484484884</p>
+      <h2>kód smlouvy</h2>
+      <p>nfnfe49</p>
     </div>
   );
 }
@@ -109,5 +132,3 @@ function Footer() {
     </div>
   );
 }
-
-
