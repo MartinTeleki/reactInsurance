@@ -45,6 +45,7 @@
   width: 360px;
   height: auto;
   margin-top: 10px;
+
   font-family: verdana;
   font-size: 12px;
 }
@@ -54,6 +55,15 @@
   width: 180px;
   border: none;
   padding-left: 20px;
+}
+
+.textBox:focus {
+  height: 35px;
+  width: 180px;
+  border: none;
+  padding-left: 20px;
+  transition: transform 0.3s;
+  transform: scale(0.96);
 }
 
 .new {

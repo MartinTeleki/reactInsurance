@@ -7,27 +7,27 @@ export default function NewEvidence() {
         <h2>Evidence</h2>
       </div>
       <div className="evidence-item">
-        <h3>Jméno:</h3>
+        <h3>First Name:</h3>
         <p>Jan</p>
       </div>
       <div className="evidence-item">
-        <h3>Příjmení:</h3>
+        <h3>Last Name:</h3>
         <p>Novák</p>
       </div>
       <div className="evidence-item">
-        <h3>Věk:</h3>
+        <h3>Age:</h3>
         <p>26</p>
       </div>
       <div className="evidence-item">
-        <h3>Telefonní číslo:</h3>
+        <h3>Phone Number:</h3>
         <p>555 555 555</p>
       </div>
       <div className="evidence-item">
-        <h3>Číslo pojištěnce:</h3>
+        <h3>Insurance Number:</h3>
         <p>5484484884</p>
       </div>
       <div className="evidence-item">
-        <h3>kód smlouvy:</h3>
+        <h3>Insurance Code:</h3>
         <p>nfnfe49</p>
       </div>
       <div className="btn-delete-container">

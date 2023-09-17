@@ -32,9 +32,9 @@ export default function NewRegister() {
 
         {/* Second name */}
         <div className="box">
-          <label htmlFor="secondName" className="fl fontLabel">
+          <label htmlFor="last-name" className="fl fontLabel">
             {" "}
-            Second Name:{" "}
+            Last Name:{" "}
           </label>
           <div className="fl iconBox">
             <i className="fa fa-user" aria-hidden="true"></i>
@@ -43,7 +43,7 @@ export default function NewRegister() {
             <input
               type="text"
               required
-              name="secondName"
+              name="last-name"
               placeholder="Last Name"
               className="textBox"
             />
@@ -118,7 +118,98 @@ export default function NewRegister() {
           <div className="clr"></div>
         </div>
         {/* Password */}
+        {/* Repassword */}
+        <div className="box">
+          <label htmlFor="controll password" className="fl fontLabel">
+            {" "}
+            Re-Password:{" "}
+          </label>
+          <div className="fl iconBox">
+            <i className="fa fa-key" aria-hidden="true"></i>
+          </div>
+          <div className="fr">
+            <input
+              type="password"
+              required
+              name="password"
+              placeholder="Password"
+              className="textBox"
+            />
+          </div>
+          <div className="clr"></div>
+        </div>
+        {/* Repassword */}
+        {/* Age */}
 
+        <div className="box">
+          <label htmlFor="age" className="fl fontLabel">
+            {" "}
+            Age:{" "}
+          </label>
+          <div className="fl iconBox">
+            <i className="fa fa-user" aria-hidden="true"></i>
+          </div>
+          <div className="fr">
+            <input
+              type="nummer"
+              required
+              name="age"
+              placeholder="26"
+              className="textBox"
+            />
+          </div>
+          <div className="clr"></div>
+        </div>
+
+        {/* Age */}
+
+        {/*insurance policy number */}
+
+        <div className="box">
+          <label htmlFor="insurance-number" className="fl fontLabel">
+            {" "}
+            insur.Num:{" "}
+          </label>
+          <div className="fl iconBox">
+            <i className="fa fa-envelope" aria-hidden="true"></i>
+          </div>
+          <div className="fr">
+            <input
+              type="number"
+              required
+              name="insurance-number "
+              placeholder="4546465"
+              className="textBox"
+            />
+          </div>
+          <div className="clr"></div>
+        </div>
+
+        {/* insurance policy number */}
+
+        {/* insurance policy code */}
+
+        <div className="box">
+          <label htmlFor="insurance-code" className="fl fontLabel">
+            {" "}
+            Insur.Code:{" "}
+          </label>
+          <div className="fl iconBox">
+            <i className="fa fa-key" aria-hidden="true"></i>
+          </div>
+          <div className="fr">
+            <input
+              type="password"
+              required
+              name="insurance-code"
+              placeholder="insurance-code"
+              className="textBox"
+            />
+          </div>
+          <div className="clr"></div>
+        </div>
+
+        {/* insurance policy code */}
         {/* Gender */}
         <div className="box radio">
           <label htmlFor="gender" className="fl fontLabel">
