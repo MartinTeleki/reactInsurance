@@ -1,16 +1,15 @@
+import React, { useEffect, useState } from "react";
 import "./newEvidence.css";
 
 export default function NewEvidence() {
-  const registrationInfo = {
-    firstName: "Jan",
-    lastName: "Novák",
-    email: "jannovak@seznam.cz",
-    phoneNumber: 545445444,
-    age: "26",
-    insuranceNumber: 1234567890,
-    insuranceCode: "alkfrioprf",
-    gender: "male",
-  };
+  const [registrationInfo, setRegistrationInfo] = useState({});
+
+  useEffect(() => {
+    const storedInfo = localStorage.getItem("registrationInfo");
+    if (storedInfo) {
+      setRegistrationInfo(JSON.parse(storedInfo));
+    }
+  }, [registrationInfo]);
 
   return (
     <div className="evidence-container">
