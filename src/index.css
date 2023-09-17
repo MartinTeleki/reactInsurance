@@ -76,7 +76,13 @@ body {
 }
 
 /* Register */
-.register-container {
+
+
+
+
+
+
+/* .register-container {
   display: flex;
   position: relative;
   align-items: center;
@@ -114,14 +120,14 @@ body {
   margin-left: 40px;
   padding: 5px;
   border: 1px solid #ccc;
-}
+} */
 
 /* Evidence */
 
 .evidence-container {
   display: flex;
   position: relative;
-  margin: 20px 35px 20px 35px;
+  margin: 20px 35px 200px 35px;
   align-items: center;
   justify-content: center;
   flex-direction: column;
