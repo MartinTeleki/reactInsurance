@@ -6,10 +6,12 @@ export default function App() {
   return (
     <div>
       <NavBar />
-    <div>
+    
 
-      <Main/>
-    </div>
+      <Main>
+        
+      </Main>
+    
 
       <Footer />
     </div>

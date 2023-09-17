@@ -1,3 +1,6 @@
+html {
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,8 +9,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  
-  
+  background: steelblue;
 }
 
 .App {
@@ -15,8 +17,8 @@ body {
   margin: 0 auto;
 }
 
-
 .navbar {
+  margin: 0;
   background-color: #333;
   color: #fff;
   display: flex;
@@ -80,8 +82,6 @@ body {
 }
 
 /* Register */
-
-
 
 /* Footer */
 .footer {
