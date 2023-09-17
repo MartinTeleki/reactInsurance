@@ -125,6 +125,14 @@ export default function NewRegister() {
           <input type="radio" name="Gender" value="Male" required /> Male &nbsp;
           &nbsp; &nbsp; &nbsp;
           <input type="radio" name="Gender" value="Female" required /> Female
+          <input
+            type="radio"
+            name="Gender"
+            value="Other"
+            required
+            style={{ marginLeft: "40px" }}
+          />{" "}
+          Other
         </div>
         {/* Gender */}
 
