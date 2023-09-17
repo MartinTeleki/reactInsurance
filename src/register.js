@@ -20,7 +20,7 @@ export default function NewRegister() {
             <input
               type="text"
               name="firstName"
-              placeholder="First Name"
+              placeholder="Jan"
               autoFocus="on"
               required
               className="textBox"
@@ -44,7 +44,7 @@ export default function NewRegister() {
               type="text"
               required
               name="last-name"
-              placeholder="Last Name"
+              placeholder="Novák"
               className="textBox"
             />
           </div>
@@ -89,7 +89,7 @@ export default function NewRegister() {
               type="email"
               required
               name="email"
-              placeholder="Email Id"
+              placeholder="jannovak@seznam.cz"
               className="textBox"
             />
           </div>
@@ -111,7 +111,7 @@ export default function NewRegister() {
               type="password"
               required
               name="password"
-              placeholder="Password"
+              placeholder="*******"
               className="textBox"
             />
           </div>
@@ -132,7 +132,7 @@ export default function NewRegister() {
               type="password"
               required
               name="password"
-              placeholder="Password"
+              placeholder="*******"
               className="textBox"
             />
           </div>
@@ -178,7 +178,7 @@ export default function NewRegister() {
               type="number"
               required
               name="insurance-number "
-              placeholder="4546465"
+              placeholder="1234567890"
               className="textBox"
             />
           </div>
@@ -202,7 +202,7 @@ export default function NewRegister() {
               type="password"
               required
               name="insurance-code"
-              placeholder="insurance-code"
+              placeholder="45e87rsd6"
               className="textBox"
             />
           </div>
