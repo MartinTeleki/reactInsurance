@@ -58,7 +58,7 @@
   text-transform: uppercase;
   margin: 15.2px 0;
   padding: 10px 15px;
-  color: #fff;
+  color: black;
   background: #a2ff00;
   cursor: pointer;
   transition: transform 0.3s;
@@ -67,11 +67,21 @@
 .btn-delete:hover {
   text-transform: uppercase;
   padding: 10px 15px;
-  color: #fff;
+  color: black;
   background: #a2ff00;
   opacity: 0.9;
   cursor: pointer;
   transform: scale(0.96);
+}
+
+.btn-delete:active {
+  text-transform: uppercase;
+  padding: 10px 15px;
+  color: black;
+  background: #a2ff00;
+  opacity: 0.9;
+  cursor: pointer;
+  transform: scale(0.88);
 }
 
 /* Responzivita pro menší obrazovky */
