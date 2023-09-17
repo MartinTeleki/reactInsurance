@@ -38,7 +38,9 @@ function NavBar({ toggleMenu, changePage }) {
         </div>
         <ul className="nav-links" id="nav-links">
           <li>
-            <a href="#">Informace</a>
+            <a href="#" onClick={() => changePage("informace")}>
+              Informace
+            </a>
           </li>
           <li>
             <a href="#" onClick={() => changePage("register")}>
@@ -51,7 +53,9 @@ function NavBar({ toggleMenu, changePage }) {
             </a>
           </li>
           <li>
-            <a href="#">Kontakt</a>
+            <a href="#" onClick={() => changePage("kontakt")}>
+              Kontakt
+            </a>
           </li>
         </ul>
       </nav>
