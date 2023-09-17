@@ -1,5 +1,10 @@
 /* Evidence */
 
+.evidence-margin{
+    margin-top: 600px;
+    margin-bottom: 200px;
+}
+
 .evidence-container {
   display: flex;
   position: relative;
@@ -9,11 +14,8 @@
   height: auto;
   max-width: 100%;
   border: 0.5px solid black;
-  margin: 0 20% 0 20%;
+  margin: 10px 20% 0 20%;
 
-  /* before applyJS */
-  margin-top: 600px;
-  margin-bottom: 200px;
 }
 
 .evidence-item {
@@ -42,7 +44,7 @@
   .evidence-item {
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px 0 20px 0;
+    padding:  20px 0 20px 0;
   }
 
   .evidence-item h3 {

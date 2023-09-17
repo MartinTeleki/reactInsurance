@@ -4,12 +4,10 @@ import NewEvidence from "./evidence";
 
 export default function App() {
   return (
-
-
     <div>
       <NavBar />
 
-      <Main/>
+      <Main />
 
       <Footer />
     </div>
@@ -59,7 +57,9 @@ function Main() {
         <NewRegister />
       </div>
       <div className="evidence-margin">
-        <NewEvidence/>
+        <NewEvidence />
+        <NewEvidence />
+        <NewEvidence />
       </div>
     </div>
   );
