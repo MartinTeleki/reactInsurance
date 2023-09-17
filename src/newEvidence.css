@@ -1,0 +1,52 @@
+/* Evidence */
+
+.evidence-container {
+  display: flex;
+  position: relative;
+  margin: 0;
+  justify-content: center;
+  flex-direction: column;
+  height: auto;
+  max-width: 100%;
+  border: 0.5px solid black;
+  margin: 0 20% 0 20%;
+
+  /* before applyJS */
+  margin-top: 600px;
+  margin-bottom: 200px;
+}
+
+.evidence-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #ff6600;
+  color: white;
+  border: 1px solid black;
+  flex-wrap: wrap;
+}
+
+.evidence-item h3 {
+  margin: 0;
+  margin: 20px 0 20px 20%;
+}
+
+.evidence-item p {
+  display: flex;
+  position: absolute;
+  margin-left: 60%;
+}
+
+/* Responzivita pro menší obrazovky */
+@media screen and (max-width: 700px) {
+  .evidence-item {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 0 20px 0;
+  }
+
+  .evidence-item h3 {
+    margin: 0;
+    margin-right: 10px;
+  }
+}
