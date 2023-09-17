@@ -6,6 +6,9 @@ export default function NewRegister() {
       <form method="post" autoComplete="on">
         {/* First name */}
         <div className="box">
+          <div className="register-title">
+            <h2>Register</h2>
+          </div>
           <label htmlFor="firstName" className="fl fontLabel">
             {" "}
             First Name:{" "}
@@ -130,7 +133,7 @@ export default function NewRegister() {
             name="Gender"
             value="Other"
             required
-            style={{ marginLeft: "40px" }}
+            style={{ marginLeft: "20px" }}
           />{" "}
           Other
         </div>

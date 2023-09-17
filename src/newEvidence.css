@@ -17,6 +17,13 @@
   margin: 100px 20% 0 20%;
 }
 
+.evidence-item-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
 .evidence-item {
   display: flex;
   flex-direction: row;

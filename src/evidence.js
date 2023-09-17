@@ -3,6 +3,9 @@ import "./newEvidence.css";
 export default function NewEvidence() {
   return (
     <div className="evidence-container">
+      <div className="evidence-item evidence-item-title">
+        <h2>Evidence</h2>
+      </div>
       <div className="evidence-item">
         <h3>Jméno:</h3>
         <p>Jan</p>
