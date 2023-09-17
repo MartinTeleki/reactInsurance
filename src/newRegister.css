@@ -50,7 +50,14 @@
   font-size: 12px;
 }
 
-.textBox {
+.select-gender {
+  margin-left: 9px;
+  height: 37px;
+  width: 201px;
+}
+
+.textBox,
+select {
   height: 35px;
   width: 180px;
   border: none;
@@ -87,12 +94,6 @@
   background: #ff6600;
   opacity: 0.9;
   transform: scale(0.96);
-}
-
-.radio {
-  color: white;
-  background: #2d3e3f;
-  line-height: 38px;
 }
 
 .terms {

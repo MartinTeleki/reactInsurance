@@ -1,6 +1,19 @@
 import "./newRegister.css";
 
 export default function NewRegister() {
+  const registrationInfo = {
+    firstName: "Jan",
+    lastName: "Novák",
+    password: "",
+    controlPassword: "",
+    email: "jannovak@seznam.cz",
+    phoneNumber: 545445444,
+    age: "26",
+    insuranceNumber: 1234567890,
+    insuranceCode: "alkfrioprf",
+    gender: "male",
+  };
+
   return (
     <div className="container">
       <form method="post" autoComplete="on">
@@ -24,6 +37,7 @@ export default function NewRegister() {
               autoFocus="on"
               required
               className="textBox"
+              value={registrationInfo.firstName}
             />
           </div>
           <div className="clr"></div>
@@ -46,6 +60,7 @@ export default function NewRegister() {
               name="last-name"
               placeholder="Novák"
               className="textBox"
+              value={registrationInfo.lastName}
             />
           </div>
           <div className="clr"></div>
@@ -69,6 +84,7 @@ export default function NewRegister() {
               maxLength="10"
               placeholder="Phone No."
               className="textBox"
+              value={registrationInfo.phoneNumber}
             />
           </div>
           <div className="clr"></div>
@@ -91,6 +107,7 @@ export default function NewRegister() {
               name="email"
               placeholder="jannovak@seznam.cz"
               className="textBox"
+              value={registrationInfo.email}
             />
           </div>
           <div className="clr"></div>
@@ -113,6 +130,7 @@ export default function NewRegister() {
               name="password"
               placeholder="*******"
               className="textBox"
+              value={registrationInfo.password}
             />
           </div>
           <div className="clr"></div>
@@ -134,6 +152,7 @@ export default function NewRegister() {
               name="password"
               placeholder="*******"
               className="textBox"
+              value={registrationInfo.controlPassword}
             />
           </div>
           <div className="clr"></div>
@@ -156,6 +175,7 @@ export default function NewRegister() {
               name="age"
               placeholder="26"
               className="textBox"
+              value={registrationInfo.age}
             />
           </div>
           <div className="clr"></div>
@@ -180,6 +200,7 @@ export default function NewRegister() {
               name="insurance-number "
               placeholder="1234567890"
               className="textBox"
+              value={registrationInfo.insuranceNumber}
             />
           </div>
           <div className="clr"></div>
@@ -204,6 +225,7 @@ export default function NewRegister() {
               name="insurance-code"
               placeholder="45e87rsd6"
               className="textBox"
+              value={registrationInfo.insuranceCode}
             />
           </div>
           <div className="clr"></div>
@@ -216,17 +238,19 @@ export default function NewRegister() {
             {" "}
             Gender:{" "}
           </label>
-          <input type="radio" name="Gender" value="Male" required /> Male &nbsp;
-          &nbsp; &nbsp; &nbsp;
-          <input type="radio" name="Gender" value="Female" required /> Female
-          <input
-            type="radio"
+          <div className="fl iconBox">
+            <i className="fa fa-user" aria-hidden="true"></i>
+          </div>
+          <select
+            className="select-gender"
             name="Gender"
-            value="Other"
             required
-            style={{ marginLeft: "20px" }}
-          />{" "}
-          Other
+            value={registrationInfo.gender}
+          >
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
         </div>
         {/* Gender */}
 
