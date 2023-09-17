@@ -19,13 +19,13 @@ export default function NewRegister() {
     initialRegistrationInfo
   );
 
-  const handleInputChange = (e) => {
+  function HandleInputChange(e) {
     const { name, value, type, checked } = e.target;
-    setRegistrationInfo({
-      ...registrationInfo,
+    setRegistrationInfo((prevInfo) => ({
+      ...prevInfo,
       [name]: type === "checkbox" ? checked : value,
-    });
-  };
+    }));
+  }
 
   console.log(registrationInfo);
 
@@ -52,7 +52,7 @@ export default function NewRegister() {
               autoFocus="on"
               required
               className="textBox"
-              onChange={handleInputChange}
+              onChange={HandleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -75,7 +75,7 @@ export default function NewRegister() {
               name="lastName"
               placeholder="Novák"
               className="textBox"
-              onChange={handleInputChange}
+              onChange={HandleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -99,7 +99,7 @@ export default function NewRegister() {
               maxLength="10"
               placeholder="Phone No."
               className="textBox"
-              onChange={handleInputChange}
+              onChange={HandleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -122,7 +122,7 @@ export default function NewRegister() {
               name="email"
               placeholder="jannovak@seznam.cz"
               className="textBox"
-              onChange={handleInputChange}
+              onChange={HandleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -145,7 +145,7 @@ export default function NewRegister() {
               name="password"
               placeholder="*******"
               className="textBox"
-              onChange={handleInputChange}
+              onChange={HandleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -167,7 +167,7 @@ export default function NewRegister() {
               name="controlPassword"
               placeholder="*******"
               className="textBox"
-              onChange={handleInputChange}
+              onChange={HandleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -190,7 +190,7 @@ export default function NewRegister() {
               name="age"
               placeholder="26"
               className="textBox"
-              onChange={handleInputChange}
+              onChange={HandleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -215,7 +215,7 @@ export default function NewRegister() {
               name="insuranceNumber"
               placeholder="1234567890"
               className="textBox"
-              onChange={handleInputChange}
+              onChange={HandleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -240,7 +240,7 @@ export default function NewRegister() {
               name="insuranceCode"
               placeholder="45e87rsd6"
               className="textBox"
-              onChange={handleInputChange}
+              onChange={HandleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -260,7 +260,7 @@ export default function NewRegister() {
             className="select-gender"
             name="gender"
             required
-            onChange={handleInputChange}
+            onChange={HandleInputChange}
           >
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -276,7 +276,7 @@ export default function NewRegister() {
             name="termsAccepted"
             required
             checked={registrationInfo.termsAccepted}
-            onChange={handleInputChange}
+            onChange={HandleInputChange}
           />{" "}
           &nbsp; I accept the terms and conditions
         </div>
@@ -289,6 +289,7 @@ export default function NewRegister() {
             name="Submit"
             className="submit"
             value="SUBMIT"
+            // onClick={}
           />
         </div>
         {/* Submit Button */}
