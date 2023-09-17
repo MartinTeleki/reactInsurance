@@ -1,25 +1,30 @@
 import "./index.css";
+import React, { useState } from "react";
 import NewRegister from "./register";
 import NewEvidence from "./evidence";
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState("register");
+
+  function toggleMenu() {
+    const navLinks = document.getElementById("nav-links");
+    navLinks.classList.toggle("show-menu");
+  }
+
+  function changePage(page) {
+    setCurrentPage(page);
+  }
+
   return (
     <div>
-      <NavBar />
-
-      <Main></Main>
-
+      <NavBar toggleMenu={toggleMenu} changePage={changePage} />
+      <Main currentPage={currentPage} />
       <Footer />
     </div>
   );
 }
 
-function toggleMenu() {
-  const navLinks = document.getElementById("nav-links");
-  navLinks.classList.toggle("show-menu");
-}
-
-function NavBar() {
+function NavBar({ toggleMenu, changePage }) {
   return (
     <div>
       <nav className="navbar">
@@ -36,10 +41,14 @@ function NavBar() {
             <a href="#">Informace</a>
           </li>
           <li>
-            <a href="#">Registrace</a>
+            <a href="#" onClick={() => changePage("register")}>
+              Registrace
+            </a>
           </li>
           <li>
-            <a href="#">Evidence</a>
+            <a href="#" onClick={() => changePage("evidence")}>
+              Evidence
+            </a>
           </li>
           <li>
             <a href="#">Kontakt</a>
@@ -50,15 +59,19 @@ function NavBar() {
   );
 }
 
-function Main() {
+function Main({ currentPage }) {
   return (
     <div className="">
-      <div className="register-margin">
-        <NewRegister />
-      </div>
-      <div className="evidence-margin">
-        <NewEvidence />
-      </div>
+      {currentPage === "register" && (
+        <div className="register-margin">
+          <NewRegister />
+        </div>
+      )}
+      {currentPage === "evidence" && (
+        <div className="evidence-margin">
+          <NewEvidence />
+        </div>
+      )}
     </div>
   );
 }
