@@ -1,8 +1,8 @@
 /* Evidence */
 
-.evidence-margin{
-    margin-top: 600px;
-    margin-bottom: 200px;
+.evidence-margin {
+  margin-top: 600px;
+  margin-bottom: 200px;
 }
 
 .evidence-container {
@@ -15,7 +15,6 @@
   max-width: 100%;
   border: 0.5px solid black;
   margin: 10px 20% 0 20%;
-
 }
 
 .evidence-item {
@@ -41,41 +40,38 @@
 
 /* buttons */
 
-.btn-delete-container{
-    display: flex;
-    justify-content: center;
-    background: #2d3e3f;
-    
-
+.btn-delete-container {
+  display: flex;
+  justify-content: center;
+  background: #2d3e3f;
 }
 
 .btn-delete {
-    text-transform: uppercase;
-    padding: 10px 15px;
-    color: #fff;
-    background: #ff6600;
-    cursor: pointer;
-    transition: transform 0.3s;
+  text-transform: uppercase;
+  margin: 15.2px 0;
+  padding: 10px 15px;
+  color: #fff;
+  background: #ff6600;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 
 .btn-delete:hover {
-    text-transform: uppercase;
-    padding: 10px 15px;
-    color: #fff;
-    background: #ff6600;
-    opacity: 0.9;
-    cursor: pointer;
-    transform: scale(0.96);
+  text-transform: uppercase;
+  padding: 10px 15px;
+  color: #fff;
+  background: #ff6600;
+  opacity: 0.9;
+  cursor: pointer;
+  transform: scale(0.96);
 }
-
-
 
 /* Responzivita pro menší obrazovky */
 @media screen and (max-width: 700px) {
   .evidence-item {
     flex-direction: row;
     justify-content: space-between;
-    padding:  20px 0 20px 0;
+    padding: 20px 0 20px 0;
   }
 
   .evidence-item h3 {
