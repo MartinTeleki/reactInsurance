@@ -1,7 +1,7 @@
 /* Evidence */
 
 .evidence-margin {
-  margin-top: 600px;
+  margin-top: 20px;
   margin-bottom: 200px;
 }
 
@@ -14,7 +14,7 @@
   height: auto;
   max-width: 100%;
   border: 0.5px solid black;
-  margin: 10px 20% 0 20%;
+  margin: 100px 20% 0 20%;
 }
 
 .evidence-item {
@@ -28,6 +28,7 @@
 }
 
 .evidence-item h3 {
+  font-size: 16px;
   margin: 0;
   margin: 20px 0 20px 20%;
 }

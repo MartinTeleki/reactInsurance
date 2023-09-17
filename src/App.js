@@ -6,8 +6,10 @@ export default function App() {
   return (
     <div>
       <NavBar />
+    <div>
 
-      <Main />
+      <Main/>
+    </div>
 
       <Footer />
     </div>
@@ -52,7 +54,7 @@ function NavBar() {
 
 function Main() {
   return (
-    <div className="main">
+    <div className="">
       <div className="register-margin">
         <NewRegister />
       </div>
