@@ -1,18 +1,33 @@
 import "./newRegister.css";
+import React, { useState } from "react";
 
 export default function NewRegister() {
-  const registrationInfo = {
-    firstName: "Jan",
-    lastName: "Novák",
+  const initialRegistrationInfo = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    age: "",
     password: "",
     controlPassword: "",
-    email: "jannovak@seznam.cz",
-    phoneNumber: 545445444,
-    age: "26",
-    insuranceNumber: 1234567890,
-    insuranceCode: "alkfrioprf",
-    gender: "male",
+    insuranceNumber: "",
+    insuranceCode: "",
+    gender: "",
   };
+
+  const [registrationInfo, setRegistrationInfo] = useState(
+    initialRegistrationInfo
+  );
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setRegistrationInfo({
+      ...registrationInfo,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  console.log(registrationInfo);
 
   return (
     <div className="container">
@@ -37,7 +52,7 @@ export default function NewRegister() {
               autoFocus="on"
               required
               className="textBox"
-              value={registrationInfo.firstName}
+              onChange={handleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -57,10 +72,10 @@ export default function NewRegister() {
             <input
               type="text"
               required
-              name="last-name"
+              name="lastName"
               placeholder="Novák"
               className="textBox"
-              value={registrationInfo.lastName}
+              onChange={handleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -80,11 +95,11 @@ export default function NewRegister() {
             <input
               type="text"
               required
-              name="phoneNo"
+              name="phoneNumber"
               maxLength="10"
               placeholder="Phone No."
               className="textBox"
-              value={registrationInfo.phoneNumber}
+              onChange={handleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -107,7 +122,7 @@ export default function NewRegister() {
               name="email"
               placeholder="jannovak@seznam.cz"
               className="textBox"
-              value={registrationInfo.email}
+              onChange={handleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -130,7 +145,7 @@ export default function NewRegister() {
               name="password"
               placeholder="*******"
               className="textBox"
-              value={registrationInfo.password}
+              onChange={handleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -138,7 +153,7 @@ export default function NewRegister() {
         {/* Password */}
         {/* Repassword */}
         <div className="box">
-          <label htmlFor="controll password" className="fl fontLabel">
+          <label htmlFor="controlPassword" className="fl fontLabel">
             {" "}
             Re-Password:{" "}
           </label>
@@ -149,10 +164,10 @@ export default function NewRegister() {
             <input
               type="password"
               required
-              name="password"
+              name="controlPassword"
               placeholder="*******"
               className="textBox"
-              value={registrationInfo.controlPassword}
+              onChange={handleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -170,12 +185,12 @@ export default function NewRegister() {
           </div>
           <div className="fr">
             <input
-              type="nummer"
+              type="number"
               required
               name="age"
               placeholder="26"
               className="textBox"
-              value={registrationInfo.age}
+              onChange={handleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -186,7 +201,7 @@ export default function NewRegister() {
         {/*insurance policy number */}
 
         <div className="box">
-          <label htmlFor="insurance-number" className="fl fontLabel">
+          <label htmlFor="insuranceNumber" className="fl fontLabel">
             {" "}
             insur.Num:{" "}
           </label>
@@ -197,10 +212,10 @@ export default function NewRegister() {
             <input
               type="number"
               required
-              name="insurance-number "
+              name="insuranceNumber"
               placeholder="1234567890"
               className="textBox"
-              value={registrationInfo.insuranceNumber}
+              onChange={handleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -211,7 +226,7 @@ export default function NewRegister() {
         {/* insurance policy code */}
 
         <div className="box">
-          <label htmlFor="insurance-code" className="fl fontLabel">
+          <label htmlFor="insuranceCode" className="fl fontLabel">
             {" "}
             Insur.Code:{" "}
           </label>
@@ -222,10 +237,10 @@ export default function NewRegister() {
             <input
               type="password"
               required
-              name="insurance-code"
+              name="insuranceCode"
               placeholder="45e87rsd6"
               className="textBox"
-              value={registrationInfo.insuranceCode}
+              onChange={handleInputChange}
             />
           </div>
           <div className="clr"></div>
@@ -243,9 +258,9 @@ export default function NewRegister() {
           </div>
           <select
             className="select-gender"
-            name="Gender"
+            name="gender"
             required
-            value={registrationInfo.gender}
+            onChange={handleInputChange}
           >
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -256,8 +271,14 @@ export default function NewRegister() {
 
         {/* Terms and Conditions */}
         <div className="box terms">
-          <input type="checkbox" name="Terms" required /> &nbsp; I accept the
-          terms and conditions
+          <input
+            type="checkbox"
+            name="termsAccepted"
+            required
+            checked={registrationInfo.termsAccepted}
+            onChange={handleInputChange}
+          />{" "}
+          &nbsp; I accept the terms and conditions
         </div>
         {/* Terms and Conditions */}
 
