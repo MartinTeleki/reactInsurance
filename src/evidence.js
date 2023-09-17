@@ -11,7 +11,7 @@ export default function NewEvidence() {
     }
   }, [registrationInfo]);
 
-  return (
+  return Object.keys(registrationInfo).length > 0 ? (
     <div className="evidence-container">
       <div className="evidence-item evidence-item-title">
         <h2>Evidence</h2>
@@ -52,5 +52,5 @@ export default function NewEvidence() {
         <button className="btn-delete">Delete user</button>
       </div>
     </div>
-  );
+  ) : null;
 }
