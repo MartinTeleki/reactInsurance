@@ -13,6 +13,7 @@ export default function NewRegister() {
     insuranceNumber: "",
     insuranceCode: "",
     gender: "",
+    termsAccepted: false,
   };
 
   const [registrationInfo, setRegistrationInfo] = useState(
@@ -27,7 +28,22 @@ export default function NewRegister() {
     }));
   }
 
-  console.log(registrationInfo);
+  function HandleRegisterButton(e) {
+    e.preventDefault();
+
+    const currentRegistrationInfo = { ...registrationInfo };
+    localStorage.setItem(
+      "registrationInfo",
+      JSON.stringify(currentRegistrationInfo)
+    );
+
+    setRegistrationInfo(initialRegistrationInfo);
+    alert("Registrace byla úspěšně odeslána!");
+
+    console.log(currentRegistrationInfo);
+  }
+
+  //console.log(registrationInfo);
 
   return (
     <div className="container">
@@ -52,6 +68,7 @@ export default function NewRegister() {
               autoFocus="on"
               required
               className="textBox"
+              value={registrationInfo.firstName}
               onChange={HandleInputChange}
             />
           </div>
@@ -75,6 +92,7 @@ export default function NewRegister() {
               name="lastName"
               placeholder="Novák"
               className="textBox"
+              value={registrationInfo.lastName}
               onChange={HandleInputChange}
             />
           </div>
@@ -99,6 +117,7 @@ export default function NewRegister() {
               maxLength="10"
               placeholder="Phone No."
               className="textBox"
+              value={registrationInfo.phoneNumber}
               onChange={HandleInputChange}
             />
           </div>
@@ -122,6 +141,7 @@ export default function NewRegister() {
               name="email"
               placeholder="jannovak@seznam.cz"
               className="textBox"
+              value={registrationInfo.email}
               onChange={HandleInputChange}
             />
           </div>
@@ -145,6 +165,7 @@ export default function NewRegister() {
               name="password"
               placeholder="*******"
               className="textBox"
+              value={registrationInfo.password}
               onChange={HandleInputChange}
             />
           </div>
@@ -167,6 +188,7 @@ export default function NewRegister() {
               name="controlPassword"
               placeholder="*******"
               className="textBox"
+              value={registrationInfo.controlPassword}
               onChange={HandleInputChange}
             />
           </div>
@@ -190,6 +212,7 @@ export default function NewRegister() {
               name="age"
               placeholder="26"
               className="textBox"
+              value={registrationInfo.age}
               onChange={HandleInputChange}
             />
           </div>
@@ -215,6 +238,7 @@ export default function NewRegister() {
               name="insuranceNumber"
               placeholder="1234567890"
               className="textBox"
+              value={registrationInfo.insuranceNumber}
               onChange={HandleInputChange}
             />
           </div>
@@ -240,6 +264,7 @@ export default function NewRegister() {
               name="insuranceCode"
               placeholder="45e87rsd6"
               className="textBox"
+              value={registrationInfo.insuranceCode}
               onChange={HandleInputChange}
             />
           </div>
@@ -289,7 +314,7 @@ export default function NewRegister() {
             name="Submit"
             className="submit"
             value="SUBMIT"
-            // onClick={}
+            onClick={HandleRegisterButton}
           />
         </div>
         {/* Submit Button */}
