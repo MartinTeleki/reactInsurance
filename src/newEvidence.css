@@ -90,23 +90,31 @@
   transform: scale(0.88);
 }
 
-/* Responzivita pro menší obrazovky */
-@media screen and (max-width: 700px) {
+/* time */
+.time {
+  font-family: "Orbitron", sans-serif;
+  color: #a2ff00;
+}
+
+@media screen and (max-width: 500px) {
   .evidence-item {
-    flex-direction: row;
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
     padding: 20px 0 20px 0;
   }
 
   .evidence-item h3 {
     margin: 0;
     margin-right: 10px;
+    margin-bottom: 15px;
   }
-}
 
-/* time */
+  .evidence-item p {
+    margin-left: 0;
+    margin-top: 20px;
+  }
 
-.time {
-  font-family: "Orbitron", sans-serif;
-  color: #a2ff00;
+  .evidence-container {
+    margin: 20px 5% 0 5%;
+  }
 }

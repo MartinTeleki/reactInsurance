@@ -150,3 +150,37 @@ select {
 
   transform: scale(0.88);
 }
+
+/* Pro obrazovky s maximální šířkou 768px */
+@media (max-width: 768px) {
+  .container {
+    width: 90%; /* Přizpůsobíme šířku kontejneru pro menší obrazovky */
+    padding: 10px; /* Upravíme padding pro menší obrazovky */
+  }
+
+  .box {
+    width: 100%; /* Rozšíříme box na celou šířku kontejneru */
+  }
+
+  /* Další případné úpravy pro menší obrazovky */
+
+  .iconBox {
+    height: 5vw; /* Velikost ikon na základě šířky viewportu */
+    width: 5vw;
+    line-height: 5vw;
+    /* Další styly pro ikony */
+  }
+
+  .textBox {
+    height: 5vw; /* Velikost ikon na základě šířky viewportu */
+    width: 45vw;
+    line-height: 5vw;
+    /* Další styly pro ikony */
+  }
+
+  .select-gender {
+    height: 5vw;
+  }
+}
+
+/* Další Media Queries pro různé obrazovky zde */
