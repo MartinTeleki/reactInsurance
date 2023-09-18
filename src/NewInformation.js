@@ -6,10 +6,10 @@ export function NewInformation({ evidenceList, numberOfContracts }) {
     numberOfClients: evidenceList.length,
     numberOfContracts: numberOfContracts.length,
     companySetUp: 1996,
-    contractValue: 200000,
+    contractValue: (evidenceList.length * 17877) / 20,
     discount: 80,
     moneyPayout: 3,
-    insuranceAmount: 845457546,
+    insuranceAmount: numberOfContracts.length * 17877,
   };
 
   const styles = {
@@ -123,7 +123,11 @@ export function NewInformation({ evidenceList, numberOfContracts }) {
         <span style={{ color: styles.textColor }}>{info.moneyPayout}.</span> dne
         vaší pohledávku.
       </p>
-      <p className="time">Dnes je: {currentDateTime.toLocaleString()}</p>
+      <p className="time">
+        {" "}
+        <span style={{ color: "white" }}> Dnes je: </span>{" "}
+        {currentDateTime.toLocaleString()}
+      </p>
     </div>
   );
 }
