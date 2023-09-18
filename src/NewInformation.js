@@ -17,6 +17,7 @@ export function NewInformation({ evidenceList, numberOfContracts }) {
   };
 
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
+  const [greeting, setGreeting] = useState("");
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -28,9 +29,24 @@ export function NewInformation({ evidenceList, numberOfContracts }) {
     };
   }, []);
 
+  useEffect(() => {
+    const currentHour = currentDateTime.getHours();
+
+    if (currentHour >= 6 && currentHour < 12) {
+      setGreeting("Dobré ráno");
+    } else if (currentHour >= 12 && currentHour < 18) {
+      setGreeting("Dobré odpoledne");
+    } else {
+      setGreeting("Dobrý večer");
+    }
+  }, [currentDateTime]);
+
   return (
     <div className="informace-container">
-      <p>Dobrý den, srdečně Vás vítáme v naší React pojišťovně.</p>
+      <p>
+        <span style={{ color: styles.textColor }}>{greeting}</span>, srdečně Vás
+        vítáme v naší React pojišťovně.
+      </p>
       {info.numberOfClients > 0 && info.numberOfContracts > 0 ? (
         <p>
           Naše pojišťovna už se stará o{" "}
@@ -65,7 +81,7 @@ export function NewInformation({ evidenceList, numberOfContracts }) {
           </p>
           <p>
             Pokud hledáte férovou pojišťovnu, která Vám vyplatí nejpozději do{" "}
-            <span style={{ color: styles.textColor }}>{info.moneyPayout}</span>.
+            <span style={{ color: styles.textColor }}>{info.moneyPayout}.</span>{" "}
             dne vaši pohledávku.
           </p>
           <p className="time">Dnes je: {currentDateTime.toLocaleString()}</p>
