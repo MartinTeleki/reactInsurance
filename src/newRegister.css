@@ -158,36 +158,29 @@ select {
   cursor: pointer;
 }
 
-/* Pro obrazovky s maximální šířkou 768px */
 @media (max-width: 768px) {
   .container {
-    width: 90%; /* Přizpůsobíme šířku kontejneru pro menší obrazovky */
-    padding: 10px; /* Upravíme padding pro menší obrazovky */
+    width: 90%;
+    padding: 10px;
   }
 
   .box {
-    width: 100%; /* Rozšíříme box na celou šířku kontejneru */
+    width: 100%;
   }
 
-  /* Další případné úpravy pro menší obrazovky */
-
   .iconBox {
-    height: 5vw; /* Velikost ikon na základě šířky viewportu */
+    height: 5vw;
     width: 5vw;
     line-height: 5vw;
-    /* Další styly pro ikony */
   }
 
   .textBox {
-    height: 5vw; /* Velikost ikon na základě šířky viewportu */
+    height: 5vw;
     width: 45vw;
     line-height: 5vw;
-    /* Další styly pro ikony */
   }
 
   .select-gender {
     height: 5vw;
   }
 }
-
-/* Další Media Queries pro různé obrazovky zde */

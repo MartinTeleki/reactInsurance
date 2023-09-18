@@ -1,14 +1,29 @@
 import "./newRegister.css";
 import React, { useState, useEffect } from "react";
 import App from "./App";
+import PropTypes from "prop-types";
+
+// NewRegister.propTypes = {
+//   registrationInfo: PropTypes.object,
+//   setRegistrationInfo: PropTypes.func.isRequired,
+//   changePage: PropTypes.func.isRequired,
+//   firstName: PropTypes.string.isRequired,
+//   lastName: PropTypes.string.isRequired,
+//   email: PropTypes.string,
+//   phoneNumber: PropTypes.number.isRequired,
+//   age: PropTypes.number.isRequired,
+//   password: PropTypes.string,
+//   controlPassword: PropTypes.string,
+//   insuranceNumber: PropTypes.number.isRequired,
+//   insuranceCode: PropTypes.string,
+//   gender: PropTypes.string,
+//   termsAccepted: PropTypes.bool,
+// };
 
 export default function NewRegister({
   registrationInfo,
   setRegistrationInfo,
-  passwordSave,
-  passwordSaveControl,
   changePage,
-  setChangePage,
 }) {
   const initialRegistrationInfo = {
     firstName: "",
@@ -24,14 +39,26 @@ export default function NewRegister({
     termsAccepted: false,
   };
 
-  //console.log(registrationInfo);
-
   function HandleInputChange(e) {
     const { name, value, type, checked } = e.target;
-    setRegistrationInfo((prevInfo) => ({
-      ...prevInfo,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+
+    if (name === "insuranceCode") {
+      const cleanCode = value.replace(/[-\s]+/g, "");
+
+      const formattedCode = cleanCode.replace(/(.{4})/g, "$1-");
+
+      const finalFormattedCode = formattedCode.slice(0, 14);
+
+      setRegistrationInfo((prevInfo) => ({
+        ...prevInfo,
+        [name]: finalFormattedCode,
+      }));
+    } else {
+      setRegistrationInfo((prevInfo) => ({
+        ...prevInfo,
+        [name]: type === "checkbox" ? checked : value,
+      }));
+    }
   }
 
   function HandleRegisterButton(e) {
@@ -39,7 +66,91 @@ export default function NewRegister({
 
     const existingEvidence = JSON.parse(localStorage.getItem("evidence")) || [];
 
-    existingEvidence.push(registrationInfo);
+    // Fist name and last name
+    if (
+      !/^[A-Za-z]+$/.test(registrationInfo.firstName) ||
+      !/^[A-Za-z]+$/.test(registrationInfo.lastName)
+    ) {
+      alert("Jméno a příjmení nesmí obsahovat pouze speciální znaky.");
+      return;
+    }
+
+    //Phone Number
+    if (registrationInfo.phoneNumber.trim() !== "") {
+      if (
+        isNaN(registrationInfo.phoneNumber) ||
+        registrationInfo.phoneNumber.length > 9
+      ) {
+        alert("Telefonní číslo může obsahovat maximálně 9 čísel.");
+        return;
+      }
+    }
+
+    // Email
+    if (registrationInfo.email.trim() !== "") {
+      if (
+        /\s/.test(registrationInfo.email) ||
+        !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(
+          registrationInfo.email
+        )
+      ) {
+        alert("Email nesmí obsahovat mezery a musí být ve správném formátu.");
+        return;
+      }
+    }
+
+    // Password
+    if (registrationInfo.password.length < 10) {
+      alert("Heslo musí obsahovat alespoň 10 znaků.");
+      return;
+    } else if (!/\d/.test(registrationInfo.password)) {
+      alert("Heslo musí obsahovat alespoň jedno číslo.");
+      return;
+    } else if (!/[!@#$%^&*]/.test(registrationInfo.password)) {
+      alert("Heslo musí obsahovat alespoň jeden speciální znak: !@#$%^&*");
+      return;
+    } else if (registrationInfo.password !== registrationInfo.controlPassword) {
+      alert("Hesla se neshodují.");
+      return;
+    }
+
+    //Age
+    if (registrationInfo.age >= 18 && registrationInfo.age >= 120) {
+      alert("Věk musí být nejméně 18 let a nejvíce 125 let");
+    }
+    if (isNaN(registrationInfo.age)) {
+      alert("Věk musí být číslo");
+    }
+
+    if (registrationInfo.age === "") {
+      alert("Věk nemsí obsahovat mezery");
+    }
+
+    //Insurance nummer
+    if (registrationInfo.insuranceNumber === 10) {
+      alert("Číslo pojišťovací smlouvy musí být dlouhé 10 znaků.");
+    }
+    if (isNaN(registrationInfo.insuranceNumber)) {
+      alert("Pojišťovací číslo obsahuje pouze čísla od 0-9");
+    }
+
+    // Insurance Code
+    if (
+      registrationInfo.insuranceCode.length > 14 ||
+      /\s/.test(registrationInfo.insuranceCode)
+    ) {
+      alert(
+        "Kód pojištění nesmí obsahovat mezery a může mít maximálně 14 znaků."
+      );
+      return;
+    }
+
+    if (!registrationInfo.termsAccepted) {
+      alert(
+        "Musíte potvrdit podmínky, než budete moci pokračovat v registraci."
+      );
+      return;
+    }
 
     localStorage.setItem("evidence", JSON.stringify(existingEvidence));
 
@@ -212,7 +323,7 @@ export default function NewRegister({
           </div>
           <div className="fr">
             <input
-              type="number"
+              type="text"
               required
               name="age"
               placeholder="26"
@@ -238,7 +349,7 @@ export default function NewRegister({
           </div>
           <div className="fr">
             <input
-              type="number"
+              type="text"
               required
               name="insuranceNumber"
               placeholder="1234567890"
@@ -264,7 +375,7 @@ export default function NewRegister({
           </div>
           <div className="fr">
             <input
-              type="password"
+              type="text"
               required
               name="insuranceCode"
               placeholder="45e87rsd6"
