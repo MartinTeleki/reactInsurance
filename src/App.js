@@ -19,10 +19,23 @@ export default function App() {
     gender: "",
     termsAccepted: false,
   };
-  const [currentPage, setCurrentPage] = useState("login");
+
+  const [currentPage, setCurrentPage] = useState("informace");
+
   const [registrationInfo, setRegistrationInfo] = useState(
     initialRegistrationInfo
   );
+
+  const [userLogin, setUserLogin] = useState([]);
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+    controlPassword: "",
+  });
+
+  //console.log(loginData.email, loginData.password, loginData.controlPassword);
+
+  //console.log(userLogin);
 
   useEffect(() => {
     const storedEvidence = JSON.parse(localStorage.getItem("evidence")) || [];
@@ -33,7 +46,7 @@ export default function App() {
   const [evidenceList, setEvidenceList] = useState([]);
   const [numberOfContracts, setNumberOfContracts] = useState([]);
 
-  console.log(evidenceList);
+  //console.log(evidenceList);
 
   function toggleMenu() {
     const navLinks = document.getElementById("nav-links");
@@ -42,6 +55,26 @@ export default function App() {
 
   function changePage(page) {
     setCurrentPage(page);
+  }
+
+  function handleLogin() {
+    const { email, password, controlPassword } = loginData;
+    const currentUser = evidenceList.find((user) => user.email === email);
+
+    if (!currentUser) {
+      alert("Uživatel s tímto emailem neexistuje.");
+      return;
+    }
+
+    if (
+      currentUser.email === email &&
+      currentUser.password === password &&
+      currentUser.controlPassword === controlPassword
+    ) {
+      window.location.href = "/informace";
+    } else {
+      alert("Email, heslo a opětovné heslo se neshodují. Zkuste to znovu.");
+    }
   }
 
   return (
@@ -57,6 +90,11 @@ export default function App() {
         numberOfContracts={numberOfContracts}
         setCurrentPage={setCurrentPage}
         changePage={changePage}
+        setUserLogin={setUserLogin}
+        userLogin={userLogin}
+        loginData={loginData}
+        setLoginData={setLoginData}
+        handleLogin={handleLogin}
       />
       <Footer />
     </div>
@@ -118,6 +156,11 @@ function Main({
   numberOfContracts,
   setCurrentPage,
   changePage,
+  setUserLogin,
+  userLogin,
+  loginData,
+  setLoginData,
+  handleLogin = { handleLogin },
 }) {
   return (
     <div className="">
@@ -144,13 +187,21 @@ function Main({
           <NewEvidence
             evidenceList={evidenceList}
             setEvidenceList={setEvidenceList}
+            userLogin={userLogin}
           />
         </div>
       )}
 
       {currentPage === "login" && (
         <div className="login-margin">
-          <NewLogin changePage={changePage} />
+          <NewLogin
+            changePage={changePage}
+            setUserLogin={setUserLogin}
+            userLogin={userLogin}
+            loginData={loginData}
+            setLoginData={setLoginData}
+            handleLogin={handleLogin}
+          />
         </div>
       )}
     </div>

@@ -1,7 +1,12 @@
 import React from "react";
 import "./newLogin.css";
 
-export default function NewLogin({ changePage }) {
+export default function NewLogin({
+  changePage,
+  loginData,
+  setLoginData,
+  handleLogin,
+}) {
   return (
     <div className="container">
       <form method="post" autoComplete="on">
@@ -25,6 +30,12 @@ export default function NewLogin({ changePage }) {
               autoFocus="on"
               required
               className="textBox"
+              onChange={(e) =>
+                setLoginData({
+                  ...loginData,
+                  email: e.target.value,
+                })
+              }
             />
           </div>
           <div className="clr"></div>
@@ -46,6 +57,12 @@ export default function NewLogin({ changePage }) {
               name="password"
               placeholder="*******"
               className="textBox"
+              onChange={(e) =>
+                setLoginData({
+                  ...loginData,
+                  password: e.target.value,
+                })
+              }
             />
           </div>
           <div className="clr"></div>
@@ -67,6 +84,12 @@ export default function NewLogin({ changePage }) {
               name="controlPassword"
               placeholder="*******"
               className="textBox"
+              onChange={(e) =>
+                setLoginData({
+                  ...loginData,
+                  controlPassword: e.target.value,
+                })
+              }
             />
           </div>
           <div className="clr"></div>
@@ -89,7 +112,13 @@ export default function NewLogin({ changePage }) {
 
         {/* Submit Button */}
         <div className="box" style={{ background: "#2d3e3f" }}>
-          <input type="submit" name="Submit" className="submit" value="Login" />
+          <input
+            type="submit"
+            name="Submit"
+            className="submit"
+            value="Login"
+            onClick={handleLogin}
+          />
         </div>
         {/* Submit Button */}
       </form>
