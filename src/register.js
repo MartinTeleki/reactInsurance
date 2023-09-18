@@ -39,6 +39,8 @@ export default function NewRegister({
     termsAccepted: false,
   };
 
+  // console.log(registrationInfo);
+
   function HandleInputChange(e) {
     const { name, value, type, checked } = e.target;
 
@@ -115,9 +117,10 @@ export default function NewRegister({
     }
 
     //Age
-    if (registrationInfo.age >= 18 && registrationInfo.age >= 120) {
+    if (registrationInfo.age < 18 || registrationInfo.age > 125) {
       alert("Věk musí být nejméně 18 let a nejvíce 125 let");
     }
+
     if (isNaN(registrationInfo.age)) {
       alert("Věk musí být číslo");
     }
@@ -127,9 +130,10 @@ export default function NewRegister({
     }
 
     //Insurance nummer
-    if (registrationInfo.insuranceNumber === 10) {
+    if (registrationInfo.insuranceNumber.length !== 10) {
       alert("Číslo pojišťovací smlouvy musí být dlouhé 10 znaků.");
     }
+
     if (isNaN(registrationInfo.insuranceNumber)) {
       alert("Pojišťovací číslo obsahuje pouze čísla od 0-9");
     }
@@ -152,9 +156,12 @@ export default function NewRegister({
       return;
     }
 
-    localStorage.setItem("evidence", JSON.stringify(existingEvidence));
+    localStorage.setItem("evidence", JSON.stringify(registrationInfo));
+    console.log("Data byla uložena do localStorage");
 
-    setRegistrationInfo(initialRegistrationInfo);
+    setRegistrationInfo(registrationInfo);
+    console.log("Stav registrationInfo byl aktualizován");
+    console.log(registrationInfo);
 
     alert("Registrace byla úspěšně odeslána!");
   }

@@ -20,28 +20,25 @@ export default function App() {
   };
 
   const [currentPage, setCurrentPage] = useState("");
-
+  const [evidenceList, setEvidenceList] = useState([]);
+  const [numberOfContracts, setNumberOfContracts] = useState([]);
   const [registrationInfo, setRegistrationInfo] = useState(
     initialRegistrationInfo
   );
 
   const [userLogin, setUserLogin] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
     controlPassword: "",
   });
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   useEffect(() => {
     const storedEvidence = JSON.parse(localStorage.getItem("evidence")) || [];
     setEvidenceList(storedEvidence);
     setNumberOfContracts(storedEvidence);
   }, []);
-
-  const [evidenceList, setEvidenceList] = useState([]);
-  const [numberOfContracts, setNumberOfContracts] = useState([]);
 
   function toggleMenu() {
     const navLinks = document.getElementById("nav-links");
@@ -52,25 +49,15 @@ export default function App() {
     setCurrentPage(page);
   }
 
-  function handleLogin() {
-    const { email, password, controlPassword } = loginData;
-    const currentUser = evidenceList.find((user) => user.email === email);
-
-    if (!currentUser) {
-      alert("Uživatel s tímto emailem neexistuje.");
-      return;
-    }
-
-    if (
-      currentUser.email === email &&
-      currentUser.password === password &&
-      currentUser.controlPassword === controlPassword
-    ) {
-      setIsLoggedIn(true);
+  function handleLogin(e) {
+    e.preventDefault();
+    if (evidenceList.email === loginData.email) {
       changePage("kontakt");
     } else {
-      alert("Email, heslo a opětovné heslo se neshodují. Zkuste to znovu.");
+      changePage("informace");
     }
+
+    console.log(evidenceList.email, loginData.email);
   }
 
   return (
@@ -157,7 +144,7 @@ function Main({
   userLogin,
   loginData,
   setLoginData,
-  handleLogin = { handleLogin },
+  handleLogin,
   isLoggedIn,
 }) {
   return (
@@ -206,6 +193,7 @@ function Main({
             loginData={loginData}
             setLoginData={setLoginData}
             handleLogin={handleLogin}
+            evidenceList={evidenceList}
           />
         </div>
       )}

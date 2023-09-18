@@ -6,6 +6,7 @@ export default function NewLogin({
   loginData,
   setLoginData,
   handleLogin,
+  evidenceList,
 }) {
   return (
     <div className="container">
