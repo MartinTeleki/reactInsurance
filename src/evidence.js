@@ -6,10 +6,18 @@ export default function NewEvidence() {
   const [evidenceList, setEvidenceList] = useState([]);
 
   useEffect(() => {
-    // Načtěte všechny evidované registrace ze storage
     const storedEvidence = JSON.parse(localStorage.getItem("evidence")) || [];
     setEvidenceList(storedEvidence);
   }, []);
+
+  function handleDeleteEvidenceList(index) {
+    const updatedEvidenceList = [...evidenceList];
+    updatedEvidenceList.splice(index, 1);
+
+    localStorage.setItem("evidence", JSON.stringify(updatedEvidenceList));
+
+    setEvidenceList(updatedEvidenceList);
+  }
 
   return (
     <div>
@@ -51,7 +59,12 @@ export default function NewEvidence() {
             <p>{evidence.gender}</p>
           </div>
           <div className="btn-delete-container">
-            <button className="btn-delete">Delete user</button>
+            <button
+              className="btn-delete"
+              onClick={() => handleDeleteEvidenceList(index)}
+            >
+              Delete user
+            </button>
           </div>
         </div>
       ))}

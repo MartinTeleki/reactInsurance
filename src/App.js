@@ -97,10 +97,7 @@ function Main({ currentPage, registrationInfo, setRegistrationInfo }) {
       )}
       {currentPage === "evidence" && (
         <div className="evidence-margin">
-          <NewEvidence
-            registrationInfo={registrationInfo}
-            setRegistrationInfo={setRegistrationInfo}
-          />
+          <NewEvidence />
         </div>
       )}
     </div>
