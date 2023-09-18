@@ -1,5 +1,5 @@
 import "./index.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NewRegister from "./register";
 import NewEvidence from "./evidence";
 
@@ -21,6 +21,7 @@ export default function App() {
   const [registrationInfo, setRegistrationInfo] = useState(
     initialRegistrationInfo
   );
+  const [evidenceList, setEvidenceList] = useState([]);
 
   function toggleMenu() {
     const navLinks = document.getElementById("nav-links");
@@ -39,6 +40,8 @@ export default function App() {
         registrationInfo={registrationInfo}
         setRegistrationInfo={setRegistrationInfo}
         initialRegistrationInfo={initialRegistrationInfo}
+        evidenceList={evidenceList}
+        setEvidenceList={setEvidenceList}
       />
       <Footer />
     </div>
@@ -84,7 +87,13 @@ function NavBar({ toggleMenu, changePage }) {
   );
 }
 
-function Main({ currentPage, registrationInfo, setRegistrationInfo }) {
+function Main({
+  currentPage,
+  registrationInfo,
+  setRegistrationInfo,
+  setEvidenceList,
+  evidenceList,
+}) {
   return (
     <div className="">
       {currentPage === "register" && (
@@ -97,7 +106,10 @@ function Main({ currentPage, registrationInfo, setRegistrationInfo }) {
       )}
       {currentPage === "evidence" && (
         <div className="evidence-margin">
-          <NewEvidence />
+          <NewEvidence
+            evidenceList={evidenceList}
+            setEvidenceList={setEvidenceList}
+          />
         </div>
       )}
     </div>

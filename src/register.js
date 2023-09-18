@@ -1,8 +1,13 @@
 import "./newRegister.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import App from "./App";
 
-export default function NewRegister({ registrationInfo, setRegistrationInfo }) {
+export default function NewRegister({
+  registrationInfo,
+  setRegistrationInfo,
+  passwordSave,
+  passwordSaveControl,
+}) {
   const initialRegistrationInfo = {
     firstName: "",
     lastName: "",
@@ -17,7 +22,7 @@ export default function NewRegister({ registrationInfo, setRegistrationInfo }) {
     termsAccepted: false,
   };
 
-  console.log(registrationInfo);
+  //console.log(registrationInfo);
 
   function HandleInputChange(e) {
     const { name, value, type, checked } = e.target;

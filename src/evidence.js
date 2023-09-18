@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./newEvidence.css";
 import App from "./App";
 
-export default function NewEvidence() {
-  const [evidenceList, setEvidenceList] = useState([]);
-
+export default function NewEvidence({ evidenceList, setEvidenceList }) {
   useEffect(() => {
     const storedEvidence = JSON.parse(localStorage.getItem("evidence")) || [];
     setEvidenceList(storedEvidence);
@@ -24,7 +22,8 @@ export default function NewEvidence() {
       {evidenceList.map((evidence, index) => (
         <div key={index} className="evidence-container">
           <div className="evidence-item evidence-item-title">
-            <h2>Evidence</h2>
+            <h2>Evidence: {index + 1}</h2>
+            <em className="evidence-em">{evidence.insuranceNumber}</em>
           </div>
           <div className="evidence-item">
             <h3>First Name:</h3>
@@ -59,10 +58,7 @@ export default function NewEvidence() {
             <p>{evidence.gender}</p>
           </div>
           <div className="btn-delete-container">
-            <button
-              className="btn-delete"
-              onClick={() => handleDeleteEvidenceList(index)}
-            >
+            <button className="btn-delete" onClick={handleDeleteEvidenceList}>
               Delete user
             </button>
           </div>
