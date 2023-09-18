@@ -1,5 +1,7 @@
 /* Evidence */
 
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap");
+
 .evidence-margin {
   margin-top: 20px;
   margin-bottom: 200px;
@@ -100,4 +102,11 @@
     margin: 0;
     margin-right: 10px;
   }
+}
+
+/* time */
+
+.time {
+  font-family: "Orbitron", sans-serif;
+  color: #a2ff00;
 }
