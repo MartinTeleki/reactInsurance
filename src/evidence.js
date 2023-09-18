@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./newEvidence.css";
+import App from "./App";
 
-export default function NewEvidence() {
-  const [registrationInfo, setRegistrationInfo] = useState({});
-
+export default function NewEvidence({ registrationInfo, setRegistrationInfo }) {
   useEffect(() => {
     const storedInfo = localStorage.getItem("registrationInfo");
     if (storedInfo) {
       setRegistrationInfo(JSON.parse(storedInfo));
     }
-  }, [registrationInfo]);
+  }, []);
+  console.log(registrationInfo);
 
   return Object.keys(registrationInfo).length > 0 ? (
     <div className="evidence-container">

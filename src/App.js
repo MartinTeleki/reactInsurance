@@ -4,7 +4,23 @@ import NewRegister from "./register";
 import NewEvidence from "./evidence";
 
 export default function App() {
+  const initialRegistrationInfo = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    age: "",
+    password: "",
+    controlPassword: "",
+    insuranceNumber: "",
+    insuranceCode: "",
+    gender: "",
+    termsAccepted: false,
+  };
   const [currentPage, setCurrentPage] = useState("register");
+  const [registrationInfo, setRegistrationInfo] = useState(
+    initialRegistrationInfo
+  );
 
   function toggleMenu() {
     const navLinks = document.getElementById("nav-links");
@@ -18,7 +34,12 @@ export default function App() {
   return (
     <div>
       <NavBar toggleMenu={toggleMenu} changePage={changePage} />
-      <Main currentPage={currentPage} />
+      <Main
+        currentPage={currentPage}
+        registrationInfo={registrationInfo}
+        setRegistrationInfo={setRegistrationInfo}
+        initialRegistrationInfo={initialRegistrationInfo}
+      />
       <Footer />
     </div>
   );
@@ -63,17 +84,23 @@ function NavBar({ toggleMenu, changePage }) {
   );
 }
 
-function Main({ currentPage }) {
+function Main({ currentPage, registrationInfo, setRegistrationInfo }) {
   return (
     <div className="">
       {currentPage === "register" && (
         <div className="register-margin">
-          <NewRegister />
+          <NewRegister
+            registrationInfo={registrationInfo}
+            setRegistrationInfo={setRegistrationInfo}
+          />
         </div>
       )}
       {currentPage === "evidence" && (
         <div className="evidence-margin">
-          <NewEvidence />
+          <NewEvidence
+            registrationInfo={registrationInfo}
+            setRegistrationInfo={setRegistrationInfo}
+          />
         </div>
       )}
     </div>
