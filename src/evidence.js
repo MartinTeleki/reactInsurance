@@ -16,7 +16,6 @@ export default function NewEvidence({ evidenceList, setEvidenceList }) {
 
     setEvidenceList(updatedEvidenceList);
   }
-
   return (
     <div>
       {evidenceList.map((evidence, index) => (

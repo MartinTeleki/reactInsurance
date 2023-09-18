@@ -2,6 +2,7 @@ import "./index.css";
 import React, { useState, useEffect } from "react";
 import NewRegister from "./register";
 import NewEvidence from "./evidence";
+import { NewContact, NewInformation } from "./NewInformation";
 
 export default function App() {
   const initialRegistrationInfo = {
@@ -17,11 +18,21 @@ export default function App() {
     gender: "",
     termsAccepted: false,
   };
-  const [currentPage, setCurrentPage] = useState("register");
+  const [currentPage, setCurrentPage] = useState("informace");
   const [registrationInfo, setRegistrationInfo] = useState(
     initialRegistrationInfo
   );
+
+  useEffect(() => {
+    const storedEvidence = JSON.parse(localStorage.getItem("evidence")) || [];
+    setEvidenceList(storedEvidence);
+    setNumberOfContracts(storedEvidence);
+  }, []);
+
   const [evidenceList, setEvidenceList] = useState([]);
+  const [numberOfContracts, setNumberOfContracts] = useState([]);
+
+  console.log(evidenceList);
 
   function toggleMenu() {
     const navLinks = document.getElementById("nav-links");
@@ -42,6 +53,7 @@ export default function App() {
         initialRegistrationInfo={initialRegistrationInfo}
         evidenceList={evidenceList}
         setEvidenceList={setEvidenceList}
+        numberOfContracts={numberOfContracts}
       />
       <Footer />
     </div>
@@ -93,9 +105,18 @@ function Main({
   setRegistrationInfo,
   setEvidenceList,
   evidenceList,
+  numberOfContracts,
 }) {
   return (
     <div className="">
+      {currentPage === "informace" && (
+        <div>
+          <NewInformation
+            evidenceList={evidenceList}
+            numberOfContracts={numberOfContracts}
+          />
+        </div>
+      )}
       {currentPage === "register" && (
         <div className="register-margin">
           <NewRegister
