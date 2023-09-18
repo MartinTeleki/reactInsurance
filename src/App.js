@@ -1,4 +1,3 @@
-import "./index.css";
 import React, { useState, useEffect } from "react";
 import NewRegister from "./register";
 import NewEvidence from "./evidence";
@@ -20,7 +19,7 @@ export default function App() {
     termsAccepted: false,
   };
 
-  const [currentPage, setCurrentPage] = useState("informace");
+  const [currentPage, setCurrentPage] = useState("");
 
   const [registrationInfo, setRegistrationInfo] = useState(
     initialRegistrationInfo
@@ -33,9 +32,7 @@ export default function App() {
     controlPassword: "",
   });
 
-  //console.log(loginData.email, loginData.password, loginData.controlPassword);
-
-  //console.log(userLogin);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const storedEvidence = JSON.parse(localStorage.getItem("evidence")) || [];
@@ -45,8 +42,6 @@ export default function App() {
 
   const [evidenceList, setEvidenceList] = useState([]);
   const [numberOfContracts, setNumberOfContracts] = useState([]);
-
-  //console.log(evidenceList);
 
   function toggleMenu() {
     const navLinks = document.getElementById("nav-links");
@@ -71,7 +66,8 @@ export default function App() {
       currentUser.password === password &&
       currentUser.controlPassword === controlPassword
     ) {
-      window.location.href = "/informace";
+      setIsLoggedIn(true);
+      changePage("kontakt");
     } else {
       alert("Email, heslo a opětovné heslo se neshodují. Zkuste to znovu.");
     }
@@ -95,6 +91,7 @@ export default function App() {
         loginData={loginData}
         setLoginData={setLoginData}
         handleLogin={handleLogin}
+        isLoggedIn={isLoggedIn}
       />
       <Footer />
     </div>
@@ -161,6 +158,7 @@ function Main({
   loginData,
   setLoginData,
   handleLogin = { handleLogin },
+  isLoggedIn,
 }) {
   return (
     <div className="">
@@ -182,7 +180,7 @@ function Main({
           />
         </div>
       )}
-      {currentPage === "evidence" && (
+      {currentPage === "evidence" && isLoggedIn && (
         <div className="evidence-margin">
           <NewEvidence
             evidenceList={evidenceList}
@@ -191,7 +189,6 @@ function Main({
           />
         </div>
       )}
-
       {currentPage === "login" && (
         <div className="login-margin">
           <NewLogin
