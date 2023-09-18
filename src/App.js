@@ -2,6 +2,7 @@ import "./index.css";
 import React, { useState, useEffect } from "react";
 import NewRegister from "./register";
 import NewEvidence from "./evidence";
+import NewLogin from "./NewLogin";
 import { NewContact, NewInformation } from "./NewInformation";
 
 export default function App() {
@@ -18,7 +19,7 @@ export default function App() {
     gender: "",
     termsAccepted: false,
   };
-  const [currentPage, setCurrentPage] = useState("informace");
+  const [currentPage, setCurrentPage] = useState("login");
   const [registrationInfo, setRegistrationInfo] = useState(
     initialRegistrationInfo
   );
@@ -54,6 +55,8 @@ export default function App() {
         evidenceList={evidenceList}
         setEvidenceList={setEvidenceList}
         numberOfContracts={numberOfContracts}
+        setCurrentPage={setCurrentPage}
+        changePage={changePage}
       />
       <Footer />
     </div>
@@ -83,6 +86,13 @@ function NavBar({ toggleMenu, changePage }) {
               Registrace
             </a>
           </li>
+
+          <li>
+            <a href="#" onClick={() => changePage("login")}>
+              Login
+            </a>
+          </li>
+
           <li>
             <a href="#" onClick={() => changePage("evidence")}>
               Evidence
@@ -106,6 +116,8 @@ function Main({
   setEvidenceList,
   evidenceList,
   numberOfContracts,
+  setCurrentPage,
+  changePage,
 }) {
   return (
     <div className="">
@@ -122,6 +134,8 @@ function Main({
           <NewRegister
             registrationInfo={registrationInfo}
             setRegistrationInfo={setRegistrationInfo}
+            setCurrentPage={setCurrentPage}
+            changePage={changePage}
           />
         </div>
       )}
@@ -131,6 +145,12 @@ function Main({
             evidenceList={evidenceList}
             setEvidenceList={setEvidenceList}
           />
+        </div>
+      )}
+
+      {currentPage === "login" && (
+        <div className="login-margin">
+          <NewLogin changePage={changePage} />
         </div>
       )}
     </div>

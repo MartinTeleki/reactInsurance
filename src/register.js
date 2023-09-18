@@ -7,6 +7,8 @@ export default function NewRegister({
   setRegistrationInfo,
   passwordSave,
   passwordSaveControl,
+  changePage,
+  setChangePage,
 }) {
   const initialRegistrationInfo = {
     firstName: "",
@@ -310,13 +312,25 @@ export default function NewRegister({
         </div>
         {/* Terms and Conditions */}
 
+        {/* Ĺogin */}
+        <div className="swap-login">
+          <p style={{ color: "#fff" }}>
+            Do you have already registered ?{" "}
+            <span onClick={() => changePage("login")}>
+              <strong className="btn-login-swap" style={{ color: "#2496ff" }}>
+                Login
+              </strong>
+            </span>
+          </p>
+        </div>
+        {/* Ĺogin */}
         {/* Submit Button */}
         <div className="box" style={{ background: "#2d3e3f" }}>
           <input
             type="submit"
             name="Submit"
             className="submit"
-            value="SUBMIT"
+            value="Register"
             onClick={HandleRegisterButton}
           />
         </div>
