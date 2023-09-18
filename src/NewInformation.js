@@ -18,6 +18,9 @@ export function NewInformation({ evidenceList, numberOfContracts }) {
 
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [greeting, setGreeting] = useState("");
+  const [clientDescription, setClientDescription] = useState("");
+  const [contractDescription, setContractDescription] = useState("");
+  const [preContractDescription, setPreContractDescription] = useState("");
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -34,12 +37,50 @@ export function NewInformation({ evidenceList, numberOfContracts }) {
 
     if (currentHour >= 6 && currentHour < 12) {
       setGreeting("Dobré ráno");
-    } else if (currentHour >= 12 && currentHour < 18) {
+    } else if (currentHour >= 12 && currentHour < 13) {
+      setGreeting("Dobré poledne");
+    } else if (currentHour >= 13 && currentHour < 18) {
       setGreeting("Dobré odpoledne");
+    } else if (currentHour >= 0 && currentHour < 1) {
+      setGreeting("Krásnou půlnoc");
     } else {
       setGreeting("Dobrý večer");
     }
   }, [currentDateTime]);
+
+  useEffect(() => {
+    if (info.numberOfClients === 1) {
+      setClientDescription("klienta");
+    } else if (
+      info.numberOfClients === 2 ||
+      info.numberOfClients === 3 ||
+      info.numberOfClients === 4
+    ) {
+      setClientDescription("klienty");
+    } else if (info.numberOfClients >= 5) {
+      setClientDescription("klientů");
+    }
+  }, [info.numberOfClients]);
+
+  useEffect(() => {
+    if (info.numberOfContracts === 1) {
+      setContractDescription("smlouva");
+    } else if (info.numberOfContracts >= 2 && info.numberOfContracts <= 4) {
+      setContractDescription("smlouvy");
+    } else {
+      setContractDescription("smluv");
+    }
+  }, [info.numberOfContracts]);
+
+  useEffect(() => {
+    if (info.numberOfContracts === 1) {
+      setPreContractDescription("Byla uzavřena");
+    } else if (info.numberOfContracts >= 2 && info.numberOfContracts <= 4) {
+      setPreContractDescription("Byly uzavřeny");
+    } else {
+      setPreContractDescription("Bylo uzavřeno");
+    }
+  }, [info.numberOfContracts]);
 
   return (
     <div className="informace-container">
@@ -47,46 +88,42 @@ export function NewInformation({ evidenceList, numberOfContracts }) {
         <span style={{ color: styles.textColor }}>{greeting}</span>, srdečně Vás
         vítáme v naší React pojišťovně.
       </p>
-      {info.numberOfClients > 0 && info.numberOfContracts > 0 ? (
-        <p>
-          Naše pojišťovna už se stará o{" "}
-          <span style={{ color: styles.textColor }}>
-            {info.numberOfClients}
-          </span>{" "}
-          klientů. Bylo uzavřeno{" "}
-          <span style={{ color: styles.textColor }}>
-            {info.numberOfContracts}
-          </span>{" "}
-          smluv.
-        </p>
-      ) : (
-        <div>
-          <p>
+      <p>
+        {info.numberOfClients > 0 && info.numberOfContracts > 0 ? (
+          <>
+            Naše pojišťovna již se stará o{" "}
+            <span style={{ color: styles.textColor }}>
+              {info.numberOfClients}
+            </span>{" "}
+            {clientDescription}. {`${preContractDescription} `}
+            <span style={{ color: styles.textColor }}>
+              {info.numberOfContracts}
+            </span>
+            {` ${contractDescription}.`}
+          </>
+        ) : (
+          <>
             Momentálně nebyla s nikým sjednána smlouva. Buďte prvním klientem a
             získejte pojištění se slevou až{" "}
             <span style={{ color: styles.textColor }}>{info.discount}% </span>.
-          </p>
-          <p>
-            Naše pojišťovna existuje již od roku {info.companySetUp}. Již jsme
-            našim klientům vyplatili{" "}
-            <styles style={{ color: styles.textColor }}>
-              {info.contractValue}
-            </styles>
-            $. Naši klienti jsou pojištěni celkově do výše{" "}
-            <span style={{ color: styles.textColor }}>
-              {" "}
-              {info.insuranceAmount}
-            </span>
-            $.
-          </p>
-          <p>
-            Pokud hledáte férovou pojišťovnu, která Vám vyplatí nejpozději do{" "}
-            <span style={{ color: styles.textColor }}>{info.moneyPayout}.</span>{" "}
-            dne vaši pohledávku.
-          </p>
-          <p className="time">Dnes je: {currentDateTime.toLocaleString()}</p>
-        </div>
-      )}
+          </>
+        )}
+      </p>
+      <p>
+        Naše pojišťovna existuje již od roku {info.companySetUp}. Již jsme našim
+        klient{info.numberOfClients !== 1 ? "ům" : "ovi"} vyplatili{" "}
+        <span style={{ color: styles.textColor }}>{info.contractValue}$</span>.
+        Naši klient{info.numberOfClients !== 1 ? "i" : ""} jsou pojištěni
+        celkově do výše{" "}
+        <span style={{ color: styles.textColor }}>{info.insuranceAmount}$</span>
+        .
+      </p>
+      <p>
+        Pokud hledáte férovou pojišťovnu, která Vám vyplatí nejpozději do{" "}
+        <span style={{ color: styles.textColor }}>{info.moneyPayout}.</span> dne
+        vaší pohledávku.
+      </p>
+      <p className="time">Dnes je: {currentDateTime.toLocaleString()}</p>
     </div>
   );
 }
