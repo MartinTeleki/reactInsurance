@@ -30,16 +30,19 @@ export default function NewRegister({ registrationInfo, setRegistrationInfo }) {
   function HandleRegisterButton(e) {
     e.preventDefault();
 
-    const currentRegistrationInfo = { ...registrationInfo };
-    localStorage.setItem(
-      "registrationInfo",
-      JSON.stringify(currentRegistrationInfo)
-    );
+    // Načtěte existující evidenci ze storage
+    const existingEvidence = JSON.parse(localStorage.getItem("evidence")) || [];
 
+    // Přidejte novou evidenci do seznamu
+    existingEvidence.push(registrationInfo);
+
+    // Uložte seznam evidencí zpět do storage
+    localStorage.setItem("evidence", JSON.stringify(existingEvidence));
+
+    // Vytvořte nový prázdný objekt pro registraci
     setRegistrationInfo(initialRegistrationInfo);
-    alert("Registrace byla úspěšně odeslána!");
 
-    console.log(currentRegistrationInfo);
+    alert("Registrace byla úspěšně odeslána!");
   }
 
   //console.log(registrationInfo);
