@@ -180,14 +180,22 @@ function Main({
           />
         </div>
       )}
-      {currentPage === "evidence" && isLoggedIn && (
-        <div className="evidence-margin">
-          <NewEvidence
-            evidenceList={evidenceList}
-            setEvidenceList={setEvidenceList}
-            userLogin={userLogin}
-          />
+      {currentPage === "evidence" && !isLoggedIn ? (
+        <div>
+          {alert("Prosím, přihlašte se")}
+          {changePage("login")}
         </div>
+      ) : (
+        currentPage === "evidence" &&
+        isLoggedIn && (
+          <div className="evidence-margin">
+            <NewEvidence
+              evidenceList={evidenceList}
+              setEvidenceList={setEvidenceList}
+              userLogin={userLogin}
+            />
+          </div>
+        )
       )}
       {currentPage === "login" && (
         <div className="login-margin">
