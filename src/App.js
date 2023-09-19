@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import NewRegister from "./register";
 import NewEvidence from "./evidence";
 import NewLogin from "./NewLogin";
-import { NewContact, NewInformation } from "./NewInformation";
+import { NewInformation } from "./NewInformation";
+import { NewContact } from "./NewContact";
 
 export default function App() {
   const initialRegistrationInfo = {
@@ -19,7 +20,7 @@ export default function App() {
     termsAccepted: false,
   };
 
-  const [currentPage, setCurrentPage] = useState("");
+  const [currentPage, setCurrentPage] = useState("contact");
   const [evidenceList, setEvidenceList] = useState([]);
   const [numberOfContracts, setNumberOfContracts] = useState([]);
   const [registrationInfo, setRegistrationInfo] = useState(
@@ -194,8 +195,8 @@ function NavBar({ toggleMenu, changePage, isLoggedIn }) {
           {/* Login is false */}
 
           <li>
-            <a href="#" alt="kontakt" onClick={() => changePage("contakt")}>
-              Contakt
+            <a href="#" alt="kontakt" onClick={() => changePage("contact")}>
+              Contact
             </a>
           </li>
         </ul>
@@ -273,9 +274,9 @@ function Main({
         </div>
       )}
 
-      {currentPage === "contakt" && (
-        <div className="contakt-margin">
-          <NewContakt />
+      {currentPage === "contact" && (
+        <div className="contact-margin">
+          <NewContact />
         </div>
       )}
     </div>
@@ -291,14 +292,6 @@ function Footer() {
           Mgr. Martin Teleki
         </a>
       </p>
-    </div>
-  );
-}
-
-function NewContakt() {
-  return (
-    <div>
-      <p>Pes</p>
     </div>
   );
 }
