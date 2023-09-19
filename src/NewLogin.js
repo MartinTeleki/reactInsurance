@@ -7,7 +7,10 @@ export default function NewLogin({
   setLoginData,
   handleLogin,
   evidenceList,
+  emailList,
+  setEmailList,
 }) {
+  //console.log(emailList);
   return (
     <div className="container">
       <form method="post" autoComplete="on">

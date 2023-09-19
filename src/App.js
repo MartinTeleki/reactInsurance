@@ -33,6 +33,16 @@ export default function App() {
     password: "",
     controlPassword: "",
   });
+  const [emailList, setEmailList] = useState([]);
+  const [passwordList, setPasswordList] = useState([]);
+  const [passwordControlList, setPasswordControlList] = useState([]);
+
+  // console.log(evidenceList);
+  // console.log(evidenceList[1]);
+  // console.log(loginData.email);
+  //console.log(loginData.email === evidenceList.email);
+
+  console.log(emailList, passwordList, passwordControlList);
 
   useEffect(() => {
     const storedEvidence =
@@ -52,14 +62,33 @@ export default function App() {
 
   function handleLogin(e) {
     e.preventDefault();
-    if (evidenceList.email === loginData.email) {
-      changePage("kontakt");
-    } else {
-      changePage("informace");
-    }
 
-    console.log(evidenceList.email, loginData.email);
+    const evidenceList = JSON.parse(localStorage.getItem("evidenceTEST")) || [];
+
+    const emails = [];
+    const passwords = [];
+    const passwordControls = [];
+
+    evidenceList.forEach((item) => {
+      if (item.email && item.email.trim() !== "") {
+        emails.push(item.email);
+      }
+      if (item.password && item.password.trim() !== "") {
+        passwords.push(item.password);
+      }
+      if (item.controlPassword && item.controlPassword.trim() !== "") {
+        passwordControls.push(item.controlPassword);
+      }
+    });
+
+    setEmailList(emails);
+    setPasswordList(passwords);
+    setPasswordControlList(passwordControls);
+
+    return emails;
   }
+
+  // Nyní máte všechny emaily uložené v poli "emails"
 
   return (
     <div>
@@ -80,6 +109,8 @@ export default function App() {
         setLoginData={setLoginData}
         handleLogin={handleLogin}
         isLoggedIn={isLoggedIn}
+        emailList={emailList}
+        setEmailList={setEmailList}
       />
       <Footer />
     </div>
@@ -147,6 +178,8 @@ function Main({
   setLoginData,
   handleLogin,
   isLoggedIn,
+  emailList,
+  setEmailList,
 }) {
   return (
     <div className="">
@@ -189,6 +222,8 @@ function Main({
             setLoginData={setLoginData}
             handleLogin={handleLogin}
             evidenceList={evidenceList}
+            emailList={emailList}
+            setEmailList={setEmailList}
           />
         </div>
       )}
