@@ -154,39 +154,40 @@ function NavBar({ toggleMenu, changePage, isLoggedIn }) {
           <div className="bar"></div>
         </div>
         <ul className="nav-links" id="nav-links">
-          <li>
-            <a href="#" alt="informace" onClick={() => changePage("informace")}>
-              Informace
-            </a>
-          </li>
-          <li>
-            <a href="#" alt="registrace" onClick={() => changePage("register")}>
-              Registrace
-            </a>
-          </li>
-
-          <li>
-            <a href="#" alt="login" onClick={() => changePage("login")}>
-              Login
-            </a>
-          </li>
-          {/* Login is false */}
-          {isLoggedIn ? (
-            <li>
-              <a href="#" alt="evidence" onClick={() => changePage("evidence")}>
-                Evidence
-              </a>
-            </li>
-          ) : (
+          {!isLoggedIn && (
             <li>
               <a
                 href="#"
-                alt="evidence"
-                onClick={() => {
-                  alert("Prosím, nejdříve se přihlašte.");
-                  changePage("login");
-                }}
+                alt="informace"
+                onClick={() => changePage("informace")}
               >
+                Informace
+              </a>
+            </li>
+          )}
+          {!isLoggedIn && (
+            <li>
+              <a
+                href="#"
+                alt="registrace"
+                onClick={() => changePage("register")}
+              >
+                Registrace
+              </a>
+            </li>
+          )}
+
+          {!isLoggedIn && (
+            <li>
+              <a href="#" alt="login" onClick={() => changePage("login")}>
+                Login
+              </a>
+            </li>
+          )}
+          {/* Login is false */}
+          {isLoggedIn && (
+            <li>
+              <a href="#" alt="evidence" onClick={() => changePage("evidence")}>
                 Evidence
               </a>
             </li>
