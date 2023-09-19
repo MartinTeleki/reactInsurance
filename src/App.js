@@ -194,8 +194,8 @@ function NavBar({ toggleMenu, changePage, isLoggedIn }) {
           {/* Login is false */}
 
           <li>
-            <a href="#" alt="kontakt" onClick={() => changePage("kontakt")}>
-              Kontakt
+            <a href="#" alt="kontakt" onClick={() => changePage("contakt")}>
+              Contakt
             </a>
           </li>
         </ul>
@@ -246,16 +246,6 @@ function Main({
       )}
       {/* pak dát vykřičník před isLoggedIn v prvnm řádku */}
 
-      {isLoggedIn && currentPage === "evidence" && (
-        <div className="evidence-margin">
-          <NewEvidence
-            evidenceList={evidenceList}
-            setEvidenceList={setEvidenceList}
-            userLogin={userLogin}
-          />
-        </div>
-      )}
-
       {currentPage === "login" && (
         <div className="login-margin">
           <NewLogin
@@ -273,6 +263,21 @@ function Main({
           />
         </div>
       )}
+      {isLoggedIn && currentPage === "evidence" && (
+        <div className="evidence-margin">
+          <NewEvidence
+            evidenceList={evidenceList}
+            setEvidenceList={setEvidenceList}
+            userLogin={userLogin}
+          />
+        </div>
+      )}
+
+      {currentPage === "contakt" && (
+        <div className="contakt-margin">
+          <NewContakt />
+        </div>
+      )}
     </div>
   );
 }
@@ -283,9 +288,17 @@ function Footer() {
       <p>
         &copy; Created by{" "}
         <a href="#" className="footer-link">
-          Mgr.MartinTeleki
+          Mgr. Martin Teleki
         </a>
       </p>
+    </div>
+  );
+}
+
+function NewContakt() {
+  return (
+    <div>
+      <p>Pes</p>
     </div>
   );
 }
