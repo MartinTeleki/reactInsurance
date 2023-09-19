@@ -22,9 +22,7 @@ export function NewContact() {
           <i className="iconBox square-box fa fa-phone-square box-phone-contact"></i>
           <span className="phone-nummer-contact">+420 774 887 998</span>
           <i className="iconBox square-box fa fa-envelope box-email-contact"></i>
-          <span className="email-contact">
-            jirinagorbalova@reactpojistovna.cz
-          </span>
+          <span className="email-contact">bukazazracna@reactpojistovna.cz</span>
         </p>
       </div>
       <div className="contact-box">
@@ -33,7 +31,7 @@ export function NewContact() {
           <i className="iconBox square-box fa fa-phone-square box-phone-contact"></i>
           <span className="phone-nummer-contact">+420 774 887 997</span>
           <i className="iconBox square-box fa fa-envelope box-email-contact"></i>
-          <span className="email-contact">jirinavecna@reactpojistovna.cz</span>
+          <span className="email-contact">falkavecna@reactpojistovna.cz</span>
         </p>
       </div>
       <div className="contact-box">
@@ -42,9 +40,7 @@ export function NewContact() {
           <i className="iconBox square-box fa fa-phone-square box-phone-contact"></i>
           <span className="phone-nummer-contact">+420 774 887 996</span>
           <i className="iconBox square-box fa fa-envelope box-email-contact"></i>
-          <span className="email-contact">
-            jirinakonecna@reactpojistovna.cz
-          </span>
+          <span className="email-contact">petrakonecna@reactpojistovna.cz</span>
         </p>
       </div>
       <div className="contact-box">

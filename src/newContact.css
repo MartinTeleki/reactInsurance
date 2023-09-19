@@ -2,6 +2,7 @@
   background-color: #f5f5f5;
   padding: 20px;
   background: #2d3e3f;
+  margin-bottom: 20px;
 }
 
 .contact-title {
@@ -9,6 +10,7 @@
   font-size: 24px;
   margin-bottom: 20px;
   color: white;
+  text-transform: uppercase;
 }
 
 .contact-box {
@@ -49,10 +51,14 @@
 }
 
 .box-phone-contact,
-.phone-nummer-contact,
-.box-email-contact,
-.email-contact {
+.box-email-contact {
   margin: 40px;
+}
+
+.phone-nummer-contact,
+.email-contact {
+  margin: 20px 20px 20px 20px;
+  color: #fff;
 }
 
 .square-box {
@@ -96,5 +102,6 @@
 
   .contact-title {
     text-align: center;
+    margin-top: 40px;
   }
 }
