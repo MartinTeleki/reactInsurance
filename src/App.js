@@ -42,7 +42,7 @@ export default function App() {
   // console.log(loginData.email);
   //console.log(loginData.email === evidenceList.email);
 
-  console.log(emailList, passwordList, passwordControlList);
+  //console.log(emailList, passwordList, passwordControlList);
 
   useEffect(() => {
     const storedEvidence =
@@ -81,14 +81,29 @@ export default function App() {
       }
     });
 
-    setEmailList(emails);
-    setPasswordList(passwords);
-    setPasswordControlList(passwordControls);
-
-    return emails;
+    processLogin(emails, passwords, passwordControls);
   }
 
-  // Nyní máte všechny emaily uložené v poli "emails"
+  function processLogin(emails, passwords, passwordControls) {
+    const { email, password, controlPassword } = loginData;
+    let isLoggedIn = false;
+
+    for (let i = 0; i < emails.length; i++) {
+      if (
+        emails[i] === email &&
+        passwords[i] === password &&
+        passwordControls[i] === controlPassword
+      ) {
+        isLoggedIn = true;
+      }
+    }
+
+    if (isLoggedIn) {
+      alert("Úspěšně jste se přihlásili!");
+    } else {
+      alert("Nesprávný email, heslo nebo kontrolní heslo.");
+    }
+  }
 
   return (
     <div>
@@ -111,6 +126,8 @@ export default function App() {
         isLoggedIn={isLoggedIn}
         emailList={emailList}
         setEmailList={setEmailList}
+        passwordList={passwordList}
+        setPasswordList={setPasswordList}
       />
       <Footer />
     </div>
@@ -180,6 +197,8 @@ function Main({
   isLoggedIn,
   emailList,
   setEmailList,
+  passwordList,
+  setPasswordList,
 }) {
   return (
     <div className="">
@@ -224,6 +243,8 @@ function Main({
             evidenceList={evidenceList}
             emailList={emailList}
             setEmailList={setEmailList}
+            passwordList={passwordList}
+            setPasswordList={setPasswordList}
           />
         </div>
       )}

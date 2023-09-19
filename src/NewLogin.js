@@ -9,6 +9,8 @@ export default function NewLogin({
   evidenceList,
   emailList,
   setEmailList,
+  passwordList,
+  setPasswordList,
 }) {
   //console.log(emailList);
   return (
