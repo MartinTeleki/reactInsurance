@@ -7,3 +7,9 @@
   color: white;
   background: #2d3e3f;
 }
+
+@media (max-width: 500px) {
+  .informace-container {
+    text-align: justify;
+  }
+}

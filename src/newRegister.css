@@ -185,10 +185,22 @@ select {
   }
 } */
 
-@media (max-width: 370px) {
+@media (max-width: 400px) {
   .container {
-    width: 90%;
-    padding: 10px;
+    background: #2d3e3f;
+    width: 350px;
+    height: auto;
+    padding-bottom: 20px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    padding: 20px 20px 20px 20px;
+    text-transform: uppercase;
   }
 
   .box {
@@ -196,9 +208,30 @@ select {
   }
 
   .iconBox {
-    height: 21.5px;
-    width: 5vw;
-    line-height: 5vw;
+    height: auto;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #a2ff00;
+    transition: transform 0.3s;
+  }
+
+  .iconBox {
+    height: auto;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #a2ff00;
+    transition: transform 0.3s;
+  }
+
+  .textBox:focus {
+    height: 35px;
+    width: 178px;
+    border: none;
+    padding-left: 20px;
+    transition: transform 0.3s;
+    transform: scale(0.96);
   }
 
   .textBox {
@@ -208,6 +241,70 @@ select {
   }
 
   .select-gender {
-    height: 5vw;
+    margin-left: 0px;
+    width: 197px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    background: #2d3e3f;
+    width: 350px;
+    height: auto;
+    padding-bottom: 20px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    padding: 20px 10px 20px 10px;
+    text-transform: uppercase;
+  }
+
+  .box {
+    width: 100%;
+  }
+
+  .iconBox {
+    height: auto;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #a2ff00;
+    transition: transform 0.3s;
+  }
+
+  .iconBox:hover {
+    height: auto;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #a2ff00;
+    transition: transform 0.3s;
+  }
+
+  .textBox:focus {
+    height: 35px;
+    width: 178px;
+    border: none;
+    padding-left: 20px;
+    transition: transform 0.3s;
+    transform: scale(0.96);
+  }
+
+  .textBox {
+    height: 38px;
+    width: 45vw;
+    line-height: 5vw;
+  }
+
+  .select-gender {
+    margin-left: 0px;
+    width: 197px;
+    height: 40px;
   }
 }
