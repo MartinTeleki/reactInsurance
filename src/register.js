@@ -63,10 +63,14 @@ export default function NewRegister({
     }
   }
 
+  //const existingEvidence = JSON.parse(localStorage.getItem("evidence")) || [];
+  // console.log(existingEvidence);
+
   function HandleRegisterButton(e) {
     e.preventDefault();
 
-    const existingEvidence = JSON.parse(localStorage.getItem("evidence")) || [];
+    const existingEvidence =
+      JSON.parse(localStorage.getItem("evidenceTEST")) || [];
 
     // Fist name and last name
     if (
@@ -156,12 +160,23 @@ export default function NewRegister({
       return;
     }
 
-    localStorage.setItem("evidence", JSON.stringify(registrationInfo));
+    // Přečtěte aktuální data z localStorage
+
+    existingEvidence.push(registrationInfo);
+
+    // existingEvidence.push(registrationInfo);
+    console.log(registrationInfo);
+
+    // Přidejte novou registraci do načtených dat
+    //existingEvidence.push(registrationInfo);
+
+    // Uložte aktualizovaná data zpět do localStorage
+    localStorage.setItem("evidenceTEST", JSON.stringify(existingEvidence));
+
     console.log("Data byla uložena do localStorage");
 
-    setRegistrationInfo(registrationInfo);
-    console.log("Stav registrationInfo byl aktualizován");
-    console.log(registrationInfo);
+    // Vymažte registrační formulář
+    setRegistrationInfo(initialRegistrationInfo);
 
     alert("Registrace byla úspěšně odeslána!");
   }

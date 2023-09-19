@@ -8,6 +8,8 @@ export default function NewEvidence({ evidenceList, setEvidenceList }) {
     setEvidenceList(storedEvidence);
   }, []);
 
+  console.log(evidenceList);
+
   function handleDeleteEvidenceList(index) {
     const updatedEvidenceList = [...evidenceList];
     updatedEvidenceList.splice(index, 1);

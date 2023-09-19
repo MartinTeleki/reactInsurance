@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./newInformation.css";
 
 export function NewInformation({ evidenceList, numberOfContracts }) {
+  //console.log(evidenceList);
   const info = {
     numberOfClients: evidenceList.length,
     numberOfContracts: numberOfContracts.length,

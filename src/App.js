@@ -25,6 +25,7 @@ export default function App() {
   const [registrationInfo, setRegistrationInfo] = useState(
     initialRegistrationInfo
   );
+  //console.log(evidenceList);
 
   const [userLogin, setUserLogin] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -167,7 +168,8 @@ function Main({
           />
         </div>
       )}
-      {currentPage === "evidence" && !isLoggedIn ? (
+      {/* pak dát vykřičník před isLoggedIn v prvnm řádku */}
+      {currentPage === "evidence" && isLoggedIn ? (
         <div>
           {alert("Prosím, přihlašte se")}
           {changePage("login")}
