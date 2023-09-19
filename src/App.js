@@ -43,6 +43,7 @@ export default function App() {
   //console.log(loginData.email === evidenceList.email);
 
   //console.log(emailList, passwordList, passwordControlList);
+  console.log(isLoggedIn);
 
   useEffect(() => {
     const storedEvidence =
@@ -100,6 +101,7 @@ export default function App() {
 
     if (isLoggedIn) {
       alert("Úspěšně jste se přihlásili!");
+      setIsLoggedIn(true);
     } else {
       alert("Nesprávný email, heslo nebo kontrolní heslo.");
     }
@@ -107,7 +109,11 @@ export default function App() {
 
   return (
     <div>
-      <NavBar toggleMenu={toggleMenu} changePage={changePage} />
+      <NavBar
+        toggleMenu={toggleMenu}
+        changePage={changePage}
+        isLoggedIn={isLoggedIn}
+      />
       <Main
         currentPage={currentPage}
         registrationInfo={registrationInfo}
@@ -134,7 +140,7 @@ export default function App() {
   );
 }
 
-function NavBar({ toggleMenu, changePage }) {
+function NavBar({ toggleMenu, changePage, isLoggedIn }) {
   return (
     <div>
       <nav className="navbar">
@@ -148,29 +154,47 @@ function NavBar({ toggleMenu, changePage }) {
         </div>
         <ul className="nav-links" id="nav-links">
           <li>
-            <a href="#" onClick={() => changePage("informace")}>
+            <a href="#" alt="informace" onClick={() => changePage("informace")}>
               Informace
             </a>
           </li>
           <li>
-            <a href="#" onClick={() => changePage("register")}>
+            <a href="#" alt="registrace" onClick={() => changePage("register")}>
               Registrace
             </a>
           </li>
 
           <li>
-            <a href="#" onClick={() => changePage("login")}>
+            <a href="#" alt="login" onClick={() => changePage("login")}>
               Login
             </a>
           </li>
+          {/* Login is false */}
+          {isLoggedIn ? (
+            <li>
+              <a href="#" alt="evidence" onClick={() => changePage("evidence")}>
+                Evidence
+              </a>
+            </li>
+          ) : (
+            <li>
+              <a
+                href="#"
+                alt="evidence"
+                onClick={() => {
+                  alert("Prosím, nejdříve se přihlašte.");
+                  changePage("login");
+                }}
+              >
+                Evidence
+              </a>
+            </li>
+          )}
+
+          {/* Login is false */}
 
           <li>
-            <a href="#" onClick={() => changePage("evidence")}>
-              Evidence
-            </a>
-          </li>
-          <li>
-            <a href="#" onClick={() => changePage("kontakt")}>
+            <a href="#" alt="kontakt" onClick={() => changePage("kontakt")}>
               Kontakt
             </a>
           </li>
@@ -221,7 +245,8 @@ function Main({
         </div>
       )}
       {/* pak dát vykřičník před isLoggedIn v prvnm řádku */}
-      {currentPage === "evidence" && (
+
+      {isLoggedIn && currentPage === "evidence" && (
         <div className="evidence-margin">
           <NewEvidence
             evidenceList={evidenceList}
