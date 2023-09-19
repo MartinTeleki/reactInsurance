@@ -1,28 +1,93 @@
 .contact-container {
-}
-
-.contact-box {
+  background-color: #f5f5f5;
+  padding: 20px;
+  background: #2d3e3f;
 }
 
 .contact-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.contact-box {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .contact-paragraph {
+  font-size: 18px;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
 }
 
-.fa-contact {
-}
-
-.fa-phone-contact {
-}
-
-.phonenumber-span-contact {
-}
-
-.fa-envelope-contact {
-}
-.email-span-contact {
+.fontLabel {
 }
 
 .black-icon-contact {
+  color: #000;
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+.phonenumber-span-contact {
+  width: 40px;
+  height: 40px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.email-span {
+  font-style: italic;
+  margin-left: 5px;
+}
+
+.box-phone-contact,
+.phone-nummer-contact,
+.box-email-contact,
+.email-contact {
+  margin: 40px;
+}
+
+.square-box {
+  padding: 5px 10px 5px 10px;
+}
+
+@media (max-width: 900px) {
+  * {
+    margin: 0;
+  }
+
+  .contact-box {
+    display: block;
+    margin: 20px 0px 20px 0;
+  }
+
+  .contact-paragraph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 100px 0px;
+  }
+  .fontLabel {
+    text-align: center;
+  }
+
+  .phone-nummer-contact {
+    margin: 20px 0px 20px 0;
+  }
+
+  .phonenumber-span-contact,
+  .email-span {
+    width: auto;
+    height: auto;
+  }
+
+  .square-box {
+    margin: 5px 0;
+  }
 }
