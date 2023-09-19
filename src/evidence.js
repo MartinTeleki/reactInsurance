@@ -4,12 +4,11 @@ import App from "./App";
 
 export default function NewEvidence({ evidenceList, setEvidenceList }) {
   useEffect(() => {
-    const storedEvidence = JSON.parse(localStorage.getItem("evidence")) || [];
+    const storedEvidence =
+      JSON.parse(localStorage.getItem("evidenceTEST")) || [];
     setEvidenceList(storedEvidence);
   }, []);
-
-  console.log(evidenceList);
-
+  console.log("pes");
   function handleDeleteEvidenceList(index) {
     const updatedEvidenceList = [...evidenceList];
     updatedEvidenceList.splice(index, 1);
@@ -17,6 +16,7 @@ export default function NewEvidence({ evidenceList, setEvidenceList }) {
     localStorage.setItem("evidence", JSON.stringify(updatedEvidenceList));
 
     setEvidenceList(updatedEvidenceList);
+    console.log(evidenceList);
   }
   return (
     <div>

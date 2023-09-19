@@ -25,7 +25,6 @@ export default function App() {
   const [registrationInfo, setRegistrationInfo] = useState(
     initialRegistrationInfo
   );
-  //console.log(evidenceList);
 
   const [userLogin, setUserLogin] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -36,7 +35,8 @@ export default function App() {
   });
 
   useEffect(() => {
-    const storedEvidence = JSON.parse(localStorage.getItem("evidence")) || [];
+    const storedEvidence =
+      JSON.parse(localStorage.getItem("evidenceTEST")) || [];
     setEvidenceList(storedEvidence);
     setNumberOfContracts(storedEvidence);
   }, []);
@@ -169,23 +169,16 @@ function Main({
         </div>
       )}
       {/* pak dát vykřičník před isLoggedIn v prvnm řádku */}
-      {currentPage === "evidence" && isLoggedIn ? (
-        <div>
-          {alert("Prosím, přihlašte se")}
-          {changePage("login")}
+      {currentPage === "evidence" && (
+        <div className="evidence-margin">
+          <NewEvidence
+            evidenceList={evidenceList}
+            setEvidenceList={setEvidenceList}
+            userLogin={userLogin}
+          />
         </div>
-      ) : (
-        currentPage === "evidence" &&
-        isLoggedIn && (
-          <div className="evidence-margin">
-            <NewEvidence
-              evidenceList={evidenceList}
-              setEvidenceList={setEvidenceList}
-              userLogin={userLogin}
-            />
-          </div>
-        )
       )}
+
       {currentPage === "login" && (
         <div className="login-margin">
           <NewLogin
