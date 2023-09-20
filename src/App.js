@@ -162,9 +162,19 @@ function NavBar({ toggleMenu, changePage, isLoggedIn }) {
 
           <NavLogin changePage={changePage} isLoggedIn={isLoggedIn} />
 
+          <NavPojistenci changePage={changePage} isLoggedIn={isLoggedIn} />
+
+          <NavPojisteni changePage={changePage} isLoggedIn={isLoggedIn} />
+
+          <NavUdalosti changePage={changePage} isLoggedIn={isLoggedIn} />
+
           <NavEvidence changePage={changePage} isLoggedIn={isLoggedIn} />
 
           <NavContact changePage={changePage} isLoggedIn={isLoggedIn} />
+
+          <NavLoginJmeno changePage={changePage} isLoggedIn={isLoggedIn} />
+
+          <NavOdhlasit changePage={changePage} isLoggedIn={isLoggedIn} />
         </ul>
       </nav>
     </div>
@@ -226,11 +236,87 @@ function NavEvidence({ changePage, isLoggedIn }) {
 function NavContact({ changePage, isLoggedIn }) {
   return (
     <div>
-      <li>
-        <a href="#" alt="kontakt" onClick={() => changePage("contact")}>
-          Contact
-        </a>
-      </li>
+      {!isLoggedIn && (
+        <li>
+          <a href="#" alt="kontakt" onClick={() => changePage("contact")}>
+            Contact
+          </a>
+        </li>
+      )}
+    </div>
+  );
+}
+
+function NavPojistenci({ changePage, isLoggedIn }) {
+  return (
+    <div>
+      {isLoggedIn && (
+        <li>
+          <a href="#" alt="pojistenci" onClick={() => changePage("pojistenci")}>
+            Pojištěnci
+          </a>
+        </li>
+      )}
+    </div>
+  );
+}
+
+function NavPojisteni({ changePage, isLoggedIn }) {
+  return (
+    <div>
+      {isLoggedIn && (
+        <li>
+          <a href="#" alt="pojisteni" onClick={() => changePage("pojisteni")}>
+            Pojištění
+          </a>
+        </li>
+      )}
+    </div>
+  );
+}
+
+function NavUdalosti({ changePage, isLoggedIn }) {
+  return (
+    <div>
+      {isLoggedIn && (
+        <li>
+          <a href="#" alt="udalosti" onClick={() => changePage("Udalosti")}>
+            Udalosti
+          </a>
+        </li>
+      )}
+    </div>
+  );
+}
+
+function NavOdhlasit({ changePage, isLoggedIn }) {
+  return (
+    <div>
+      {isLoggedIn && (
+        <li>
+          <a href="#" alt="odhlasit" onClick={() => changePage("odhlasit")}>
+            Odhlásit
+          </a>
+        </li>
+      )}
+    </div>
+  );
+}
+
+function NavLoginJmeno({ changePage, isLoggedIn }) {
+  return (
+    <div>
+      {isLoggedIn && (
+        <li>
+          <a
+            href="#"
+            alt="login-jmeno"
+            onClick={() => changePage("login-jmeno")}
+          >
+            Jmeno
+          </a>
+        </li>
+      )}
     </div>
   );
 }
