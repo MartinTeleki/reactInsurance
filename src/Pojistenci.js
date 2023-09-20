@@ -20,8 +20,12 @@ export default function Pojistenci() {
           <div className="table-name" style={{ fontWeight: "bold" }}>
             Bydliště
           </div>
-          <button className="btn-editovat">Editovat</button>
-          <button className="btn-odstranit">Odstranit</button>
+          <button className="btn-editovat disabled" style={{ opacity: 0 }}>
+            Editovat
+          </button>
+          <button className="btn-odstranit disabled" style={{ opacity: 0 }}>
+            Odstranit
+          </button>
         </div>
       </div>
       <div className="table">

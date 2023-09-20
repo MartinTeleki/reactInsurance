@@ -1,6 +1,4 @@
 .table-container {
-  border: 1px solid black;
-  margin: 60px 20px 60px 20px;
   background: #2d3e3f;
 }
 
@@ -14,8 +12,11 @@
 }
 
 .table-title {
+  display: flex;
   text-align: left;
   color: white;
+  margin: 0 0 0 100px;
+  padding: 0;
 }
 
 .table-row {
@@ -31,7 +32,11 @@
 }
 
 .table-name {
+  margin-left: 100px;
   flex: 2;
+}
+
+.policyholder-margin {
 }
 
 /* butttons */
@@ -110,4 +115,15 @@
   padding: 5px 10px 5px 10px;
   cursor: pointer;
   transform: scale(0.96);
+}
+
+.disabled {
+  cursor: none;
+}
+
+.disabled:hover,
+.disabled:active,
+.disabled:focus {
+  cursor: default;
+  opacity: 0;
 }
