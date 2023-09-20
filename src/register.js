@@ -24,6 +24,7 @@ export default function NewRegister({
   registrationInfo,
   setRegistrationInfo,
   changePage,
+  evidenceList,
 }) {
   const initialRegistrationInfo = {
     firstName: "",
@@ -101,6 +102,15 @@ export default function NewRegister({
         )
       ) {
         alert("Email nesmí obsahovat mezery a musí být ve správném formátu.");
+        return;
+      }
+      const emailRegistration = registrationInfo.email;
+      const person = evidenceList.find(
+        (osoba) => osoba.email === emailRegistration
+      );
+
+      if (person) {
+        alert("E-mail je již registrován.");
         return;
       }
     }

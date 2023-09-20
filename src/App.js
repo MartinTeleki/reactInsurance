@@ -27,7 +27,7 @@ export default function App() {
     initialRegistrationInfo
   );
 
-  console.log(evidenceList);
+  //console.log(evidenceList);
 
   const [userLogin, setUserLogin] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -47,7 +47,7 @@ export default function App() {
   //console.log(loginData.email === evidenceList.email);
 
   //console.log(emailList, passwordList, passwordControlList);
-  console.log(isLoggedIn);
+  //console.log(isLoggedIn);
 
   useEffect(() => {
     const storedEvidence =
@@ -92,18 +92,6 @@ export default function App() {
 
     processLogin(emails, passwords, passwordControls, firstNames);
   }
-
-  // Jméno
-  const email = loginData.email;
-  const osoba = evidenceList.find((osoba) => osoba.email === email);
-
-  if (osoba) {
-    console.log(`Jméno osoby s emailem ${email} je ${osoba.firstName}`);
-  } else {
-    console.log(`Osoba s emailem ${email} nebyla nalezena.`);
-  }
-
-  //
 
   function processLogin(emails, passwords, passwordControls) {
     const { email, password, controlPassword } = loginData;
@@ -393,6 +381,7 @@ function Main({
             setRegistrationInfo={setRegistrationInfo}
             setCurrentPage={setCurrentPage}
             changePage={changePage}
+            evidenceList={evidenceList}
           />
         </div>
       )}
