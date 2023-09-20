@@ -127,3 +127,38 @@
   cursor: default;
   opacity: 0;
 }
+
+/* ... */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-item {
+  background-color: #2d3e3f;
+  color: white;
+  border: 1px solid #fff;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-item:hover {
+  background-color: #fff;
+  color: #2d3e3f;
+}
+
+.pagination-item.active {
+  background-color: #fff;
+  color: #2d3e3f;
+  cursor: default;
+}
+
+.pagination-item.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
