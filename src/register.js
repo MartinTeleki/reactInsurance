@@ -38,7 +38,7 @@ export default function NewRegister({
     gender: "",
     termsAccepted: false,
   };
-
+  console.log(changePage);
   // console.log(registrationInfo);
 
   function HandleInputChange(e) {
@@ -123,23 +123,28 @@ export default function NewRegister({
     //Age
     if (registrationInfo.age < 18 || registrationInfo.age > 125) {
       alert("Věk musí být nejméně 18 let a nejvíce 125 let");
+      return;
     }
 
     if (isNaN(registrationInfo.age)) {
       alert("Věk musí být číslo");
+      return;
     }
 
     if (registrationInfo.age === "") {
       alert("Věk nemsí obsahovat mezery");
+      return;
     }
 
     //Insurance nummer
     if (registrationInfo.insuranceNumber.length !== 10) {
       alert("Číslo pojišťovací smlouvy musí být dlouhé 10 znaků.");
+      return;
     }
 
     if (isNaN(registrationInfo.insuranceNumber)) {
       alert("Pojišťovací číslo obsahuje pouze čísla od 0-9");
+      return;
     }
 
     // Insurance Code
@@ -177,7 +182,7 @@ export default function NewRegister({
 
     // Vymažte registrační formulář
     setRegistrationInfo(initialRegistrationInfo);
-
+    changePage("login");
     alert("Registrace byla úspěšně odeslána!");
   }
 
