@@ -11,9 +11,7 @@ export function NewContact() {
           <i className="iconBox square-box fa fa-phone-square box-phone-contact"></i>
           <span className="phone-nummer-contact">+420 774 887 999</span>
           <i className="iconBox square-box  fa fa-envelope box-email-contact"></i>
-          <span className="email-contact">
-            jirinanovakova@reactpojistovna.cz
-          </span>
+          <span className="email-contact">jananovakova@reactpojistovna.cz</span>
         </p>
       </div>
       <div className="contact-box">

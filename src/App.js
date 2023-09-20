@@ -102,8 +102,10 @@ export default function App() {
 
     if (isLoggedIn) {
       alert("Úspěšně jste se přihlásili!");
+      changePage("evidence");
       setIsLoggedIn(true);
     } else {
+      changePage("login");
       alert("Nesprávný email, heslo nebo kontrolní heslo.");
     }
   }
