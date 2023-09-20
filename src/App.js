@@ -27,6 +27,8 @@ export default function App() {
     initialRegistrationInfo
   );
 
+  console.log(evidenceList);
+
   const [userLogin, setUserLogin] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginData, setLoginData] = useState({
@@ -34,6 +36,7 @@ export default function App() {
     password: "",
     controlPassword: "",
   });
+
   const [emailList, setEmailList] = useState([]);
   const [passwordList, setPasswordList] = useState([]);
   const [passwordControlList, setPasswordControlList] = useState([]);
@@ -67,6 +70,7 @@ export default function App() {
 
     const evidenceList = JSON.parse(localStorage.getItem("evidenceTEST")) || [];
 
+    const firstNames = [];
     const emails = [];
     const passwords = [];
     const passwordControls = [];
@@ -81,10 +85,25 @@ export default function App() {
       if (item.controlPassword && item.controlPassword.trim() !== "") {
         passwordControls.push(item.controlPassword);
       }
+      if (item.firstName && item.firstName.trim() !== "") {
+        firstNames.push(item.firstName);
+      }
     });
 
-    processLogin(emails, passwords, passwordControls);
+    processLogin(emails, passwords, passwordControls, firstNames);
   }
+
+  // Jméno
+  const email = loginData.email;
+  const osoba = evidenceList.find((osoba) => osoba.email === email);
+
+  if (osoba) {
+    console.log(`Jméno osoby s emailem ${email} je ${osoba.firstName}`);
+  } else {
+    console.log(`Osoba s emailem ${email} nebyla nalezena.`);
+  }
+
+  //
 
   function processLogin(emails, passwords, passwordControls) {
     const { email, password, controlPassword } = loginData;
@@ -116,6 +135,8 @@ export default function App() {
         toggleMenu={toggleMenu}
         changePage={changePage}
         isLoggedIn={isLoggedIn}
+        loginData={loginData}
+        evidenceList={evidenceList}
       />
       <Main
         currentPage={currentPage}
@@ -143,7 +164,13 @@ export default function App() {
   );
 }
 
-function NavBar({ toggleMenu, changePage, isLoggedIn }) {
+function NavBar({
+  toggleMenu,
+  changePage,
+  isLoggedIn,
+  loginData,
+  evidenceList,
+}) {
   return (
     <div>
       <nav className="navbar">
@@ -172,7 +199,12 @@ function NavBar({ toggleMenu, changePage, isLoggedIn }) {
 
           <NavContact changePage={changePage} isLoggedIn={isLoggedIn} />
 
-          <NavLoginJmeno changePage={changePage} isLoggedIn={isLoggedIn} />
+          <NavLoginJmeno
+            changePage={changePage}
+            isLoggedIn={isLoggedIn}
+            loginData={loginData}
+            evidenceList={evidenceList}
+          />
 
           <NavOdhlasit changePage={changePage} isLoggedIn={isLoggedIn} />
         </ul>
@@ -303,7 +335,10 @@ function NavOdhlasit({ changePage, isLoggedIn }) {
   );
 }
 
-function NavLoginJmeno({ changePage, isLoggedIn }) {
+function NavLoginJmeno({ changePage, isLoggedIn, loginData, evidenceList }) {
+  const email = loginData.email;
+  const person = evidenceList.find((osoba) => osoba.email === email);
+
   return (
     <div>
       {isLoggedIn && (
@@ -313,7 +348,7 @@ function NavLoginJmeno({ changePage, isLoggedIn }) {
             alt="login-jmeno"
             onClick={() => changePage("login-jmeno")}
           >
-            Jmeno
+            {person.firstName}
           </a>
         </li>
       )}
