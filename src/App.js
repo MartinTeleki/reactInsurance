@@ -6,7 +6,7 @@ import { NewInformation } from "./NewInformation";
 import { NewContact } from "./NewContact";
 import { NavBar } from "./NavBar";
 import { Footer } from "./Footer";
-import { Pojištěnci } from "./Pojištěnci";
+import Pojistenci from "./Pojistenci";
 
 export default function App() {
   const initialRegistrationInfo = {
@@ -233,8 +233,8 @@ function Main({
       )}
       <div>
         {currentPage === "pojistenci" && (
-          <div className="contact-margin">
-            <Pojištěnci />
+          <div className="">
+            <Pojistenci />
           </div>
         )}
       </div>
