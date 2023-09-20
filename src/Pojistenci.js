@@ -42,6 +42,20 @@ export default function Pojistenci(evidenceList) {
   ];
 
   console.log(evidenceList);
+
+  const storedEvidence = JSON.parse(localStorage.getItem("evidenceTEST")) || [];
+  console.log(storedEvidence);
+
+  const personFirstName = storedEvidence.map((objekt) => objekt.firstName);
+  const personLastName = storedEvidence.map((objekt) => objekt.lastName);
+  const personCity = storedEvidence.map((objekt) => objekt.city);
+
+  console.log(personFirstName);
+  console.log(personLastName);
+  console.log(personCity);
+
+  // firstNamePersons nyní obsahuje všechny neprázdné hodnoty z evidenceList.firstName
+
   const pageRecords = 10;
 
   const [actuallyPage, setActuallyPage] = useState(1);
