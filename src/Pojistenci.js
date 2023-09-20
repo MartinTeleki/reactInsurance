@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./pojistenci.css";
 
-export default function Pojistenci() {
+export default function Pojistenci(evidenceList) {
   const insurenceInformation = [
     { jmeno: "Jan Novák", bydliste: "Praha" },
     { jmeno: "Marie Svobodová", bydliste: "Brno" },
@@ -40,6 +40,8 @@ export default function Pojistenci() {
     { jmeno: "Marie Svobodová", bydliste: "Brno" },
     { jmeno: "Petr Dvořák", bydliste: "Ostrava" },
   ];
+
+  console.log(evidenceList);
   const pageRecords = 10;
 
   const [actuallyPage, setActuallyPage] = useState(1);

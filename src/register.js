@@ -34,6 +34,7 @@ export default function NewRegister({
     age: "",
     password: "",
     controlPassword: "",
+    city: "",
     insuranceNumber: "",
     insuranceCode: "",
     gender: "",
@@ -429,6 +430,32 @@ export default function NewRegister({
         </div>
 
         {/* insurance policy code */}
+
+        {/* City */}
+
+        <div className="box">
+          <label htmlFor="city" className="fl fontLabel">
+            {" "}
+            City:{" "}
+          </label>
+          <div className="fl iconBox">
+            <i className="fa fa-key" aria-hidden="true"></i>
+          </div>
+          <div className="fr">
+            <input
+              type="text"
+              required
+              name="city"
+              placeholder="45e87rsd6"
+              className="textBox"
+              value={registrationInfo.city}
+              onChange={HandleInputChange}
+            />
+          </div>
+          <div className="clr"></div>
+        </div>
+
+        {/* City */}
         {/* Gender */}
         <div className="box radio">
           <label htmlFor="gender" className="fl fontLabel">

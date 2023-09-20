@@ -15,6 +15,7 @@ export default function App() {
     email: "",
     phoneNumber: "",
     age: "",
+    city: "",
     password: "",
     controlPassword: "",
     insuranceNumber: "",
@@ -234,7 +235,7 @@ function Main({
       <div>
         {currentPage === "pojistenci" && (
           <div className="">
-            <Pojistenci />
+            <Pojistenci evidenceList={evidenceList} />
           </div>
         )}
       </div>
