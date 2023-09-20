@@ -125,6 +125,7 @@ export default function App() {
         isLoggedIn={isLoggedIn}
         loginData={loginData}
         evidenceList={evidenceList}
+        setIsLoggedIn={setIsLoggedIn}
       />
       <Main
         currentPage={currentPage}
@@ -158,6 +159,7 @@ function NavBar({
   isLoggedIn,
   loginData,
   evidenceList,
+  setIsLoggedIn,
 }) {
   return (
     <div>
@@ -194,7 +196,11 @@ function NavBar({
             evidenceList={evidenceList}
           />
 
-          <NavOdhlasit changePage={changePage} isLoggedIn={isLoggedIn} />
+          <NavOdhlasit
+            changePage={changePage}
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+          />
         </ul>
       </nav>
     </div>
@@ -309,12 +315,19 @@ function NavUdalosti({ changePage, isLoggedIn }) {
   );
 }
 
-function NavOdhlasit({ changePage, isLoggedIn }) {
+function NavOdhlasit({ changePage, isLoggedIn, setIsLoggedIn }) {
   return (
     <div>
       {isLoggedIn && (
         <li>
-          <a href="#" alt="odhlasit" onClick={() => changePage("odhlasit")}>
+          <a
+            href="#"
+            alt="odhlasit"
+            onClick={() => {
+              changePage("login");
+              setIsLoggedIn(false);
+            }}
+          >
             Odhlásit
           </a>
         </li>

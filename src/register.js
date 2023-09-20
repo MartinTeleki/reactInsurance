@@ -39,7 +39,7 @@ export default function NewRegister({
     gender: "",
     termsAccepted: false,
   };
-  console.log(changePage);
+  //console.log(changePage);
   // console.log(registrationInfo);
 
   function HandleInputChange(e) {
@@ -89,6 +89,16 @@ export default function NewRegister({
         registrationInfo.phoneNumber.length > 9
       ) {
         alert("Telefonní číslo může obsahovat maximálně 9 čísel.");
+        return;
+      }
+
+      const phoneNumberRegistration = registrationInfo.phoneNumber;
+      const person = evidenceList.find(
+        (osoba) => osoba.phoneNumber === phoneNumberRegistration
+      );
+
+      if (person) {
+        alert("Telefonní číslo je již používáno.");
         return;
       }
     }
@@ -147,6 +157,7 @@ export default function NewRegister({
     }
 
     //Insurance nummer
+
     if (registrationInfo.insuranceNumber.length !== 10) {
       alert("Číslo pojišťovací smlouvy musí být dlouhé 10 znaků.");
       return;
@@ -175,22 +186,15 @@ export default function NewRegister({
       return;
     }
 
-    // Přečtěte aktuální data z localStorage
-
     existingEvidence.push(registrationInfo);
 
     // existingEvidence.push(registrationInfo);
     console.log(registrationInfo);
 
-    // Přidejte novou registraci do načtených dat
-    //existingEvidence.push(registrationInfo);
-
-    // Uložte aktualizovaná data zpět do localStorage
     localStorage.setItem("evidenceTEST", JSON.stringify(existingEvidence));
 
     console.log("Data byla uložena do localStorage");
 
-    // Vymažte registrační formulář
     setRegistrationInfo(initialRegistrationInfo);
     changePage("login");
     alert("Registrace byla úspěšně odeslána!");
