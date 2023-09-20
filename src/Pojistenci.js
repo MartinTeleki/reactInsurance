@@ -21,28 +21,53 @@ export default function Pojistenci() {
     { jmeno: "Marie Svobodová", bydliste: "Brno" },
     { jmeno: "Marie Svobodová", bydliste: "Brno" },
     { jmeno: "Petr Dvořák", bydliste: "Ostrava" },
+    { jmeno: "Jan Novák", bydliste: "Praha" },
+    { jmeno: "Marie Svobodová", bydliste: "Brno" },
+    { jmeno: "Petr Dvořák", bydliste: "Ostrava" },
+    { jmeno: "Marie Svobodová", bydliste: "Brno" },
+    { jmeno: "Marie Svobodová", bydliste: "Brno" },
+    { jmeno: "Jan Novák", bydliste: "Praha" },
+    { jmeno: "Marie Svobodová", bydliste: "Brno" },
+    { jmeno: "Petr Dvořák", bydliste: "Ostrava" },
+    { jmeno: "Jan Novák", bydliste: "Praha" },
+    { jmeno: "Marie Svobodová", bydliste: "Brno" },
+    { jmeno: "Marie Svobodová", bydliste: "Brno" },
+    { jmeno: "Petr Dvořák", bydliste: "Ostrava" },
+    { jmeno: "Marie Svobodová", bydliste: "Brno" },
+    { jmeno: "Marie Svobodová", bydliste: "Brno" },
+    { jmeno: "Jan Novák", bydliste: "Praha" },
+    { jmeno: "Marie Svobodová", bydliste: "Brno" },
+    { jmeno: "Marie Svobodová", bydliste: "Brno" },
+    { jmeno: "Petr Dvořák", bydliste: "Ostrava" },
   ];
-  const pageRecords = 3;
+  const pageRecords = 10;
 
-  const [actuallyPage, setAktualniStranka] = useState(1);
+  const [actuallyPage, setActuallyPage] = useState(1);
 
   const amountPages = Math.ceil(insurenceInformation.length / pageRecords);
 
-  const prijdiNaStranku = (cisloStranky) => {
-    setAktualniStranka(cisloStranky);
+  const changeInsurencePage = (numberPage) => {
+    setActuallyPage(numberPage);
   };
 
-  const zacatekIndex = (actuallyPage - 1) * pageRecords;
-  const konecIndex = zacatekIndex + pageRecords;
-  const zobrazeniPojistenci = insurenceInformation.slice(
-    zacatekIndex,
-    konecIndex
-  );
+  function changeInsurencePagePlus(actuallyPage) {
+    setActuallyPage(actuallyPage + 1);
+  }
+
+  function changeInsurencePageMinus(actuallyPage) {
+    setActuallyPage(actuallyPage - 1);
+  }
+
+  const startIndex = (actuallyPage - 1) * pageRecords;
+  const finishIndex = startIndex + pageRecords;
+  const showInsurence = insurenceInformation.slice(startIndex, finishIndex);
 
   return (
     <div className="table-container">
-      <h2 className="table-title">Pojištěnci</h2>
-      <button className="new-policyholder">Nový pojištěnec</button>
+      <div className="title-container">
+        <h2 className="table-title">Pojištěnci</h2>
+        <button className="new-policyholder">Nový pojištěnec</button>
+      </div>
       <div className="table">
         <div className="table-row">
           <div className="table-name" style={{ fontWeight: "bold" }}>
@@ -60,7 +85,7 @@ export default function Pojistenci() {
         </div>
       </div>
       <div className="table">
-        {zobrazeniPojistenci.map((pojistenec, index) => (
+        {showInsurence.map((pojistenec, index) => (
           <div className="table-row" key={index}>
             <div className="table-name">{pojistenec.jmeno}</div>
             <div className="table-name">{pojistenec.bydliste}</div>
@@ -74,7 +99,7 @@ export default function Pojistenci() {
       <div className="pagination">
         <button
           className={`pagination-item ${actuallyPage === 1 ? "disabled" : ""}`}
-          onClick={() => prijdiNaStranku(1)}
+          onClick={() => changeInsurencePageMinus(actuallyPage)}
         >
           Předchozí
         </button>
@@ -85,7 +110,7 @@ export default function Pojistenci() {
               className={`pagination-item ${
                 actuallyPage === pageNumber ? "active" : ""
               }`}
-              onClick={() => prijdiNaStranku(pageNumber)}
+              onClick={() => changeInsurencePage(pageNumber)}
             >
               {pageNumber}
             </button>
@@ -95,7 +120,7 @@ export default function Pojistenci() {
           className={`pagination-item ${
             actuallyPage === amountPages ? "disabled" : ""
           }`}
-          onClick={() => prijdiNaStranku(amountPages)}
+          onClick={() => changeInsurencePagePlus(actuallyPage)}
         >
           Další
         </button>
