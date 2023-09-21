@@ -46,6 +46,12 @@
   display: none;
 }
 
+.names-nav:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  text-decoration: underline white;
+}
+
 /* butttons */
 
 .new-policyholder {

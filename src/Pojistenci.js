@@ -8,6 +8,7 @@ export default function Pojistenci() {
   const [showForm, setShowForm] = useState(false);
   const [selectedPolicyholder, setSelectedPolicyholder] = useState(null);
   const pageRecords = 3;
+  const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
     const storedEvidence =
@@ -90,19 +91,27 @@ export default function Pojistenci() {
 
   const detailPolicyHolder = (index) => {
     setSelectedPolicyholder(index);
+    setShowDetails(!showDetails);
   };
 
   return (
     <div className="table-container">
       <h2 className="table-title">
-        {showForm ? "Nový pojištěnec" : "Pojištěnci"}
+        {showForm
+          ? "Nový pojištěnec"
+          : showDetails
+          ? "Detaily pojištěného"
+          : "Pojištěnci"}
       </h2>
-      <button
-        className="new-policyholder"
-        onClick={() => setShowForm(!showForm)}
-      >
-        {showForm ? "Skrýt formulář" : "Nový pojištěnec"}
-      </button>
+
+      {!showDetails && (
+        <button
+          className="new-policyholder"
+          onClick={() => setShowForm(!showForm)}
+        >
+          {showForm ? "Skrýt formulář" : "Nový pojištěnec"}
+        </button>
+      )}
 
       {showForm && (
         <NewPolicyholderForm
@@ -119,7 +128,7 @@ export default function Pojistenci() {
         />
       )}
 
-      {!showForm && (
+      {!showForm && !showDetails && (
         <PolicyholderForm
           addPolicyholder={addPolicyholder}
           handleDeleteEvidenceList={handleDeleteEvidenceList}
@@ -133,11 +142,13 @@ export default function Pojistenci() {
         />
       )}
 
-      {selectedPolicyholder !== null && (
+      {showDetails && (
         <PolicyholderDetails
           mergedData={mergedData}
           selectedPolicyholder={selectedPolicyholder}
           setSelectedPolicyholder={setSelectedPolicyholder}
+          showDetails={showDetails}
+          setShowDetails={setShowDetails}
         />
       )}
     </div>
@@ -148,7 +159,14 @@ function PolicyholderDetails({
   mergedData,
   selectedPolicyholder,
   setSelectedPolicyholder,
+  showDetails,
+  setShowDetails,
 }) {
+  const handleCloseDetails = () => {
+    setSelectedPolicyholder(null);
+    setShowDetails(false);
+  };
+
   return (
     <div>
       <div className="policyholder-details">
@@ -163,10 +181,8 @@ function PolicyholderDetails({
         </p>
         <p>Kód pojištění: {mergedData[selectedPolicyholder].insuranceCode}</p>
         <p>Pohlaví: {mergedData[selectedPolicyholder].insuranceCode}</p>
-        {/* Další detaily pojištěnce */}
-        <button onClick={() => setSelectedPolicyholder(null)}>
-          Zavřít detaily
-        </button>
+
+        <button onClick={handleCloseDetails}>Zavřít detaily</button>
       </div>
     </div>
   );
@@ -197,8 +213,15 @@ function PolicyholderForm({
             key={index}
             onClick={() => detailPolicyHolder(index)}
           >
-            <div className="table-cell">{pojistenec.firstName}</div>
-            <div className="table-cell">{pojistenec.city}</div>
+            <div className="table-cell">
+              <span className="names-nav">
+                {pojistenec.firstName} {pojistenec.lastName}
+              </span>
+            </div>
+            <div className="table-cell">
+              {" "}
+              <span className="names-nav"> {pojistenec.city}</span>
+            </div>
             <div className="table-cell">
               <button
                 className="btn-editovat"
