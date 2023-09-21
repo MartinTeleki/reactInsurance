@@ -3,14 +3,29 @@ import "./newInformation.css";
 
 export function NewInformation({ evidenceList, numberOfContracts }) {
   //console.log(evidenceList);
+
+  const informationFromJSON =
+    JSON.parse(localStorage.getItem("evidenceTEST")) || [];
+  //console.log(informationFromJSON);
+
+  const totalInsuranceAmount = informationFromJSON
+    .map((item) => Number(item.insuredAmount))
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+  const totalContractValue = informationFromJSON
+    .map((item) => Number(item.amount))
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+  //console.log(totalInsuranceAmount);
+
   const info = {
     numberOfClients: evidenceList.length,
     numberOfContracts: numberOfContracts.length,
     companySetUp: 1996,
-    contractValue: (evidenceList.length * 17877) / 20,
+    contractValue: totalContractValue,
     discount: 80,
     moneyPayout: 3,
-    insuranceAmount: numberOfContracts.length * 17877,
+    insuranceAmount: totalInsuranceAmount / evidenceList.length,
   };
 
   const styles = {

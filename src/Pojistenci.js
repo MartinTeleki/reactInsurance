@@ -15,7 +15,7 @@ export default function Pojistenci() {
   useEffect(() => {
     const storedEvidence =
       JSON.parse(localStorage.getItem("evidenceTEST")) || [];
-    console.log(storedEvidence);
+    //console.log(storedEvidence);
 
     const mergedData = storedEvidence.map((info, index) => ({
       id: index,
@@ -337,8 +337,8 @@ function PolicyholderForm({
   setShowEdit,
   editHandleShowButton,
 }) {
-  console.log(showEdit);
-  console.log(setShowEdit);
+  //console.log(showEdit);
+  //console.log(setShowEdit);
 
   // console.log(setShowEdit(!showEdit));
   return (
