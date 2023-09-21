@@ -5,11 +5,12 @@ export default function Pojistenci() {
   const [evidenceList, setEvidenceList] = useState([]);
   const [mergedData, setMergedData] = useState([]);
   const [actuallyPage, setActuallyPage] = useState(1);
-  const [showForm, setShowForm] = useState(false);
   const [selectedPolicyholder, setSelectedPolicyholder] = useState(null);
   const pageRecords = 3;
-  const [showDetails, setShowDetails] = useState(false);
   const [editingPolicyholder, setEditingPolicyholder] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
 
   useEffect(() => {
     const storedEvidence =
@@ -41,7 +42,6 @@ export default function Pojistenci() {
     );
     setEvidenceList(updatedEvidenceList);
     localStorage.setItem("evidenceTEST", JSON.stringify(updatedEvidenceList));
-    setEditingPolicyholder(null);
   };
 
   function handleDeleteEvidenceList(index) {
@@ -94,17 +94,23 @@ export default function Pojistenci() {
     setShowDetails(true);
   };
 
+  function editHandleShowButton() {
+    setShowEdit(!showEdit);
+  }
+
   return (
     <div className="table-container">
       <h2 className="table-title">
-        {showForm
-          ? "Nový pojištěnec"
+        {showEdit
+          ? "Editace Pojištěného"
           : showDetails
           ? "Detaily pojištěného"
+          : showForm
+          ? "Nový pojištěnec"
           : "Pojištěnci"}
       </h2>
 
-      {!showDetails && (
+      {!showDetails && !showEdit && (
         <button
           className="new-policyholder"
           onClick={() => setShowForm(!showForm)}
@@ -128,7 +134,7 @@ export default function Pojistenci() {
         />
       )}
 
-      {!showForm && !showDetails && (
+      {!showForm && !showDetails && !showEdit && (
         <PolicyholderForm
           showInsurence={showInsurence}
           handleDeleteEvidenceList={handleDeleteEvidenceList}
@@ -139,6 +145,9 @@ export default function Pojistenci() {
           amountPages={amountPages}
           detailPolicyHolder={detailPolicyHolder}
           setEditingPolicyholder={setEditingPolicyholder}
+          showEdit={showEdit}
+          setShowEdit={setShowEdit}
+          editHandleShowButton={editHandleShowButton}
         />
       )}
 
@@ -158,13 +167,23 @@ export default function Pojistenci() {
             policyholder={evidenceList[editingPolicyholder]}
             editPolicyholder={editPolicyholder}
             cancelEdit={() => setEditingPolicyholder(null)}
+            setShowEdit={setShowEdit}
+            showEdit={showEdit}
+            setEditingPolicyholder={setEditingPolicyholder}
+            editHandleShowButton={editHandleShowButton}
           />
         )}
       </div>
     </div>
   );
 }
-function PolicyholderEdit({ policyholder, editPolicyholder, cancelEdit }) {
+function PolicyholderEdit({
+  policyholder,
+  editPolicyholder,
+  cancelEdit,
+  setShowEdit,
+  showEdit,
+}) {
   const [insuranceType, setInsuranceType] = useState(
     policyholder.insuranceType
   );
@@ -177,7 +196,7 @@ function PolicyholderEdit({ policyholder, editPolicyholder, cancelEdit }) {
   const [insuredAmount, setInsuredAmount] = useState(
     policyholder.insuredAmount
   );
-
+  console.log(showEdit);
   const handleEdit = () => {
     const editedPolicyholder = {
       ...policyholder,
@@ -245,7 +264,13 @@ function PolicyholderEdit({ policyholder, editPolicyholder, cancelEdit }) {
       <button className="btn-save" onClick={handleEdit}>
         Uložit
       </button>
-      <button className="btn-cancel" onClick={cancelEdit}>
+      <button
+        className="btn-cancel"
+        onClick={() => {
+          cancelEdit();
+          setShowEdit(false);
+        }}
+      >
         Zrušit
       </button>
     </div>
@@ -295,7 +320,14 @@ function PolicyholderForm({
   amountPages,
   detailPolicyHolder,
   setEditingPolicyholder,
+  showEdit,
+  setShowEdit,
+  editHandleShowButton,
 }) {
+  console.log(showEdit);
+  console.log(setShowEdit);
+
+  // console.log(setShowEdit(!showEdit));
   return (
     <div>
       <div className="table">
@@ -325,7 +357,10 @@ function PolicyholderForm({
             <div className="table-cell">
               <button
                 className="btn-editovat"
-                onClick={() => setEditingPolicyholder(pojistenec.id)}
+                onClick={() => {
+                  setEditingPolicyholder(pojistenec.id);
+                  editHandleShowButton();
+                }}
               >
                 Editovat
               </button>
@@ -373,7 +408,7 @@ function PolicyholderForm({
   );
 }
 
-function NewPolicyholderForm({ addPolicyholder, showForm, setShowForm }) {
+function NewPolicyholderForm({ addPolicyholder, setShowForm }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
