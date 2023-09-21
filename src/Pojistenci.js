@@ -53,11 +53,19 @@ export default function Pojistenci() {
   };
 
   function changeInsurencePagePlus(actuallyPage) {
-    setActuallyPage(actuallyPage + 1);
+    if (actuallyPage === amountPages) {
+      actuallyPage = amountPages;
+    } else {
+      setActuallyPage(actuallyPage + 1);
+    }
   }
 
   function changeInsurencePageMinus(actuallyPage) {
-    setActuallyPage(actuallyPage - 1);
+    if (actuallyPage === 1) {
+      actuallyPage = 1;
+    } else {
+      setActuallyPage(actuallyPage - 1);
+    }
   }
 
   const startIndex = (actuallyPage - 1) * pageRecords;
