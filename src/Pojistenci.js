@@ -19,6 +19,7 @@ export default function Pojistenci() {
     const personCity = storedEvidence.map((info) => info.city);
     const personPhoneNumber = storedEvidence.map((info) => info.phoneNumber);
     const personGender = storedEvidence.map((info) => info.gender);
+
     const personInsuranceNumber = storedEvidence.map(
       (info) => info.insuranceNumber
     );
@@ -35,7 +36,7 @@ export default function Pojistenci() {
       gender: personGender[index],
       age: personAge[index],
       insuranceNumber: personInsuranceNumber[index],
-      personInsuranceCode: personInsuranceCode[index],
+      insuranceCode: personInsuranceCode[index],
 
       isHidden: false,
     }));
@@ -180,7 +181,7 @@ function PolicyholderDetails({
           Číslo pojištění: {mergedData[selectedPolicyholder].insuranceNumber}
         </p>
         <p>Kód pojištění: {mergedData[selectedPolicyholder].insuranceCode}</p>
-        <p>Pohlaví: {mergedData[selectedPolicyholder].insuranceCode}</p>
+        <p>Pohlaví: {mergedData[selectedPolicyholder].gender}</p>
 
         <button onClick={handleCloseDetails}>Zavřít detaily</button>
       </div>
@@ -223,12 +224,7 @@ function PolicyholderForm({
               <span className="names-nav"> {pojistenec.city}</span>
             </div>
             <div className="table-cell">
-              <button
-                className="btn-editovat"
-                onClick={() => handleDeleteEvidenceList(index)}
-              >
-                Editovat
-              </button>
+              <button className="btn-editovat">Editovat</button>
               <button
                 className="btn-odstranit"
                 onClick={() => handleDeleteEvidenceList(index)}

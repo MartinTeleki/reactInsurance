@@ -43,6 +43,11 @@ export default function NewRegister({
   //console.log(changePage);
   // console.log(registrationInfo);
 
+  function generateUniqueId() {
+    const timestamp = new Date().getTime();
+    return `user_${timestamp}`;
+  }
+
   function HandleInputChange(e) {
     const { name, value, type, checked } = e.target;
 
@@ -74,7 +79,7 @@ export default function NewRegister({
     const existingEvidence =
       JSON.parse(localStorage.getItem("evidenceTEST")) || [];
 
-    // Fist name and last name
+    // Validace
     if (
       !/^[A-Za-z]+$/.test(registrationInfo.firstName) ||
       !/^[A-Za-z]+$/.test(registrationInfo.lastName)
@@ -83,7 +88,6 @@ export default function NewRegister({
       return;
     }
 
-    //Phone Number
     if (registrationInfo.phoneNumber.trim() !== "") {
       if (
         isNaN(registrationInfo.phoneNumber) ||
@@ -104,7 +108,6 @@ export default function NewRegister({
       }
     }
 
-    // Email
     if (registrationInfo.email.trim() !== "") {
       if (
         /\s/.test(registrationInfo.email) ||
@@ -126,22 +129,6 @@ export default function NewRegister({
       }
     }
 
-    // // Password
-    // if (registrationInfo.password.length < 10) {
-    //   alert("Heslo musí obsahovat alespoň 10 znaků.");
-    //   return;
-    // } else if (!/\d/.test(registrationInfo.password)) {
-    //   alert("Heslo musí obsahovat alespoň jedno číslo.");
-    //   return;
-    // } else if (!/[!@#$%^&*]/.test(registrationInfo.password)) {
-    //   alert("Heslo musí obsahovat alespoň jeden speciální znak: !@#$%^&*");
-    //   return;
-    // } else if (registrationInfo.password !== registrationInfo.controlPassword) {
-    //   alert("Hesla se neshodují.");
-    //   return;
-    // }
-
-    //Age
     if (registrationInfo.age < 18 || registrationInfo.age > 125) {
       alert("Věk musí být nejméně 18 let a nejvíce 125 let");
       return;
@@ -153,11 +140,9 @@ export default function NewRegister({
     }
 
     if (registrationInfo.age === "") {
-      alert("Věk nemsí obsahovat mezery");
+      alert("Věk nesmí obsahovat mezery");
       return;
     }
-
-    //Insurance nummer
 
     if (registrationInfo.insuranceNumber.length !== 10) {
       alert("Číslo pojišťovací smlouvy musí být dlouhé 10 znaků.");
@@ -169,7 +154,6 @@ export default function NewRegister({
       return;
     }
 
-    // Insurance Code
     if (
       registrationInfo.insuranceCode.length > 14 ||
       /\s/.test(registrationInfo.insuranceCode)
@@ -187,14 +171,16 @@ export default function NewRegister({
       return;
     }
 
-    existingEvidence.push(registrationInfo);
+    const uniqueId = generateUniqueId();
 
-    // existingEvidence.push(registrationInfo);
-    console.log(registrationInfo);
+    const newRegistration = {
+      ...registrationInfo,
+      id: uniqueId,
+    };
+
+    existingEvidence.push(newRegistration);
 
     localStorage.setItem("evidenceTEST", JSON.stringify(existingEvidence));
-
-    console.log("Data byla uložena do localStorage");
 
     setRegistrationInfo(initialRegistrationInfo);
     changePage("login");
@@ -471,6 +457,7 @@ export default function NewRegister({
             required
             onChange={HandleInputChange}
           >
+            <option value="">Select your gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Other">Other</option>
