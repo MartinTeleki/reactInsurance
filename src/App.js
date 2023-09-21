@@ -235,7 +235,10 @@ function Main({
       <div>
         {currentPage === "pojistenci" && (
           <div className="">
-            <Pojistenci evidenceList={evidenceList} />
+            <Pojistenci
+              evidenceList={evidenceList}
+              setEvidenceList={setEvidenceList}
+            />
           </div>
         )}
       </div>

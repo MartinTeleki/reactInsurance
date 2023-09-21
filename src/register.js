@@ -126,20 +126,20 @@ export default function NewRegister({
       }
     }
 
-    // Password
-    if (registrationInfo.password.length < 10) {
-      alert("Heslo musí obsahovat alespoň 10 znaků.");
-      return;
-    } else if (!/\d/.test(registrationInfo.password)) {
-      alert("Heslo musí obsahovat alespoň jedno číslo.");
-      return;
-    } else if (!/[!@#$%^&*]/.test(registrationInfo.password)) {
-      alert("Heslo musí obsahovat alespoň jeden speciální znak: !@#$%^&*");
-      return;
-    } else if (registrationInfo.password !== registrationInfo.controlPassword) {
-      alert("Hesla se neshodují.");
-      return;
-    }
+    // // Password
+    // if (registrationInfo.password.length < 10) {
+    //   alert("Heslo musí obsahovat alespoň 10 znaků.");
+    //   return;
+    // } else if (!/\d/.test(registrationInfo.password)) {
+    //   alert("Heslo musí obsahovat alespoň jedno číslo.");
+    //   return;
+    // } else if (!/[!@#$%^&*]/.test(registrationInfo.password)) {
+    //   alert("Heslo musí obsahovat alespoň jeden speciální znak: !@#$%^&*");
+    //   return;
+    // } else if (registrationInfo.password !== registrationInfo.controlPassword) {
+    //   alert("Hesla se neshodují.");
+    //   return;
+    // }
 
     //Age
     if (registrationInfo.age < 18 || registrationInfo.age > 125) {

@@ -1,22 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./pojistenci.css";
 
-export default function Pojistenci() {
-  const storedEvidence = JSON.parse(localStorage.getItem("evidenceTEST")) || [];
-
-  const personFirstName = storedEvidence.map((info) => info.firstName);
-  const personLastName = storedEvidence.map((info) => info.lastName);
-  const personCity = storedEvidence.map((info) => info.city);
-
-  const mergedData = personFirstName.map((firstName, index) => ({
-    firstName,
-    lastName: personLastName[index],
-    city: personCity[index],
-  }));
-
+export default function Pojistenci({ evidenceList, setEvidenceList }) {
+  const [mergedData, setMergedData] = useState([]);
+  const [actuallyPage, setActuallyPage] = useState(1);
   const pageRecords = 3;
 
-  const [actuallyPage, setActuallyPage] = useState(1);
+  useEffect(() => {
+    const storedEvidence =
+      JSON.parse(localStorage.getItem("evidenceTEST")) || [];
+
+    const personFirstName = storedEvidence.map((info) => info.firstName);
+    const personLastName = storedEvidence.map((info) => info.lastName);
+    const personCity = storedEvidence.map((info) => info.city);
+
+    const mergedData = personFirstName.map((firstName, index) => ({
+      firstName,
+      lastName: personLastName[index],
+      city: personCity[index],
+      isHidden: false, // Přidáme nový stav pro určení, zda je řádek skrytý
+    }));
+
+    setMergedData(mergedData);
+  }, []);
+
+  function handleDeleteEvidenceList(index) {
+    const updatedEvidenceList = [...evidenceList];
+    updatedEvidenceList.splice(index, 1);
+
+    // Nastavíme isHidden na true pro skrytí řádku
+    const updatedMergedData = [...mergedData];
+    updatedMergedData[index].isHidden = true;
+
+    // Aktualizace stavu komponenty a localStorage
+    setEvidenceList(updatedEvidenceList);
+    localStorage.setItem("evidenceTEST", JSON.stringify(updatedEvidenceList));
+    setMergedData(updatedMergedData);
+  }
 
   const amountPages = Math.ceil(mergedData.length / pageRecords);
 
@@ -38,38 +58,41 @@ export default function Pojistenci() {
 
   return (
     <div className="table-container">
-      <div className="title-container">
-        <h2 className="table-title">Pojištěnci</h2>
-        <button className="new-policyholder">Nový pojištěnec</button>
-      </div>
+      <h2 className="table-title">Pojištěnci</h2>
+      <button className="new-policyholder">Nový pojištěnec</button>
+
       <div className="table">
-        <div className="table-row">
-          <div className="table-name" style={{ fontWeight: "bold" }}>
-            Jméno
-          </div>
-          <div className="table-name" style={{ fontWeight: "bold" }}>
-            Bydliště
-          </div>
-          <button className="btn-editovat disabled" style={{ opacity: 0 }}>
-            Editovat
-          </button>
-          <button className="btn-odstranit disabled" style={{ opacity: 0 }}>
-            Odstranit
-          </button>
+        <div className="table-row header-row">
+          <div className="table-cell header-cell">Jméno</div>
+          <div className="table-cell header-cell">Bydliště</div>
+          <div className="table-cell header-cell">Akce</div>
         </div>
-      </div>
-      <div className="table">
+
         {showInsurence.map((pojistenec, index) => (
-          <div className="table-row" key={index}>
-            <div className="table-name">{pojistenec.firstName}</div>
-            <div className="table-name">{pojistenec.city}</div>
-            <div className="action button">
-              <button className="btn-editovat">Editovat</button>
-              <button className="btn-odstranit">Odstranit</button>
+          <div
+            className={`table-row ${pojistenec.isHidden ? "hidden" : ""}`}
+            key={index}
+          >
+            <div className="table-cell">{pojistenec.firstName}</div>
+            <div className="table-cell">{pojistenec.city}</div>
+            <div className="table-cell">
+              <button
+                className="btn-editovat"
+                onClick={() => handleDeleteEvidenceList(index)}
+              >
+                Editovat
+              </button>
+              <button
+                className="btn-odstranit"
+                onClick={() => handleDeleteEvidenceList(index)}
+              >
+                Odstranit
+              </button>
             </div>
           </div>
         ))}
       </div>
+
       <div className="pagination">
         <button
           className={`pagination-item ${actuallyPage === 1 ? "disabled" : ""}`}

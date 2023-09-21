@@ -43,6 +43,10 @@
 .policyholder-margin {
 }
 
+.hidden {
+  display: none;
+}
+
 /* butttons */
 
 .new-policyholder {
