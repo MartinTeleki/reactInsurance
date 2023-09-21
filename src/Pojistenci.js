@@ -66,7 +66,9 @@ export default function Pojistenci() {
 
   return (
     <div className="table-container">
-      <h2 className="table-title">Pojištěnci</h2>
+      <h2 className="table-title">
+        {showForm ? "Nový pojištěnec" : "Pojištěnci"}
+      </h2>
       <button
         className="new-policyholder"
         onClick={() => setShowForm(!showForm)}
@@ -84,19 +86,23 @@ export default function Pojistenci() {
           changeInsurencePagePlus={changeInsurencePagePlus}
           amountPages={amountPages}
           showInsurence={showInsurence}
+          setShowForm={setShowForm}
+          showForm={showForm}
         />
       )}
 
-      <PolicyholderForm
-        addPolicyholder={addPolicyholder}
-        handleDeleteEvidenceList={handleDeleteEvidenceList}
-        actuallyPage={actuallyPage}
-        changeInsurencePageMinus={changeInsurencePageMinus}
-        changeInsurencePage={changeInsurencePage}
-        changeInsurencePagePlus={changeInsurencePagePlus}
-        amountPages={amountPages}
-        showInsurence={showInsurence}
-      />
+      {!showForm && (
+        <PolicyholderForm
+          addPolicyholder={addPolicyholder}
+          handleDeleteEvidenceList={handleDeleteEvidenceList}
+          actuallyPage={actuallyPage}
+          changeInsurencePageMinus={changeInsurencePageMinus}
+          changeInsurencePage={changeInsurencePage}
+          changeInsurencePagePlus={changeInsurencePagePlus}
+          amountPages={amountPages}
+          showInsurence={showInsurence}
+        />
+      )}
     </div>
   );
 }
@@ -177,7 +183,7 @@ function PolicyholderForm({
   );
 }
 
-function NewPolicyholderForm({ addPolicyholder }) {
+function NewPolicyholderForm({ addPolicyholder, showForm, setShowForm }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -186,7 +192,7 @@ function NewPolicyholderForm({ addPolicyholder }) {
   const [gender, setGender] = useState("");
   const [city, setCity] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleAddNewInsurancePolicy = (e) => {
     e.preventDefault();
 
     if (
@@ -209,8 +215,9 @@ function NewPolicyholderForm({ addPolicyholder }) {
       };
 
       addPolicyholder(newPolicyholder);
+      alert("Registrace proběhla úspěšně");
+      setShowForm(false);
 
-      // Vynulujte formulář
       setFirstName("");
       setLastName("");
       setPhoneNumber("");
@@ -218,11 +225,13 @@ function NewPolicyholderForm({ addPolicyholder }) {
       setAge("");
       setGender("");
       setCity("");
+    } else {
+      alert("Vyplňte prosím všechna pole");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="policyholder-form">
+    <form className="policyholder-form">
       <h2>Přidat nového pojištěnce</h2>
       <div className="form-group">
         <label>Jméno:</label>
@@ -266,7 +275,12 @@ function NewPolicyholderForm({ addPolicyholder }) {
       </div>
       <div className="form-group">
         <label>Pohlaví:</label>
-        <select value={gender} onChange={(e) => setGender(e.target.value)}>
+        <select
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
+          required
+        >
+          <option value="">Vyberte pohlaví</option>
           <option value="Male">Muž</option>
           <option value="Female">Žena</option>
           <option value="Other">Jiné</option>
@@ -280,7 +294,13 @@ function NewPolicyholderForm({ addPolicyholder }) {
           onChange={(e) => setCity(e.target.value)}
         />
       </div>
-      <button type="submit">Přidat pojištěnce</button>
+      <button
+        className="btn-add-insurance-person"
+        type="submit"
+        onClick={handleAddNewInsurancePolicy}
+      >
+        Přidat pojištěnce
+      </button>
     </form>
   );
 }

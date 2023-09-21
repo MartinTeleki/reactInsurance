@@ -1,6 +1,6 @@
 .table-container {
   background: #2d3e3f;
-  height: 900px;
+  height: 1200px;
 }
 
 .table {
@@ -12,7 +12,6 @@
 }
 
 .title-container {
-  padding-top: 100px;
 }
 
 .table-title {
@@ -20,7 +19,7 @@
   text-align: left;
   color: white;
   margin: 0 0 0 100px;
-  padding: 0;
+  padding-top: 60px;
 }
 
 .table-row {
@@ -176,7 +175,9 @@
 .policyholder-form {
   max-width: 400px;
   margin: 0 auto;
-  padding: 20px;
+  height: 680px;
+
+  padding: 20px 30px 20px 30px;
   background-color: #f4f4f4;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -206,6 +207,8 @@
   height: 40px;
 }
 
+/* buttony */
+
 button[type="submit"] {
   display: inline-block;
   padding: 10px 20px;
@@ -220,4 +223,28 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #258cd1;
+}
+
+.btn-add-insurance-person {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-add-insurance-person:active {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transform: scale(0.96);
 }
