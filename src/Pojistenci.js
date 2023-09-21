@@ -6,20 +6,36 @@ export default function Pojistenci() {
   const [mergedData, setMergedData] = useState([]);
   const [actuallyPage, setActuallyPage] = useState(1);
   const [showForm, setShowForm] = useState(false);
+  const [selectedPolicyholder, setSelectedPolicyholder] = useState(null);
   const pageRecords = 3;
 
   useEffect(() => {
     const storedEvidence =
       JSON.parse(localStorage.getItem("evidenceTEST")) || [];
-
+    console.log(storedEvidence);
     const personFirstName = storedEvidence.map((info) => info.firstName);
     const personLastName = storedEvidence.map((info) => info.lastName);
     const personCity = storedEvidence.map((info) => info.city);
+    const personPhoneNumber = storedEvidence.map((info) => info.phoneNumber);
+    const personGender = storedEvidence.map((info) => info.gender);
+    const personInsuranceNumber = storedEvidence.map(
+      (info) => info.insuranceNumber
+    );
+    const personInsuranceCode = storedEvidence.map(
+      (info) => info.insuranceCode
+    );
+    const personAge = storedEvidence.map((info) => info.insuranceAge);
 
     const mergedData = personFirstName.map((firstName, index) => ({
       firstName,
       lastName: personLastName[index],
       city: personCity[index],
+      phoneNumber: personPhoneNumber[index],
+      gender: personGender[index],
+      age: personAge[index],
+      insuranceNumber: personInsuranceNumber[index],
+      personInsuranceCode: personInsuranceCode[index],
+
       isHidden: false,
     }));
 
@@ -72,6 +88,10 @@ export default function Pojistenci() {
   const finishIndex = startIndex + pageRecords;
   const showInsurence = mergedData.slice(startIndex, finishIndex);
 
+  const detailPolicyHolder = (index) => {
+    setSelectedPolicyholder(index);
+  };
+
   return (
     <div className="table-container">
       <h2 className="table-title">
@@ -109,8 +129,45 @@ export default function Pojistenci() {
           changeInsurencePagePlus={changeInsurencePagePlus}
           amountPages={amountPages}
           showInsurence={showInsurence}
+          detailPolicyHolder={detailPolicyHolder}
         />
       )}
+
+      {selectedPolicyholder !== null && (
+        <PolicyholderDetails
+          mergedData={mergedData}
+          selectedPolicyholder={selectedPolicyholder}
+          setSelectedPolicyholder={setSelectedPolicyholder}
+        />
+      )}
+    </div>
+  );
+}
+
+function PolicyholderDetails({
+  mergedData,
+  selectedPolicyholder,
+  setSelectedPolicyholder,
+}) {
+  return (
+    <div>
+      <div className="policyholder-details">
+        <h3>Detaily pojištěnce</h3>
+        <p>Jméno: {mergedData[selectedPolicyholder].firstName}</p>
+        <p>Příjmení: {mergedData[selectedPolicyholder].lastName}</p>
+        <p>Bydliště: {mergedData[selectedPolicyholder].city}</p>
+        <p>Telefonní číslo: {mergedData[selectedPolicyholder].phoneNumber}</p>
+        <p>Věk: {mergedData[selectedPolicyholder].age}</p>
+        <p>
+          Číslo pojištění: {mergedData[selectedPolicyholder].insuranceNumber}
+        </p>
+        <p>Kód pojištění: {mergedData[selectedPolicyholder].insuranceCode}</p>
+        <p>Pohlaví: {mergedData[selectedPolicyholder].insuranceCode}</p>
+        {/* Další detaily pojištěnce */}
+        <button onClick={() => setSelectedPolicyholder(null)}>
+          Zavřít detaily
+        </button>
+      </div>
     </div>
   );
 }
@@ -123,6 +180,7 @@ function PolicyholderForm({
   changeInsurencePage,
   changeInsurencePagePlus,
   amountPages,
+  detailPolicyHolder,
 }) {
   return (
     <div>
@@ -137,6 +195,7 @@ function PolicyholderForm({
           <div
             className={`table-row ${pojistenec.isHidden ? "hidden" : ""}`}
             key={index}
+            onClick={() => detailPolicyHolder(index)}
           >
             <div className="table-cell">{pojistenec.firstName}</div>
             <div className="table-cell">{pojistenec.city}</div>
