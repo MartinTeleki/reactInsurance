@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./pojistenci.css";
 
-export default function Pojistenci({ evidenceList, setEvidenceList }) {
+export default function Pojistenci() {
+  const [evidenceList, setEvidenceList] = useState([]);
   const [mergedData, setMergedData] = useState([]);
   const [actuallyPage, setActuallyPage] = useState(1);
+  const [showForm, setShowForm] = useState(false);
   const pageRecords = 3;
 
   useEffect(() => {
@@ -18,25 +20,31 @@ export default function Pojistenci({ evidenceList, setEvidenceList }) {
       firstName,
       lastName: personLastName[index],
       city: personCity[index],
-      isHidden: false, // Přidáme nový stav pro určení, zda je řádek skrytý
+      isHidden: false,
     }));
 
     setMergedData(mergedData);
+    setEvidenceList(storedEvidence);
   }, []);
 
   function handleDeleteEvidenceList(index) {
     const updatedEvidenceList = [...evidenceList];
     updatedEvidenceList.splice(index, 1);
 
-    // Nastavíme isHidden na true pro skrytí řádku
     const updatedMergedData = [...mergedData];
     updatedMergedData[index].isHidden = true;
 
-    // Aktualizace stavu komponenty a localStorage
     setEvidenceList(updatedEvidenceList);
     localStorage.setItem("evidenceTEST", JSON.stringify(updatedEvidenceList));
     setMergedData(updatedMergedData);
   }
+
+  const addPolicyholder = (newPolicyholder) => {
+    const updatedEvidenceList = [...evidenceList, newPolicyholder];
+    setEvidenceList(updatedEvidenceList);
+
+    localStorage.setItem("evidenceTEST", JSON.stringify(updatedEvidenceList));
+  };
 
   const amountPages = Math.ceil(mergedData.length / pageRecords);
 
@@ -59,8 +67,51 @@ export default function Pojistenci({ evidenceList, setEvidenceList }) {
   return (
     <div className="table-container">
       <h2 className="table-title">Pojištěnci</h2>
-      <button className="new-policyholder">Nový pojištěnec</button>
+      <button
+        className="new-policyholder"
+        onClick={() => setShowForm(!showForm)}
+      >
+        {showForm ? "Skrýt formulář" : "Nový pojištěnec"}
+      </button>
 
+      {showForm && (
+        <NewPolicyholderForm
+          addPolicyholder={addPolicyholder}
+          handleDeleteEvidenceList={handleDeleteEvidenceList}
+          actuallyPage={actuallyPage}
+          changeInsurencePageMinus={changeInsurencePageMinus}
+          changeInsurencePage={changeInsurencePage}
+          changeInsurencePagePlus={changeInsurencePagePlus}
+          amountPages={amountPages}
+          showInsurence={showInsurence}
+        />
+      )}
+
+      <PolicyholderForm
+        addPolicyholder={addPolicyholder}
+        handleDeleteEvidenceList={handleDeleteEvidenceList}
+        actuallyPage={actuallyPage}
+        changeInsurencePageMinus={changeInsurencePageMinus}
+        changeInsurencePage={changeInsurencePage}
+        changeInsurencePagePlus={changeInsurencePagePlus}
+        amountPages={amountPages}
+        showInsurence={showInsurence}
+      />
+    </div>
+  );
+}
+
+function PolicyholderForm({
+  showInsurence,
+  handleDeleteEvidenceList,
+  actuallyPage,
+  changeInsurencePageMinus,
+  changeInsurencePage,
+  changeInsurencePagePlus,
+  amountPages,
+}) {
+  return (
+    <div>
       <div className="table">
         <div className="table-row header-row">
           <div className="table-cell header-cell">Jméno</div>
@@ -123,5 +174,113 @@ export default function Pojistenci({ evidenceList, setEvidenceList }) {
         </button>
       </div>
     </div>
+  );
+}
+
+function NewPolicyholderForm({ addPolicyholder }) {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [insuranceNumber, setInsuranceNumber] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [city, setCity] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      firstName &&
+      lastName &&
+      phoneNumber &&
+      insuranceNumber &&
+      age &&
+      gender &&
+      city
+    ) {
+      const newPolicyholder = {
+        firstName,
+        lastName,
+        phoneNumber,
+        insuranceNumber,
+        age,
+        gender,
+        city,
+      };
+
+      addPolicyholder(newPolicyholder);
+
+      // Vynulujte formulář
+      setFirstName("");
+      setLastName("");
+      setPhoneNumber("");
+      setInsuranceNumber("");
+      setAge("");
+      setGender("");
+      setCity("");
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="policyholder-form">
+      <h2>Přidat nového pojištěnce</h2>
+      <div className="form-group">
+        <label>Jméno:</label>
+        <input
+          type="text"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Příjmení:</label>
+        <input
+          type="text"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Telefon:</label>
+        <input
+          type="text"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Číslo smlouvy:</label>
+        <input
+          type="text"
+          value={insuranceNumber}
+          onChange={(e) => setInsuranceNumber(e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Věk:</label>
+        <input
+          type="text"
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Pohlaví:</label>
+        <select value={gender} onChange={(e) => setGender(e.target.value)}>
+          <option value="Male">Muž</option>
+          <option value="Female">Žena</option>
+          <option value="Other">Jiné</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Bydliště:</label>
+        <input
+          type="text"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        />
+      </div>
+      <button type="submit">Přidat pojištěnce</button>
+    </form>
   );
 }
