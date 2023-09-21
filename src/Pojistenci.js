@@ -24,7 +24,7 @@ export default function Pojistenci() {
       city: info.city,
       phoneNumber: info.phoneNumber,
       gender: info.gender,
-      age: info.insuranceAge,
+      age: info.age,
       insuranceNumber: info.insuranceNumber,
       insuranceCode: info.insuranceCode,
       isHidden: false,
@@ -208,6 +208,12 @@ function PolicyholderEdit({
       insuredAmount,
     };
     editPolicyholder(editedPolicyholder);
+    setInsuranceType("");
+    setAmount("");
+    setInsuranceSubject("");
+    setValidityFrom("");
+    setValidityTo("");
+    setInsuredAmount("");
   };
 
   return (
@@ -261,7 +267,14 @@ function PolicyholderEdit({
           onChange={(e) => setInsuredAmount(e.target.value)}
         />
       </div>
-      <button className="btn-save" onClick={handleEdit}>
+      <button
+        className="btn-save"
+        onClick={() => {
+          handleEdit();
+          setShowEdit(false);
+          cancelEdit();
+        }}
+      >
         Uložit
       </button>
       <button
