@@ -14,30 +14,17 @@ export default function Pojistenci() {
     const storedEvidence =
       JSON.parse(localStorage.getItem("evidenceTEST")) || [];
     console.log(storedEvidence);
-    const personFirstName = storedEvidence.map((info) => info.firstName);
-    const personLastName = storedEvidence.map((info) => info.lastName);
-    const personCity = storedEvidence.map((info) => info.city);
-    const personPhoneNumber = storedEvidence.map((info) => info.phoneNumber);
-    const personGender = storedEvidence.map((info) => info.gender);
 
-    const personInsuranceNumber = storedEvidence.map(
-      (info) => info.insuranceNumber
-    );
-    const personInsuranceCode = storedEvidence.map(
-      (info) => info.insuranceCode
-    );
-    const personAge = storedEvidence.map((info) => info.insuranceAge);
-
-    const mergedData = personFirstName.map((firstName, index) => ({
-      firstName,
-      lastName: personLastName[index],
-      city: personCity[index],
-      phoneNumber: personPhoneNumber[index],
-      gender: personGender[index],
-      age: personAge[index],
-      insuranceNumber: personInsuranceNumber[index],
-      insuranceCode: personInsuranceCode[index],
-
+    const mergedData = storedEvidence.map((info, index) => ({
+      id: index,
+      firstName: info.firstName,
+      lastName: info.lastName,
+      city: info.city,
+      phoneNumber: info.phoneNumber,
+      gender: info.gender,
+      age: info.insuranceAge,
+      insuranceNumber: info.insuranceNumber,
+      insuranceCode: info.insuranceCode,
       isHidden: false,
     }));
 
@@ -90,9 +77,9 @@ export default function Pojistenci() {
   const finishIndex = startIndex + pageRecords;
   const showInsurence = mergedData.slice(startIndex, finishIndex);
 
-  const detailPolicyHolder = (index) => {
-    setSelectedPolicyholder(index);
-    setShowDetails(!showDetails);
+  const detailPolicyHolder = (policyholderId) => {
+    setSelectedPolicyholder(policyholderId);
+    setShowDetails(true);
   };
 
   return (
@@ -131,14 +118,13 @@ export default function Pojistenci() {
 
       {!showForm && !showDetails && (
         <PolicyholderForm
-          addPolicyholder={addPolicyholder}
+          showInsurence={showInsurence}
           handleDeleteEvidenceList={handleDeleteEvidenceList}
           actuallyPage={actuallyPage}
           changeInsurencePageMinus={changeInsurencePageMinus}
           changeInsurencePage={changeInsurencePage}
           changeInsurencePagePlus={changeInsurencePagePlus}
           amountPages={amountPages}
-          showInsurence={showInsurence}
           detailPolicyHolder={detailPolicyHolder}
         />
       )}
@@ -208,11 +194,11 @@ function PolicyholderForm({
           <div className="table-cell header-cell">Akce</div>
         </div>
 
-        {showInsurence.map((pojistenec, index) => (
+        {showInsurence.map((pojistenec) => (
           <div
             className={`table-row ${pojistenec.isHidden ? "hidden" : ""}`}
-            key={index}
-            onClick={() => detailPolicyHolder(index)}
+            key={pojistenec.id}
+            onClick={() => detailPolicyHolder(pojistenec.id)}
           >
             <div className="table-cell">
               <span className="names-nav">
@@ -227,7 +213,7 @@ function PolicyholderForm({
               <button className="btn-editovat">Editovat</button>
               <button
                 className="btn-odstranit"
-                onClick={() => handleDeleteEvidenceList(index)}
+                onClick={() => handleDeleteEvidenceList(pojistenec.id)}
               >
                 Odstranit
               </button>
@@ -278,6 +264,12 @@ function NewPolicyholderForm({ addPolicyholder, showForm, setShowForm }) {
   const [gender, setGender] = useState("");
   const [city, setCity] = useState("");
 
+  const generateUniqueId = () => {
+    const currentTime = new Date().getTime();
+    const randomId = Math.floor(Math.random() * 10000);
+    return `${currentTime}-${randomId}`;
+  };
+
   const handleAddNewInsurancePolicy = (e) => {
     e.preventDefault();
 
@@ -290,7 +282,10 @@ function NewPolicyholderForm({ addPolicyholder, showForm, setShowForm }) {
       gender &&
       city
     ) {
+      const uniqueId = generateUniqueId();
+
       const newPolicyholder = {
+        id: uniqueId,
         firstName,
         lastName,
         phoneNumber,
