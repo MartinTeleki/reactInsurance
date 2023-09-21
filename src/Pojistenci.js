@@ -1,66 +1,24 @@
 import React, { useState } from "react";
 import "./pojistenci.css";
 
-export default function Pojistenci(evidenceList) {
-  const insurenceInformation = [
-    { jmeno: "Jan Novák", bydliste: "Praha" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Petr Dvořák", bydliste: "Ostrava" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Jan Novák", bydliste: "Praha" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Petr Dvořák", bydliste: "Ostrava" },
-    { jmeno: "Jan Novák", bydliste: "Praha" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Petr Dvořák", bydliste: "Ostrava" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Jan Novák", bydliste: "Praha" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Petr Dvořák", bydliste: "Ostrava" },
-    { jmeno: "Jan Novák", bydliste: "Praha" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Petr Dvořák", bydliste: "Ostrava" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Jan Novák", bydliste: "Praha" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Petr Dvořák", bydliste: "Ostrava" },
-    { jmeno: "Jan Novák", bydliste: "Praha" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Petr Dvořák", bydliste: "Ostrava" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Jan Novák", bydliste: "Praha" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Marie Svobodová", bydliste: "Brno" },
-    { jmeno: "Petr Dvořák", bydliste: "Ostrava" },
-  ];
-
-  console.log(evidenceList);
-
+export default function Pojistenci() {
   const storedEvidence = JSON.parse(localStorage.getItem("evidenceTEST")) || [];
-  console.log(storedEvidence);
 
-  const personFirstName = storedEvidence.map((objekt) => objekt.firstName);
-  const personLastName = storedEvidence.map((objekt) => objekt.lastName);
-  const personCity = storedEvidence.map((objekt) => objekt.city);
+  const personFirstName = storedEvidence.map((info) => info.firstName);
+  const personLastName = storedEvidence.map((info) => info.lastName);
+  const personCity = storedEvidence.map((info) => info.city);
 
-  console.log(personFirstName);
-  console.log(personLastName);
-  console.log(personCity);
+  const mergedData = personFirstName.map((firstName, index) => ({
+    firstName,
+    lastName: personLastName[index],
+    city: personCity[index],
+  }));
 
-  // firstNamePersons nyní obsahuje všechny neprázdné hodnoty z evidenceList.firstName
-
-  const pageRecords = 10;
+  const pageRecords = 3;
 
   const [actuallyPage, setActuallyPage] = useState(1);
 
-  const amountPages = Math.ceil(insurenceInformation.length / pageRecords);
+  const amountPages = Math.ceil(mergedData.length / pageRecords);
 
   const changeInsurencePage = (numberPage) => {
     setActuallyPage(numberPage);
@@ -76,7 +34,7 @@ export default function Pojistenci(evidenceList) {
 
   const startIndex = (actuallyPage - 1) * pageRecords;
   const finishIndex = startIndex + pageRecords;
-  const showInsurence = insurenceInformation.slice(startIndex, finishIndex);
+  const showInsurence = mergedData.slice(startIndex, finishIndex);
 
   return (
     <div className="table-container">
@@ -103,8 +61,8 @@ export default function Pojistenci(evidenceList) {
       <div className="table">
         {showInsurence.map((pojistenec, index) => (
           <div className="table-row" key={index}>
-            <div className="table-name">{pojistenec.jmeno}</div>
-            <div className="table-name">{pojistenec.bydliste}</div>
+            <div className="table-name">{pojistenec.firstName}</div>
+            <div className="table-name">{pojistenec.city}</div>
             <div className="action button">
               <button className="btn-editovat">Editovat</button>
               <button className="btn-odstranit">Odstranit</button>
