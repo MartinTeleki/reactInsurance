@@ -15,7 +15,6 @@ export default function Pojistenci() {
   useEffect(() => {
     const storedEvidence =
       JSON.parse(localStorage.getItem("evidenceTEST")) || [];
-    //console.log(storedEvidence);
 
     const mergedData = storedEvidence.map((info, index) => ({
       id: index,
@@ -135,7 +134,7 @@ export default function Pojistenci() {
       )}
 
       {!showForm && !showDetails && !showEdit && (
-        <PolicyholderForm
+        <PolicyholderFormWrapper
           showInsurence={showInsurence}
           handleDeleteEvidenceList={handleDeleteEvidenceList}
           actuallyPage={actuallyPage}
@@ -163,7 +162,7 @@ export default function Pojistenci() {
 
       <div className="table-container">
         {editingPolicyholder !== null && (
-          <PolicyholderEdit
+          <PolicyholderEditWrapper
             policyholder={evidenceList[editingPolicyholder]}
             editPolicyholder={editPolicyholder}
             cancelEdit={() => setEditingPolicyholder(null)}
@@ -177,12 +176,108 @@ export default function Pojistenci() {
     </div>
   );
 }
-function PolicyholderEdit({
+
+function PolicyholderFormWrapper({
+  showInsurence,
+  handleDeleteEvidenceList,
+  actuallyPage,
+  changeInsurencePageMinus,
+  changeInsurencePage,
+  changeInsurencePagePlus,
+  amountPages,
+  detailPolicyHolder,
+  setEditingPolicyholder,
+  showEdit,
+  setShowEdit,
+  editHandleShowButton,
+}) {
+  return (
+    <div>
+      <div className="table">
+        <div className="table-row header-row">
+          <div className="table-cell header-cell">Jméno</div>
+          <div className="table-cell header-cell">Bydliště</div>
+          <div className="table-cell header-cell">Akce</div>
+        </div>
+
+        {showInsurence.map((pojistenec) => (
+          <div
+            className={`table-row ${pojistenec.isHidden ? "hidden" : ""}`}
+            key={pojistenec.id}
+          >
+            <div
+              className="table-cell"
+              onClick={() => detailPolicyHolder(pojistenec.id)}
+            >
+              <span className="names-nav">
+                {pojistenec.firstName} {pojistenec.lastName}
+              </span>
+            </div>
+            <div className="table-cell">
+              {" "}
+              <span className="names-nav"> {pojistenec.city}</span>
+            </div>
+            <div className="table-cell">
+              <button
+                className="btn-editovat"
+                onClick={() => {
+                  setEditingPolicyholder(pojistenec.id);
+                  editHandleShowButton();
+                }}
+              >
+                Editovat
+              </button>
+              <button
+                className="btn-odstranit"
+                onClick={() => handleDeleteEvidenceList(pojistenec.id)}
+              >
+                Odstranit
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="pagination">
+        <button
+          className={`pagination-item ${actuallyPage === 1 ? "disabled" : ""}`}
+          onClick={() => changeInsurencePageMinus(actuallyPage)}
+        >
+          Předchozí
+        </button>
+        {Array.from({ length: amountPages }, (v, i) => i + 1).map(
+          (pageNumber) => (
+            <button
+              key={pageNumber}
+              className={`pagination-item ${
+                actuallyPage === pageNumber ? "active" : ""
+              }`}
+              onClick={() => changeInsurencePage(pageNumber)}
+            >
+              {pageNumber}
+            </button>
+          )
+        )}
+        <button
+          className={`pagination-item ${
+            actuallyPage === amountPages ? "disabled" : ""
+          }`}
+          onClick={() => changeInsurencePagePlus(actuallyPage)}
+        >
+          Další
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function PolicyholderEditWrapper({
   policyholder,
   editPolicyholder,
   cancelEdit,
   setShowEdit,
   showEdit,
+  editHandleShowButton,
 }) {
   const [insuranceType, setInsuranceType] = useState(
     policyholder.insuranceType
@@ -196,7 +291,7 @@ function PolicyholderEdit({
   const [insuredAmount, setInsuredAmount] = useState(
     policyholder.insuredAmount
   );
-  console.log(showEdit);
+
   const handleEdit = () => {
     const editedPolicyholder = {
       ...policyholder,
@@ -318,104 +413,6 @@ function PolicyholderDetails({
         <p>Pohlaví: {mergedData[selectedPolicyholder].gender}</p>
 
         <button onClick={handleCloseDetails}>Zavřít detaily</button>
-      </div>
-    </div>
-  );
-}
-
-function PolicyholderForm({
-  showInsurence,
-  handleDeleteEvidenceList,
-  actuallyPage,
-  changeInsurencePageMinus,
-  changeInsurencePage,
-  changeInsurencePagePlus,
-  amountPages,
-  detailPolicyHolder,
-  setEditingPolicyholder,
-  showEdit,
-  setShowEdit,
-  editHandleShowButton,
-}) {
-  //console.log(showEdit);
-  //console.log(setShowEdit);
-
-  // console.log(setShowEdit(!showEdit));
-  return (
-    <div>
-      <div className="table">
-        <div className="table-row header-row">
-          <div className="table-cell header-cell">Jméno</div>
-          <div className="table-cell header-cell">Bydliště</div>
-          <div className="table-cell header-cell">Akce</div>
-        </div>
-
-        {showInsurence.map((pojistenec) => (
-          <div
-            className={`table-row ${pojistenec.isHidden ? "hidden" : ""}`}
-            key={pojistenec.id}
-          >
-            <div
-              className="table-cell"
-              onClick={() => detailPolicyHolder(pojistenec.id)}
-            >
-              <span className="names-nav">
-                {pojistenec.firstName} {pojistenec.lastName}
-              </span>
-            </div>
-            <div className="table-cell">
-              {" "}
-              <span className="names-nav"> {pojistenec.city}</span>
-            </div>
-            <div className="table-cell">
-              <button
-                className="btn-editovat"
-                onClick={() => {
-                  setEditingPolicyholder(pojistenec.id);
-                  editHandleShowButton();
-                }}
-              >
-                Editovat
-              </button>
-              <button
-                className="btn-odstranit"
-                onClick={() => handleDeleteEvidenceList(pojistenec.id)}
-              >
-                Odstranit
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="pagination">
-        <button
-          className={`pagination-item ${actuallyPage === 1 ? "disabled" : ""}`}
-          onClick={() => changeInsurencePageMinus(actuallyPage)}
-        >
-          Předchozí
-        </button>
-        {Array.from({ length: amountPages }, (v, i) => i + 1).map(
-          (pageNumber) => (
-            <button
-              key={pageNumber}
-              className={`pagination-item ${
-                actuallyPage === pageNumber ? "active" : ""
-              }`}
-              onClick={() => changeInsurencePage(pageNumber)}
-            >
-              {pageNumber}
-            </button>
-          )
-        )}
-        <button
-          className={`pagination-item ${
-            actuallyPage === amountPages ? "disabled" : ""
-          }`}
-          onClick={() => changeInsurencePagePlus(actuallyPage)}
-        >
-          Další
-        </button>
       </div>
     </div>
   );

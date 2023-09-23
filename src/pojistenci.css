@@ -1,12 +1,16 @@
+html {
+  font-size: 16px;
+}
+
 .table-container {
   background: #2d3e3f;
-  height: 1200px;
+  height: 75rem;
 }
 
 .table {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 0.0625rem solid black;
   overflow: hidden;
   color: white;
 }
@@ -18,16 +22,16 @@
   display: flex;
   text-align: left;
   color: white;
-  margin: 0 0 0 100px;
-  padding-top: 60px;
+  margin: 0 0 0 6.25rem;
+  padding-top: 3.75rem;
 }
 
 .table-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid black;
+  padding: 0.625rem;
+  border-bottom: 0.0625rem solid black;
 }
 
 .table-cell {
@@ -35,7 +39,7 @@
 }
 
 .table-name {
-  margin-left: 100px;
+  margin-left: 6.25rem;
   flex: 2;
 }
 
@@ -61,8 +65,8 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  margin: 20px auto 20px auto;
-  padding: 10px 15px 10px 15px;
+  margin: 1.25rem auto 1.25rem auto;
+  padding: 0.625rem 0.9375rem;
   text-transform: uppercase;
   background: #a2ff00;
   color: black;
@@ -74,8 +78,8 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  margin: 20px auto 20px auto;
-  padding: 10px 15px 10px 15px;
+  margin: 1.25rem auto 1.25rem auto;
+  padding: 0.625rem 0.9375rem;
   text-transform: uppercase;
   background: #a2ff00;
   color: black;
@@ -88,8 +92,8 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  margin: 20px auto 20px auto;
-  padding: 10px 15px 10px 15px;
+  margin: 1.25rem auto 1.25rem auto;
+  padding: 0.625rem 0.9375rem;
   text-transform: uppercase;
   background: #a2ff00;
   color: black;
@@ -101,7 +105,7 @@
 .btn-editovat,
 .btn-odstranit {
   text-transform: uppercase;
-  padding: 5px 10px 5px 10px;
+  padding: 0.3125rem 0.625rem;
   cursor: pointer;
 }
 
@@ -116,16 +120,15 @@
 .btn-editovat:hover,
 .btn-odstranit:hover {
   text-transform: uppercase;
-  padding: 5px 10px 5px 10px;
+  padding: 0.3125rem 0.625rem;
   cursor: pointer;
-
   opacity: 0.8;
 }
 
 .btn-editovat:active,
 .btn-odstranit:active {
   text-transform: uppercase;
-  padding: 5px 10px 5px 10px;
+  padding: 0.3125rem 0.625rem;
   cursor: pointer;
   transform: scale(0.96);
 }
@@ -147,15 +150,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 
 .pagination-item {
   background-color: #2d3e3f;
   color: white;
-  border: 1px solid #fff;
-  padding: 5px 10px;
-  margin: 0 5px;
+  border: 0.0625rem solid #fff;
+  padding: 0.3125rem 0.625rem;
+  margin: 0 0.3125rem;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -179,50 +182,50 @@
 /* Pojištěnci */
 
 .policyholder-form {
-  max-width: 400px;
+  max-width: 25rem;
   margin: 0 auto;
-  height: 680px;
+  height: 42.5rem;
 
-  padding: 20px 30px 20px 30px;
+  padding: 1.25rem 1.875rem;
   background-color: #f4f4f4;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px 0px #ddd;
+  border: 0.0625rem solid #ddd;
+  border-radius: 0.3125rem;
+  box-shadow: 0 0 0.3125rem 0 #ddd;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 0.9375rem;
 }
 
 .form-group label {
   display: block;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 0.3125rem;
 }
 
 .form-group input,
 .form-group select {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
+  padding: 0.625rem;
+  border: 0.0625rem solid #ddd;
+  border-radius: 0.3125rem;
+  font-size: 1rem;
 }
 
 .form-group select {
-  height: 40px;
+  height: 2.5rem;
 }
 
 /* buttony */
 
 button[type="submit"] {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem;
   background-color: #3498db;
   color: #fff;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 0.3125rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -233,24 +236,24 @@ button[type="submit"]:hover {
 
 .btn-add-insurance-person {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem;
   background-color: #3498db;
   color: #fff;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 0.3125rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .btn-add-insurance-person:active {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem;
   background-color: #3498db;
   color: #fff;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 0.3125rem;
+  font-size: 1rem;
   cursor: pointer;
   transform: scale(0.96);
 }
@@ -259,30 +262,30 @@ button[type="submit"]:hover {
 
 .policyholder-details {
   background-color: #f0f0f0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-top: 10px;
+  padding: 0.625rem;
+  border: 0.0625rem solid #ccc;
+  border-radius: 0.3125rem;
+  margin-top: 0.625rem;
 }
 
 .policyholder-details h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 1.125rem;
+  margin-bottom: 0.625rem;
 }
 
 .policyholder-details p {
-  font-size: 16px;
-  margin-bottom: 5px;
+  font-size: 1rem;
+  margin-bottom: 0.3125rem;
 }
 
 .policyholder-details button {
   background-color: #007bff;
   color: #fff;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 0.3125rem 0.625rem;
+  border-radius: 0.3125rem;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 
 .policyholder-details button:hover {
@@ -291,47 +294,46 @@ button[type="submit"]:hover {
 
 /* pojistenci.css */
 
-/* Styling for the policyholder edit form */
 .policyholder-edit {
   background-color: #f0f0f0;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin: 20px 0;
+  padding: 1.25rem;
+  border: 0.0625rem solid #ccc;
+  border-radius: 0.3125rem;
+  margin: 1.25rem 0;
 }
 
 .policyholder-edit h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 1.125rem;
+  margin-bottom: 0.625rem;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 0.9375rem;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 0.3125rem;
   font-weight: bold;
 }
 
 .form-group input[type="text"] {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
+  padding: 0.625rem;
+  border: 0.0625rem solid #ccc;
+  border-radius: 0.3125rem;
+  font-size: 1rem;
 }
 
 .btn-save {
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border-radius: 0.3125rem;
+  padding: 0.625rem 1.25rem;
   cursor: pointer;
-  font-size: 16px;
-  margin-right: 10px;
+  font-size: 1rem;
+  margin-right: 0.625rem;
 }
 
 .btn-save:hover {
@@ -342,10 +344,10 @@ button[type="submit"]:hover {
   background-color: #ccc;
   color: #000;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border-radius: 0.3125rem;
+  padding: 0.625rem 1.25rem;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .btn-cancel:hover {

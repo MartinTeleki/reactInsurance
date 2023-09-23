@@ -8,6 +8,8 @@ export function NavBar({
   loginData,
   evidenceList,
   setIsLoggedIn,
+  setIsAdmin,
+  isAdmin,
 }) {
   return (
     <div>
@@ -27,13 +29,21 @@ export function NavBar({
 
           <NavLogin changePage={changePage} isLoggedIn={isLoggedIn} />
 
-          <NavPojistenci changePage={changePage} isLoggedIn={isLoggedIn} />
+          <NavPojistenci
+            changePage={changePage}
+            isLoggedIn={isLoggedIn}
+            isAdmin={isAdmin}
+          />
 
           <NavPojisteni changePage={changePage} isLoggedIn={isLoggedIn} />
 
           <NavUdalosti changePage={changePage} isLoggedIn={isLoggedIn} />
 
-          <NavEvidence changePage={changePage} isLoggedIn={isLoggedIn} />
+          <NavEvidence
+            changePage={changePage}
+            isLoggedIn={isLoggedIn}
+            isAdmin={isAdmin}
+          />
 
           <NavContact changePage={changePage} isLoggedIn={isLoggedIn} />
 
@@ -48,6 +58,7 @@ export function NavBar({
             changePage={changePage}
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
+            setIsAdmin={setIsAdmin}
           />
         </ul>
       </nav>
@@ -93,10 +104,10 @@ function NavLogin({ changePage, isLoggedIn }) {
     </div>
   );
 }
-function NavEvidence({ changePage, isLoggedIn }) {
+function NavEvidence({ changePage, isLoggedIn, isAdmin }) {
   return (
     <div>
-      {isLoggedIn && (
+      {isAdmin && (
         <li>
           <a href="#" alt="evidence" onClick={() => changePage("evidence")}>
             Evidence
@@ -119,10 +130,10 @@ function NavContact({ changePage, isLoggedIn }) {
     </div>
   );
 }
-function NavPojistenci({ changePage, isLoggedIn }) {
+function NavPojistenci({ changePage, isAdmin }) {
   return (
     <div>
-      {isLoggedIn && (
+      {isAdmin && (
         <li>
           <a href="#" alt="pojistenci" onClick={() => changePage("pojistenci")}>
             Pojištěnci
@@ -158,7 +169,8 @@ function NavUdalosti({ changePage, isLoggedIn }) {
     </div>
   );
 }
-function NavOdhlasit({ changePage, isLoggedIn, setIsLoggedIn }) {
+function NavOdhlasit({ changePage, isLoggedIn, setIsLoggedIn, setIsAdmin }) {
+  // console.log(setIsAdmin);
   return (
     <div>
       {isLoggedIn && (
@@ -169,6 +181,7 @@ function NavOdhlasit({ changePage, isLoggedIn, setIsLoggedIn }) {
             onClick={() => {
               changePage("login");
               setIsLoggedIn(false);
+              setIsAdmin(false);
             }}
           >
             Odhlásit

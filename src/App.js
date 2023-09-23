@@ -7,6 +7,7 @@ import { NewContact } from "./NewContact";
 import { NavBar } from "./NavBar";
 import { Footer } from "./Footer";
 import Pojistenci from "./Pojistenci";
+import { Pojisteni } from "./Pojisteni";
 
 export default function App() {
   const initialRegistrationInfo = {
@@ -35,6 +36,10 @@ export default function App() {
 
   const [userLogin, setUserLogin] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  //console.log(isAdmin);
+
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -53,11 +58,20 @@ export default function App() {
   //console.log(emailList, passwordList, passwordControlList);
   //console.log(isLoggedIn);
 
-  useEffect(() => {
+  const updateLocalStorageData = () => {
     const storedEvidence =
       JSON.parse(localStorage.getItem("evidenceTEST")) || [];
     setEvidenceList(storedEvidence);
     setNumberOfContracts(storedEvidence);
+    console.log(storedEvidence);
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      updateLocalStorageData();
+    }, 1000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   function toggleMenu() {
@@ -113,6 +127,9 @@ export default function App() {
 
     if (isLoggedIn) {
       alert("Úspěšně jste se přihlásili!");
+      if (email === "martinteleki@seznam.cze") {
+        setIsAdmin(true);
+      }
       changePage("evidence");
       setIsLoggedIn(true);
     } else {
@@ -130,6 +147,8 @@ export default function App() {
         loginData={loginData}
         evidenceList={evidenceList}
         setIsLoggedIn={setIsLoggedIn}
+        setIsAdmin={setIsAdmin}
+        isAdmin={isAdmin}
       />
       <Main
         currentPage={currentPage}
@@ -151,6 +170,7 @@ export default function App() {
         setEmailList={setEmailList}
         passwordList={passwordList}
         setPasswordList={setPasswordList}
+        isAdmin={isAdmin}
       />
       <Footer />
     </div>
@@ -176,7 +196,9 @@ function Main({
   setEmailList,
   passwordList,
   setPasswordList,
+  isAdmin,
 }) {
+  console.log(isAdmin);
   return (
     <div className="">
       {currentPage === "informace" && (
@@ -198,7 +220,6 @@ function Main({
           />
         </div>
       )}
-      {/* pak dát vykřičník před isLoggedIn v prvnm řádku */}
 
       {currentPage === "login" && (
         <div className="login-margin">
@@ -217,7 +238,7 @@ function Main({
           />
         </div>
       )}
-      {isLoggedIn && currentPage === "evidence" && (
+      {isAdmin && currentPage === "evidence" && (
         <div className="evidence-margin">
           <NewEvidence
             evidenceList={evidenceList}
@@ -233,7 +254,7 @@ function Main({
         </div>
       )}
       <div>
-        {currentPage === "pojistenci" && (
+        {currentPage === "pojistenci" && isAdmin && (
           <div className="">
             <Pojistenci
               evidenceList={evidenceList}
@@ -242,6 +263,47 @@ function Main({
           </div>
         )}
       </div>
+      {currentPage === "pojisteni" && (
+        <div className="">
+          <Pojisteni changePage={changePage} />
+        </div>
+      )}
+
+      {isLoggedIn && (
+        <div className="">
+          <UserInformation loginData={loginData} evidenceList={evidenceList} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function UserInformation({ loginData, evidenceList }) {
+  const user = evidenceList.find((person) => person.email === loginData.email);
+  console.log(evidenceList);
+  console.log(user);
+
+  return (
+    <div>
+      <h2>Osobní údaje uživatele {user.firstName}</h2>
+      <p>Jméno: {user.firstName}</p>
+      <p>Příjmení: {user.lastName}</p>
+      <p>Město: {user.city}</p>
+      <p>Heslo: {user.password}</p>
+      <p>Email: {user.email}</p>
+      <p>Pohlaví: {user.gender}</p>
+      <p>Identifikační číslo: {user.id}</p>
+      <p>Kód pojištění: {user.insuranceCode}</p>
+      <p>Číslo pojištění: {user.insuranceNumber} </p>
+      <p>Předmět pojištění: {user.insuranceSubject}</p>
+      <p>Typ pojištění: {user.insuranceType}</p>
+      <p>Roční platba za pojištění: {user.insuredAmount} </p>
+      <p>Telefonní číslo: {user.phoneNumber}</p>
+      <p>
+        Všeobecné podmínky byly splněny : {user.termsAccepted ? "Ano" : "Ne"}
+      </p>
+      <p>Platnost pojištění od: {user.validityFrom}</p>
+      <p>Platnost pojištění do: {user.validityTo}</p>
     </div>
   );
 }

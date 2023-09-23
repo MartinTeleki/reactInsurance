@@ -3,8 +3,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap");
 
 .evidence-margin {
-  margin-top: 20px;
-  margin-bottom: 200px;
+  margin-top: 1.25rem; /* 20px */
+  margin-bottom: 12.5rem; /* 200px */
 }
 
 .evidence-container {
@@ -15,8 +15,8 @@
   flex-direction: column;
   height: auto;
   max-width: 100%;
-  border: 0.5px solid black;
-  margin: 100px 15% 0 15%;
+  border: 0.03125rem solid black; /* 0.5px */
+  margin: 6.25rem 15% 0 15%; /* 100px 15% 0 15% */
 }
 
 .evidence-item-title {
@@ -32,14 +32,14 @@
   align-items: center;
   background: #2d3e3f;
   color: white;
-  border: 1px solid black;
+  border: 0.03125rem solid black; /* 1px */
   flex-wrap: wrap;
 }
 
 .evidence-item h3 {
-  font-size: 16px;
+  font-size: 1rem; /* 16px */
   margin: 0;
-  margin: 20px 0 20px 20%;
+  margin: 1.25rem 0 1.25rem 20%; /* 20px 0 20px 20% */
 }
 
 .evidence-item p {
@@ -49,7 +49,7 @@
 }
 
 .evidence-em {
-  margin-left: 5px;
+  margin-left: 0.3125rem; /* 5px */
 }
 
 /* buttons */
@@ -62,8 +62,8 @@
 
 .btn-delete {
   text-transform: uppercase;
-  margin: 15.2px 0;
-  padding: 10px 15px;
+  margin: 0.95rem 0; /* 15.2px */
+  padding: 0.625rem 0.9375rem; /* 10px 15px */
   color: black;
   background: #a2ff00;
   cursor: pointer;
@@ -72,7 +72,7 @@
 
 .btn-delete:hover {
   text-transform: uppercase;
-  padding: 10px 15px;
+  padding: 0.625rem 0.9375rem; /* 10px 15px */
   color: black;
   background: #a2ff00;
   opacity: 0.9;
@@ -82,7 +82,7 @@
 
 .btn-delete:active {
   text-transform: uppercase;
-  padding: 10px 15px;
+  padding: 0.625rem 0.9375rem; /* 10px 15px */
   color: black;
   background: #a2ff00;
   opacity: 0.9;
@@ -96,25 +96,25 @@
   color: #a2ff00;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 31.25rem) { 
   .evidence-item {
     display: flex;
     flex-direction: column;
-    padding: 20px 0 20px 0;
+    padding: 1.25rem 0 1.25rem 0; 
   }
 
   .evidence-item h3 {
     margin: 0;
-    margin-right: 10px;
-    margin-bottom: 15px;
+    margin-right: 0.625rem; 
+    margin-bottom: 0.9375rem; 
   }
 
   .evidence-item p {
     margin-left: 0;
-    margin-top: 20px;
+    margin-top: 1.25rem; 
   }
 
   .evidence-container {
-    margin: 20px 5% 0 5%;
+    margin: 1.25rem 5% 0 5%; 
   }
 }

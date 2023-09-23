@@ -1,57 +1,69 @@
 import React from "react";
-import "./newContact.css"; // Ponecháme import tvojí stávajícího CSS
+import "./newContact.css";
 
 export function NewContact() {
   return (
     <div className="contact-container">
       <h2 className="contact-title">Kontakt na pojišťovnu</h2>
-      <div className="contact-box">
-        <p className="contact-paragraph">
-          <span className="fl fontLabel">Jana Nováková</span>
-          <i className="iconBox square-box fa fa-phone-square box-phone-contact"></i>
-          <span className="phone-nummer-contact">+420 774 887 999</span>
-          <i className="iconBox square-box  fa fa-envelope box-email-contact"></i>
-          <span className="email-contact">jananovakova@reactpojistovna.cz</span>
-        </p>
-      </div>
-      <div className="contact-box">
-        <p className="contact-paragraph">
-          <span className="fl fontLabel">Buka Zázračná</span>
-          <i className="iconBox square-box fa fa-phone-square box-phone-contact"></i>
-          <span className="phone-nummer-contact">+420 774 887 998</span>
-          <i className="iconBox square-box fa fa-envelope box-email-contact"></i>
-          <span className="email-contact">bukazazracna@reactpojistovna.cz</span>
-        </p>
-      </div>
-      <div className="contact-box">
-        <p className="contact-paragraph">
-          <span className="fl fontLabel">Falka Věčná</span>
-          <i className="iconBox square-box fa fa-phone-square box-phone-contact"></i>
-          <span className="phone-nummer-contact">+420 774 887 997</span>
-          <i className="iconBox square-box fa fa-envelope box-email-contact"></i>
-          <span className="email-contact">falkavecna@reactpojistovna.cz</span>
-        </p>
-      </div>
-      <div className="contact-box">
-        <p className="contact-paragraph">
-          <span className="fl fontLabel">Petra Konečná</span>
-          <i className="iconBox square-box fa fa-phone-square box-phone-contact"></i>
-          <span className="phone-nummer-contact">+420 774 887 996</span>
-          <i className="iconBox square-box fa fa-envelope box-email-contact"></i>
-          <span className="email-contact">petrakonecna@reactpojistovna.cz</span>
-        </p>
-      </div>
-      <div className="contact-box">
-        <p className="contact-paragraph">
-          <span className="fl fontLabel">Jiřina Peřinová</span>
-          <i className="iconBox square-box fa fa-phone-square box-phone-contact"></i>
-          <span className="phone-nummer-contact">+420 774 887 996</span>
-          <i className="iconBox square-box fa fa-envelope box-email-contact"></i>
-          <span className="email-contact">
-            jirinaperinova@reactpojistovna.cz
-          </span>
-        </p>
-      </div>
+      <Contact
+        name="Jana Nováková"
+        phone="774887999"
+        email="jananovakova@reactpojistovna.cz"
+      />
+      <Contact
+        name="Buka Zázračná"
+        phone="774887998"
+        email="bukazazracna@reactpojistovna.cz"
+      />
+      <Contact
+        name="Falka Věčná"
+        phone="774887997"
+        email="falkavecna@reactpojistovna.cz"
+      />
+      <Contact
+        name="Petra Konečná"
+        phone="774887996"
+        email="petrakonecna@reactpojistovna.cz"
+      />
+      <Contact
+        name="Jiřina Peřinová"
+        phone="774887996"
+        email="jirinaperinova@reactpojistovna.cz"
+      />
+    </div>
+  );
+}
+
+function Contact({ name, phone, email }) {
+  const openEmailClient = (email) => {
+    window.location.href = `mailto:${email}`;
+  };
+  const openPhoneClient = (phone) => {
+    window.location.href = `tel:${phone}`;
+  };
+
+  return (
+    <div className="contact-box">
+      <p className="contact-paragraph">
+        <span className="fl fontLabel">{name}</span>
+        <i
+          className="iconBox square-box fa fa-phone-square box-phone-contact"
+          onClick={() => openPhoneClient(phone)}
+        ></i>
+        <span
+          className="phone-nummer-contact"
+          onClick={() => openPhoneClient(phone)}
+        >
+          {phone}
+        </span>
+        <i
+          className="iconBox square-box fa fa-envelope box-email-contact"
+          onClick={() => openEmailClient(email)}
+        ></i>
+        <span className="email-contact" onClick={() => openEmailClient(email)}>
+          {email}
+        </span>
+      </p>
     </div>
   );
 }

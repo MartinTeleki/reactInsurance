@@ -1,5 +1,5 @@
 html {
-  font-size: 16px;
+  font-size: 1rem; 
 }
 
 body {
@@ -19,7 +19,7 @@ body {
 }
 
 button {
-  border-radius: 10px;
+  border-radius: 0.625rem; 
 }
 
 .navbar {
@@ -29,17 +29,17 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem; 
 }
 
 .navbar p {
-  font-size: 24px;
+  font-size: 1.5rem; 
   font-weight: bold;
 }
 
 .logo {
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 0.625rem; 
+  margin-right: 0.625rem; 
 }
 
 .nav-links {
@@ -50,7 +50,7 @@ button {
 }
 
 .nav-links li {
-  margin-right: 15px;
+  margin-right: 0.9375rem; 
 }
 
 .nav-links a {
@@ -69,14 +69,14 @@ button {
   cursor: pointer;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: 0.625rem; 
 }
 
 .bar {
-  width: 25px;
-  height: 3px;
+  width: 1.5625rem; 
+  height: 0.1875rem; 
   background-color: #fff;
-  margin: 3px 0;
+  margin: 0.1875rem 0; 
 }
 
 /* Main */
@@ -93,7 +93,7 @@ button {
   text-decoration: none;
   background-color: #333;
   color: #fff;
-  padding: 20px 0;
+  padding: 1.25rem 0; 
   text-align: center;
   width: 100%;
   position: fixed;
@@ -109,7 +109,7 @@ button {
   text-decoration: underline;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 43.75rem) { 
   .bar-container {
     display: flex;
   }

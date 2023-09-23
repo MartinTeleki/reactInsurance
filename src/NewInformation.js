@@ -10,11 +10,19 @@ export function NewInformation({ evidenceList, numberOfContracts }) {
 
   const totalInsuranceAmount = informationFromJSON
     .map((item) => Number(item.insuredAmount))
-    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    .reduce(
+      (accumulator, currentValue) =>
+        accumulator + (isNaN(currentValue) ? 0 : currentValue),
+      0
+    );
 
   const totalContractValue = informationFromJSON
     .map((item) => Number(item.amount))
-    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    .reduce(
+      (accumulator, currentValue) =>
+        accumulator + (isNaN(currentValue) ? 0 : currentValue),
+      0
+    );
 
   //console.log(totalInsuranceAmount);
 
@@ -44,7 +52,7 @@ export function NewInformation({ evidenceList, numberOfContracts }) {
     }, 1000);
 
     return () => {
-      clearInterval(intervalId);
+      clearInterval();
     };
   }, []);
 

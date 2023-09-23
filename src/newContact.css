@@ -1,14 +1,14 @@
 .contact-container {
   background-color: #f5f5f5;
-  padding: 20px;
+  padding: 1.25rem; 
   background: #2d3e3f;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem; 
 }
 
 .contact-title {
   text-align: center;
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 1.5rem; 
+  margin-bottom: 1.25rem; 
   color: white;
   text-transform: uppercase;
 }
@@ -18,13 +18,13 @@
   align-items: center;
   justify-content: center;
   grid-template-columns: auto auto auto auto;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 0.625rem; 
+  margin-bottom: 1.25rem; 
 }
 
 .contact-paragraph {
-  font-size: 18px;
-  margin-top: 40px;
+  font-size: 1.125rem; 
+  margin-top: 2.5rem; 
   display: flex;
   align-items: center;
 }
@@ -34,45 +34,52 @@
 
 .black-icon-contact {
   color: #000;
-  margin-right: 5px;
-  font-size: 20px;
+  margin-right: 0.3125rem; 
+  font-size: 1.25rem; 
+  cursor: pointer;
 }
 
 .phonenumber-span-contact {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem; 
+  height: 2.5rem; 
   font-weight: bold;
-  margin-left: 5px;
+  margin-left: 0.3125rem; 
 }
 
 .email-span {
   font-style: italic;
-  margin-left: 5px;
+  margin-left: 0.3125rem; 
 }
 
 .box-phone-contact,
 .box-email-contact {
-  margin: 40px;
+  margin: 2.5rem; 
 }
 
 .phone-nummer-contact,
 .email-contact {
-  margin: 20px 20px 20px 20px;
+  margin: 1.25rem; 
   color: #fff;
 }
 
 .square-box {
-  padding: 5px 10px 5px 10px;
+  padding: 0.3125rem 0.625rem; 
 }
 
-@media (max-width: 970px) {
+.email-contact:hover,
+.phone-nummer-contact:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@media (max-width: 60.625rem) { 
   * {
     margin: 0;
   }
 
   .contact-box {
     display: block;
-    margin: 20px 0px 20px 0;
+    margin: 1.25rem 0;
   }
 
   .contact-paragraph {
@@ -80,14 +87,14 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 100px 0px;
+    margin: 6.25rem 0;
   }
   .fontLabel {
     text-align: center;
   }
 
   .phone-nummer-contact {
-    margin: 20px 0px 20px 0;
+    margin: 1.25rem 0;
   }
 
   .phonenumber-span-contact,
@@ -97,11 +104,11 @@
   }
 
   .square-box {
-    margin: 5px 0;
+    margin: 0.3125rem 0;
   }
 
   .contact-title {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 2.5rem; 
   }
 }
